@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wedding planning spreadsheet templates — budget tracker, guest list, day-of timeline, and honeymoon planner. Available on Etsy and Gumroad.">
+  <title>Wedding Planner Templates — LogicPlanners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+
+  <style>
+    /* ══════════════════════════════════════════
+       Wedding page — local variables (Lavender + Gold defaults)
+       JS overrides these on load / palette change
+       ══════════════════════════════════════════ */
+    :root {
+      --cat:          #8B6AB0;
+      --cat-hover:    #7A5A9E;
+      --cat-light:    rgba(139,106,176,0.13);
+      --cat-border:   rgba(139,106,176,0.30);
+      --cat-shadow:   rgba(139,106,176,0.35);
+      --cat-bg:       rgba(139,106,176,0.22);   /* stronger — used in card blobs */
+
+      --accent:       #C9A96E;
+      --accent-hover: #B8944E;
+      --accent-light: rgba(201,169,110,0.14);
+      --accent-border:rgba(201,169,110,0.32);
+      --accent-shadow:rgba(201,169,110,0.35);
+      --accent-bg:    rgba(201,169,110,0.20);   /* stronger — used in card blobs */
+    }
+
+    /* ── Global accent overrides (replace shared gold refs) ── */
+    .eyebrow                 { color: var(--accent) !important; }
+    .cta-banner .eyebrow     { color: var(--accent) !important; }
+    .cta-banner-heading em   { color: var(--accent) !important; }
+    .floral-line             { background: linear-gradient(90deg, transparent, var(--accent), transparent) !important; }
+    .floral-divider svg path { fill: var(--accent) !important; }
+    .hero-pill-dot           { background: var(--accent) !important; }
+    .testimonial-stars       { color: var(--accent) !important; }
+
+    /* ── Announcement ribbon — both colors ── */
+    .wedding-ribbon {
+      background: linear-gradient(90deg, var(--cat-light), var(--accent-light), var(--cat-light));
+      border-bottom: 2px solid var(--accent-border);
+      text-align: center; padding: 9px 16px;
+      font-size: 12.5px; font-weight: 500; color: var(--cat);
+      letter-spacing: 0.07em;
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(155deg, #F8F4FF 0%, #EEE4F8 35%, #E0CCEE 70%, #D4B8E8 100%);
+    }
+    .hero-petals { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+    .petal { position: absolute; top: -40px; opacity: 0; animation: petalDrift linear infinite; user-select: none; }
+    @keyframes petalDrift {
+      0%   { transform: translateY(0)     rotate(0deg)   translateX(0);   opacity: 0; }
+      6%   { opacity: 0.8; }
+      92%  { opacity: 0.5; }
+      100% { transform: translateY(560px) rotate(480deg) translateX(40px); opacity: 0; }
+    }
+
+    .hero-badge-wedding {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--cat-light); border: 1px solid var(--cat-border);
+      border-radius: 100px; padding: 8px 22px;
+      font-size: 13px; font-weight: 500; color: var(--text-secondary); margin-bottom: 32px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .hero-badge-wedding .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--cat), var(--accent)); flex-shrink: 0;
+    }
+    .hero-arch { display: inline-block; position: relative; }
+    .hero-arch::before { content: '✦'; position: absolute; left: -38px; top: 4px; font-size: 20px; color: var(--accent); opacity: 0.6; }
+    .hero-arch::after  { content: '✦'; position: absolute; right: -38px; bottom: 4px; font-size: 20px; color: var(--accent); opacity: 0.6; }
+
+    /* ── Stats strip — gradient background ── */
+    .wedding-stats {
+      background: linear-gradient(180deg, var(--cat-light), #fff 45%, var(--accent-light));
+      border-bottom: 1px solid var(--accent-border);
+      padding: 46px 0;
+      transition: background 0.3s;
+    }
+    .wedding-stats-inner { display: flex; align-items: center; justify-content: center; gap: 60px; flex-wrap: wrap; }
+    .wedding-stat { text-align: center; }
+    .wedding-stat-num {
+      font-family: var(--font-serif); font-size: 38px; font-weight: 800; line-height: 1;
+      background: linear-gradient(135deg, var(--cat) 30%, var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .wedding-stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 8px; }
+    .wedding-stat-divider { width: 1px; height: 54px; background: var(--accent-border); }
+
+    /* ── Section floral ornaments — more prominent ── */
+    .section-floral { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 18px; }
+    .section-floral-line { width: 80px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent)); }
+    .section-floral-line.right { background: linear-gradient(90deg, var(--accent), transparent); }
+    .section-floral-icon { font-size: 17px; }
+
+    /* ── Product cards — accent top border on all ── */
+    .product-card { border-top: 3px solid var(--accent) !important; }
+
+    /* ── Product card tops — reactive radial gradients ── */
+    /* Each card gets its own blob placement; colors react to theme */
+    .card-top-1 {
+      background:
+        radial-gradient(ellipse at 15% 20%, var(--cat-bg)    0%, transparent 60%),
+        radial-gradient(ellipse at 85% 85%, var(--accent-bg) 0%, transparent 60%),
+        #FAF7F4;
+    }
+    .card-top-2 {
+      background:
+        radial-gradient(ellipse at 80% 15%, var(--accent-bg) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 85%, var(--cat-bg)    0%, transparent 60%),
+        #FAF7F4;
+    }
+    .card-top-3 {
+      background:
+        radial-gradient(ellipse at 50% 5%,  var(--accent-bg) 0%, transparent 65%),
+        radial-gradient(ellipse at 50% 95%, var(--cat-bg)    0%, transparent 65%),
+        #FAF7F4;
+    }
+    .card-top-4 {
+      background:
+        radial-gradient(ellipse at 20% 15%, var(--accent-bg) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, var(--cat-bg)    0%, transparent 60%),
+        #FAF7F4;
+    }
+
+    /* ── Product badge — accent color ── */
+    .product-badge {
+      color: var(--accent) !important;
+      background: var(--accent-light) !important;
+      border: 1px solid var(--accent-border) !important;
+      border-radius: 100px; padding: 3px 10px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      display: inline-block; margin-bottom: 14px;
+    }
+
+    /* ── Product price — cat color ── */
+    .product-price { color: var(--cat) !important; }
+
+    /* ── Product feature dots — all accent ── */
+    .product-feature-dot { background: var(--accent) !important; }
+
+    /* ── How-to step ── */
+    .how-to { background: linear-gradient(180deg, var(--accent-light), var(--bg-surface)) !important; }
+    .how-step-num {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--cat), var(--accent)) !important;
+      border: none !important; color: #fff !important;
+      box-shadow: 0 4px 18px var(--cat-shadow) !important;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .how-step-connector {
+      background: linear-gradient(90deg, var(--accent-border), transparent) !important;
+    }
+
+    /* ── FAQ items — strong accent left border ── */
+    .faq-item {
+      border-left: 4px solid var(--accent) !important;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0 !important;
+      padding-left: 26px !important;
+      transition: border-color 0.3s;
+    }
+    /* FAQ section tinted background */
+    .section-faq { background: linear-gradient(180deg, var(--bg-surface), var(--accent-light), var(--bg-surface)); }
+
+    /* ── Testimonial cards — cat top border ── */
+    .testimonial-card {
+      position: relative; overflow: hidden;
+      border-top: 3px solid var(--cat) !important;
+      transition: border-color 0.3s;
+    }
+    .testimonial-card::before {
+      content: '❝'; position: absolute; top: 10px; right: 18px;
+      font-family: var(--font-serif); font-size: 52px;
+      color: var(--cat); opacity: 0.08; line-height: 1; pointer-events: none;
+    }
+    .testimonial-couple-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--cat); opacity: 0.75; margin-bottom: 4px;
+    }
+
+    /* ── Romantic quote block ── */
+    .wedding-quote-section { padding: 56px 0 0; text-align: center; }
+    .wedding-quote-wrap {
+      max-width: 560px; margin: 0 auto; padding: 36px 40px;
+      background: linear-gradient(135deg, var(--cat-light), var(--accent-light));
+      border: 1px solid var(--cat-border); border-radius: var(--radius-lg);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .wedding-quote-mark {
+      font-family: var(--font-serif); font-size: 72px;
+      color: var(--accent); opacity: 0.38; line-height: 0.6; margin-bottom: 12px; display: block;
+    }
+    .wedding-quote-text { font-family: var(--font-serif); font-style: italic; font-size: clamp(17px, 2.2vw, 21px); color: var(--text-secondary); line-height: 1.65; }
+    .wedding-quote-attr { display: block; margin-top: 16px; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.14em; font-style: normal; }
+    .wedding-quote-hearts { margin-top: 14px; font-size: 16px; color: var(--accent); opacity: 0.65; letter-spacing: 6px; }
+
+    /* ── CTA sparkles ── */
+    .cta-sparkle { position: absolute; pointer-events: none; font-size: 22px; opacity: 0.12; animation: sparkle 4s ease-in-out infinite alternate; }
+    @keyframes sparkle { 0% { transform: scale(1) rotate(0deg); opacity: 0.10; } 100% { transform: scale(1.35) rotate(20deg); opacity: 0.20; } }
+    .cta-sparkle-1 { top: 20%; left: 8%;    animation-delay: 0s; }
+    .cta-sparkle-2 { top: 62%; left: 3%;    animation-delay: 1.2s; }
+    .cta-sparkle-3 { top: 22%; right: 7%;   animation-delay: 0.6s; }
+    .cta-sparkle-4 { bottom: 18%; right: 4%; animation-delay: 1.8s; }
+
+    /* ── Footer hearts ── */
+    .footer-hearts { text-align: center; padding: 20px 0 8px; font-size: 14px; color: var(--accent); opacity: 0.55; letter-spacing: 10px; }
+
+    /* ══════════════════════════════════════════
+       COLOR PICKER PANEL
+       ══════════════════════════════════════════ */
+    .cp-wrapper {
+      position: fixed; right: 0; top: 50%;
+      transform: translateY(-50%); z-index: 500;
+      display: flex; align-items: center;
+    }
+    .cp-tab {
+      background: var(--cat); color: #fff;
+      border: none; cursor: pointer;
+      padding: 14px 11px; border-radius: 14px 0 0 14px;
+      box-shadow: -4px 2px 18px rgba(0,0,0,0.18);
+      transition: padding 0.2s ease, background 0.3s ease;
+      display: flex; flex-direction: column; align-items: center; gap: 7px;
+      flex-shrink: 0;
+    }
+    .cp-tab:hover { padding-left: 15px; }
+    .cp-tab-icon  { font-size: 20px; line-height: 1; }
+    .cp-tab-label { font-size: 9.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.85); }
+
+    .cp-panel {
+      background: #fff;
+      border: 1px solid var(--border-card); border-right: none;
+      border-radius: 18px 0 0 18px;
+      padding: 22px 18px; width: 290px;
+      box-shadow: -10px 0 40px rgba(44,26,16,0.14);
+      transform: translateX(101%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      max-height: 82vh; overflow-y: auto;
+    }
+    .cp-wrapper.open .cp-panel { transform: translateX(0); }
+
+    /* Dual preview strip */
+    .cp-preview-strip {
+      display: flex; height: 10px; border-radius: 100px;
+      overflow: hidden; margin-bottom: 18px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+    }
+    .cp-preview-half { flex: 1; transition: background 0.3s; }
+
+    .cp-panel-title { font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+    .cp-panel-sub   { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
+
+    /* Section header */
+    .cp-section { display: flex; align-items: center; gap: 8px; margin: 14px 0 10px; }
+    .cp-section-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.18); transition: background 0.3s; }
+    .cp-section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); }
+    .cp-section-hint { font-size: 10px; color: var(--text-muted); margin-left: auto; opacity: 0.7; }
+
+    /* Swatches */
+    .cp-swatches { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .cp-swatch {
+      display: flex; align-items: center; gap: 9px;
+      padding: 7px 9px; border-radius: 10px;
+      border: 2px solid transparent; cursor: pointer;
+      transition: all 0.16s ease; background: none;
+      text-align: left; font-family: var(--font-sans); width: 100%;
+    }
+    .cp-swatch:hover { background: var(--bg-surface); }
+    .cp-swatch.active-main   { border-color: var(--cat);    background: var(--cat-light); }
+    .cp-swatch.active-accent { border-color: var(--accent);  background: var(--accent-light); }
+    .cp-swatch-circle { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.18); transition: transform 0.16s; }
+    .cp-swatch:hover .cp-swatch-circle { transform: scale(1.12); }
+    .cp-swatch-name { font-size: 11px; font-weight: 600; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .cp-divider { height: 1px; background: var(--border-subtle); margin: 16px 0; }
+
+    /* Custom inputs */
+    .cp-custom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .cp-custom-col { display: flex; flex-direction: column; gap: 6px; }
+    .cp-custom-col-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.10em; color: var(--text-muted); }
+    .cp-custom-row { display: flex; align-items: center; gap: 6px; }
+    .cp-custom-input {
+      flex: 1; height: 34px; border-radius: 8px;
+      border: 1.5px solid var(--border-card); cursor: pointer; padding: 2px; background: #fff;
+    }
+    .cp-custom-input::-webkit-color-swatch-wrapper { padding: 0; border-radius: 6px; }
+    .cp-custom-input::-webkit-color-swatch { border: none; border-radius: 6px; }
+    .cp-custom-apply {
+      padding: 7px 10px; border-radius: 8px;
+      background: var(--bg-surface); color: var(--text-secondary);
+      border: 1px solid var(--border-card);
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      transition: all 0.18s; font-family: var(--font-sans); white-space: nowrap;
+    }
+    .cp-custom-apply:hover         { background: var(--cat);    color: #fff; border-color: var(--cat); }
+    .cp-custom-apply.accent-apply:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .cp-reset {
+      display: block; text-align: center; margin-top: 14px;
+      font-size: 12px; color: var(--text-muted); cursor: pointer;
+      background: none; border: none; font-family: var(--font-sans); width: 100%;
+      text-decoration: underline; text-underline-offset: 2px;
+    }
+    .cp-reset:hover { color: var(--cat); }
+
+    @media (max-width: 768px) {
+      .cp-wrapper { top: auto; bottom: 24px; transform: none; }
+      .cp-tab { border-radius: 14px 14px 0 0; flex-direction: row; padding: 11px 14px; }
+      .cp-panel { max-height: 72vh; border-radius: 18px 18px 0 0; border-right: 1px solid var(--border-card); border-bottom: none; }
+      .cp-wrapper.open .cp-panel { transform: translateY(0); }
+      .cp-panel { transform: translateY(101%); }
+      .hero-arch::before, .hero-arch::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── ANNOUNCEMENT RIBBON ── -->
+<div class="wedding-ribbon">
+  ✦ &nbsp; Every great wedding starts with a plan. Every great plan starts here. &nbsp; ✦
+</div>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-mark">LP</span>
+        <span class="nav-logo-text">LogicPlanners</span>
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle">
+            Templates
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="wedding-planners.html" class="nav-dropdown-item nav-link active"><span class="nav-dropdown-icon">💍</span>Wedding Planners</a>
+            <a href="event-planners.html"   class="nav-dropdown-item"><span class="nav-dropdown-icon">🎉</span>Event Planners</a>
+            <a href="budgeting.html"        class="nav-dropdown-item"><span class="nav-dropdown-icon">💰</span>Budgeting</a>
+            <a href="day-planners.html"     class="nav-dropdown-item"><span class="nav-dropdown-icon">📋</span>Day Planners</a>
+          </div>
+        </div>
+        <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="nav-btn-etsy">🛍 Etsy Shop</a>
+        <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="nav-btn-gumroad">Gumroad</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="wedding-planners.html" class="nav-mobile-link">💍 Wedding Planners</a>
+  <a href="event-planners.html"   class="nav-mobile-link">🎉 Event Planners</a>
+  <a href="budgeting.html"        class="nav-mobile-link">💰 Budgeting</a>
+  <a href="day-planners.html"     class="nav-mobile-link">📋 Day Planners</a>
+  <div class="nav-mobile-btns">
+    <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="btn btn-etsy" style="justify-content:center;">🛍 Shop on Etsy</a>
+    <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content:center;">Shop on Gumroad</a>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-petals" id="heroPetals"></div>
+  <svg class="hero-floral-r" viewBox="0 0 500 450" fill="none" aria-hidden="true">
+    <path d="M250 420C250 420 200 330 170 240C140 150 155 70 180 20" stroke="#C9A96E" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M178 50C178 50 145 42 128 30" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M175 88C175 88 142 93 126 86" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M173 128C173 128 206 116 224 104" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M171 168C171 168 138 175 122 188" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M172 210C172 210 204 204 220 195" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M170 250C170 250 137 258 121 272" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M168 290C168 290 200 286 216 278" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="125" cy="30"  rx="15" ry="7" transform="rotate(-45 125 30)"  fill="#9B70C0" opacity=".6"/>
+    <ellipse cx="123" cy="85"  rx="14" ry="7" transform="rotate(-15 123 85)"  fill="#C9A96E" opacity=".65"/>
+    <ellipse cx="226" cy="102" rx="14" ry="7" transform="rotate(20 226 102)"  fill="#9B70C0" opacity=".55"/>
+    <ellipse cx="120" cy="188" rx="15" ry="7" transform="rotate(-10 120 188)" fill="#C9A96E" opacity=".6"/>
+    <ellipse cx="222" cy="194" rx="13" ry="7" transform="rotate(15 222 194)"  fill="#9B70C0" opacity=".5"/>
+    <ellipse cx="118" cy="272" rx="15" ry="7" transform="rotate(-8 118 272)"  fill="#C9A96E" opacity=".55"/>
+    <ellipse cx="218" cy="276" rx="13" ry="7" transform="rotate(12 218 276)"  fill="#9B70C0" opacity=".5"/>
+    <circle cx="180" cy="18"  r="10" fill="#FAF7F4" stroke="#C9A96E" stroke-width="2.2"/>
+    <circle cx="180" cy="18"  r="4"  fill="#C9A96E"/>
+    <circle cx="250" cy="418" r="11" fill="#FAF7F4" stroke="#9B70C0" stroke-width="2.2"/>
+    <circle cx="250" cy="418" r="4.5" fill="#9B70C0"/>
+    <circle cx="390" cy="75" r="22" fill="none" stroke="#C9A96E" stroke-width="1.8" opacity=".30"/>
+    <circle cx="390" cy="75" r="15" fill="none" stroke="#C9A96E" stroke-width="3.5" opacity=".18"/>
+    <circle cx="428" cy="98" r="15" fill="none" stroke="#9B70C0" stroke-width="1.8" opacity=".25"/>
+    <circle cx="428" cy="98" r="10" fill="none" stroke="#9B70C0" stroke-width="3"   opacity=".14"/>
+  </svg>
+  <svg class="hero-floral-l" viewBox="0 0 500 450" fill="none" aria-hidden="true">
+    <path d="M250 420C250 420 200 330 170 240C140 150 155 70 180 20" stroke="#C9A96E" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M175 88C175 88 142 93 126 86" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M173 128C173 128 206 116 224 104" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="123" cy="85"  rx="14" ry="7" transform="rotate(-15 123 85)"  fill="#C9A96E" opacity=".55"/>
+    <ellipse cx="226" cy="102" rx="14" ry="7" transform="rotate(20 226 102)"  fill="#9B70C0" opacity=".5"/>
+    <circle cx="180" cy="18" r="10" fill="#FAF7F4" stroke="#C9A96E" stroke-width="2.2"/>
+    <circle cx="180" cy="18" r="4" fill="#C9A96E"/>
+  </svg>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Wedding Planners</span>
+      </div>
+      <div class="hero-badge-wedding">
+        <span class="badge-dot"></span>
+        💍 4 templates · $8–$15 · 500+ couples planned
+      </div>
+      <h1 class="hero-headline">
+        <span class="hero-arch">Your wedding,</span><br>
+        <em>planned to the penny.</em>
+      </h1>
+      <p class="hero-sub">Vendor budgets, guest lists, seating charts, day-of timelines, and honeymoon planning — every spreadsheet your wedding actually needs.</p>
+      <div class="hero-actions">
+        <a href="#templates" class="btn btn-primary btn-lg">
+          🌸 View All Templates
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#how-to-use" class="btn btn-outline btn-lg">🕊️ How to Use</a>
+      </div>
+      <div class="hero-pills">
+        <span class="hero-pill"><span class="hero-pill-dot"></span>Google Sheets &amp; Excel</span>
+        <span class="hero-pill"><span class="hero-pill-dot"></span>Instant download</span>
+        <span class="hero-pill"><span class="hero-pill-dot"></span>Etsy &amp; Gumroad</span>
+        <span class="hero-pill"><span class="hero-pill-dot"></span>7-day refund</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS STRIP ── -->
+<div class="wedding-stats">
+  <div class="container">
+    <div class="wedding-stats-inner">
+      <div class="wedding-stat"><div class="wedding-stat-num">4</div><div class="wedding-stat-label">Templates</div></div>
+      <div class="wedding-stat-divider"></div>
+      <div class="wedding-stat"><div class="wedding-stat-num">500+</div><div class="wedding-stat-label">Couples Planned</div></div>
+      <div class="wedding-stat-divider"></div>
+      <div class="wedding-stat"><div class="wedding-stat-num">$0</div><div class="wedding-stat-label">Budget Surprises</div></div>
+      <div class="wedding-stat-divider"></div>
+      <div class="wedding-stat"><div class="wedding-stat-num">★ 5.0</div><div class="wedding-stat-label">Etsy Rating</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TEMPLATES ── -->
+<section class="section" id="templates" style="background:#fff;">
+  <div class="container">
+    <div class="section-floral">
+      <div class="section-floral-line"></div>
+      <span class="section-floral-icon">💍</span>
+      <div class="section-floral-line right"></div>
+    </div>
+    <span class="eyebrow">Wedding Planner Templates</span>
+    <h2 class="heading">Four templates. <em>Every phase of the wedding covered.</em></h2>
+    <p class="subheading">From first vendor call to honeymoon itinerary — each template handles one part of the process precisely.</p>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-card-top card-top-1">
+          <span class="product-badge">Most Complete</span>
+          <span class="product-icon">💍</span>
+          <div class="product-name">Complete Wedding Optimizer</div>
+          <p class="product-tagline">The full 6-tab workbook: vendor matrix, budget tracker, guest list, payment milestones, and day-of timeline.</p>
+        </div>
+        <div class="product-card-body">
+          <div class="product-features">
+            <div class="product-feature"><span class="product-feature-dot"></span>Vendor comparison matrix: 3 quotes per category, side-by-side</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Budget tracker with real-time variance flags (red before you sign)</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Guest list with RSVP, meal selection &amp; table assignment</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Payment milestone tracker — overdue items auto-flagged</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Day-of timeline with buffer time calculations</div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">$15</div>
+            <div class="product-buy-btns">
+              <a href="https://www.etsy.com/listing/0000000020/wedding-optimizer" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+              <a href="https://logicplanners.gumroad.com/l/event-wedding-optimizer" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-top card-top-2">
+          <span class="product-icon">🪑</span>
+          <div class="product-name">Guest List &amp; Seating Manager</div>
+          <p class="product-tagline">Track every guest, manage RSVPs, assign tables, and handle dietary restrictions — all in one sheet.</p>
+        </div>
+        <div class="product-card-body">
+          <div class="product-features">
+            <div class="product-feature"><span class="product-feature-dot"></span>Full guest database: name, side, relationship, address</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>RSVP tracking with invited / confirmed / declined status</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Meal selection &amp; dietary restriction columns</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Table assignment with capacity validator</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Headcount summary: total invited, confirmed, pending</div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">$10</div>
+            <div class="product-buy-btns">
+              <a href="https://www.etsy.com/listing/0000000021/guest-list-manager" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+              <a href="https://logicplanners.gumroad.com/l/wedding-guest-list" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-top card-top-3">
+          <span class="product-icon">⏱</span>
+          <div class="product-name">Wedding Day Timeline</div>
+          <p class="product-tagline">Build a minute-by-minute wedding day schedule with vendor arrival times, ceremony cues, and coordinator notes.</p>
+        </div>
+        <div class="product-card-body">
+          <div class="product-features">
+            <div class="product-feature"><span class="product-feature-dot"></span>Morning-through-evening schedule grid in 15-min blocks</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Vendor arrival windows: photographer, caterer, band/DJ</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Getting-ready, ceremony, cocktail hour, reception splits</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Responsible party column: who manages each moment</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Buffer time auto-calculated between key events</div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">$8</div>
+            <div class="product-buy-btns">
+              <a href="https://www.etsy.com/listing/0000000022/wedding-day-timeline" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+              <a href="https://logicplanners.gumroad.com/l/wedding-timeline" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-card-top card-top-4">
+          <span class="product-icon">✈️</span>
+          <div class="product-name">Honeymoon Budget &amp; Planner</div>
+          <p class="product-tagline">Budget flights, hotels, and activities. Build a day-by-day itinerary and pack with a customizable checklist.</p>
+        </div>
+        <div class="product-card-body">
+          <div class="product-features">
+            <div class="product-feature"><span class="product-feature-dot"></span>Total honeymoon budget with category breakdown</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Flight &amp; hotel comparison tracker</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Day-by-day itinerary with activity cost logging</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Per-day spend tracker vs. daily budget</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Packing checklist with category grouping</div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">$9</div>
+            <div class="product-buy-btns">
+              <a href="https://www.etsy.com/listing/0000000023/honeymoon-planner" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+              <a href="https://logicplanners.gumroad.com/l/honeymoon-planner" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW TO USE ── -->
+<section class="how-to section" id="how-to-use">
+  <div class="container">
+    <div class="section-floral">
+      <div class="section-floral-line"></div>
+      <span class="section-floral-icon">🌸</span>
+      <div class="section-floral-line right"></div>
+    </div>
+    <span class="eyebrow">How to Use</span>
+    <h2 class="heading">From download to your first vendor meeting in 10 minutes.</h2>
+    <p class="subheading">All wedding templates are ready to use immediately. Here's the exact setup process.</p>
+    <div class="how-to-grid">
+      <div class="how-step">
+        <div class="how-step-connector"></div>
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">Purchase &amp; Download</div>
+        <p class="how-step-desc">Buy on Etsy or Gumroad. Your .xlsx file downloads instantly. Save it to Google Drive so you can access it anywhere — including from your phone during vendor meetings.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-connector"></div>
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">Fill the Setup Tab</div>
+        <p class="how-step-desc">Enter your wedding date, total budget, guest count estimate, and vendor categories. These values propagate through every tab automatically. Takes 5 minutes.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-connector"></div>
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">Log Vendors &amp; Guests</div>
+        <p class="how-step-desc">As you collect quotes, add them to the vendor matrix. As RSVPs come in, log them in the guest list. The budget tracker and per-head calculator update in real time.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">4</div>
+        <div class="how-step-title">Track Through the Big Day</div>
+        <p class="how-step-desc">Use the payment tracker for deposit deadlines. Build the day-of timeline 2–4 weeks out. Everything lives in one file — share a view-only link with your coordinator, planner, or partner.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ROMANTIC QUOTE ── -->
+<section class="section" style="background:#fff; padding-top:0;">
+  <div class="container">
+    <div class="wedding-quote-section">
+      <div class="wedding-quote-wrap">
+        <span class="wedding-quote-mark">❝</span>
+        <p class="wedding-quote-text">A beautiful wedding is planned on a spreadsheet. A beautiful marriage is lived in the moments between the rows.</p>
+        <span class="wedding-quote-attr">— Every organized couple, ever</span>
+        <div class="wedding-quote-hearts">♡ &nbsp; ♡ &nbsp; ♡</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="section section-faq" id="faq" style="padding-top:64px;">
+  <div class="container">
+    <div class="section-floral">
+      <div class="section-floral-line"></div>
+      <span class="section-floral-icon">✦</span>
+      <div class="section-floral-line right"></div>
+    </div>
+    <span class="eyebrow">FAQ</span>
+    <h2 class="heading">Common questions.</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q">Can I share these with my wedding planner or coordinator?</div>
+        <p class="faq-a">Yes. In Google Sheets, use File → Share → "Anyone with the link can view" to send a read-only link. Your coordinator sees the data but can't edit it unless you grant edit access.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if I need more vendor categories than the default?</div>
+        <p class="faq-a">All vendor categories are defined in the Setup tab. Add new categories there and they appear as dropdown options in the vendor matrix and budget tracker automatically.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need the Complete Optimizer if I already bought the Guest List Manager?</div>
+        <p class="faq-a">The Complete Optimizer includes a guest management tab, but it's less detailed than the standalone Guest List Manager. If seating logistics are complex (100+ guests, multiple meal options), get both.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is the Honeymoon Planner designed for international trips?</div>
+        <p class="faq-a">Yes. The Setup tab includes a currency field. All cost columns display in your chosen currency. A foreign exchange rate field lets you track spending in local currency alongside your home currency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="section-floral">
+      <div class="section-floral-line"></div>
+      <span class="section-floral-icon">💐</span>
+      <div class="section-floral-line right"></div>
+    </div>
+    <span class="eyebrow">From Real Couples</span>
+    <h2 class="heading">Built for the couple who runs on spreadsheets.</h2>
+    <div class="floral-divider" aria-hidden="true">
+      <div class="floral-line"></div>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 14 7 19 9C14 11 12 16 12 16C12 16 10 11 5 9C10 7 12 2 12 2Z" fill="#C9A96E"/></svg>
+      <div class="floral-line"></div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-couple-tag">💍 Verified Couple</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"The vendor matrix alone saved us from a $2,000 mistake. We almost booked the wrong caterer because we forgot their deposit forfeiture clause."</p>
+        <div class="testimonial-author">— James &amp; Priya K., Wedding 2025</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-couple-tag">💍 Verified Couple</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Finally a planning tool that treats me like an adult. Every deposit, every vendor decision, every headcount scenario — in one place. No fluff."</p>
+        <div class="testimonial-author">— Sarah M., Bride 2024</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-couple-tag">🌸 Event Pro</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"I'm a project manager. This is the first wedding template I've seen that follows proper project management structure. Worth every penny."</p>
+        <div class="testimonial-author">— Rachel T., Event Coordinator</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-banner section">
+  <span class="cta-sparkle cta-sparkle-1" aria-hidden="true">💍</span>
+  <span class="cta-sparkle cta-sparkle-2" aria-hidden="true">🌸</span>
+  <span class="cta-sparkle cta-sparkle-3" aria-hidden="true">✦</span>
+  <span class="cta-sparkle cta-sparkle-4" aria-hidden="true">💐</span>
+  <svg class="cta-banner-floral-r" viewBox="0 0 500 450" fill="none" aria-hidden="true">
+    <path d="M250 420C250 420 200 330 170 240C140 150 155 70 180 20" stroke="#C9A96E" stroke-width="3" stroke-linecap="round"/>
+    <path d="M175 88C175 88 142 93 126 86" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M173 128C173 128 206 116 224 104" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="123" cy="85" rx="14" ry="6" transform="rotate(-15 123 85)" fill="#C9A96E"/>
+    <circle cx="180" cy="18" r="9" fill="#FAF7F4" stroke="#C9A96E" stroke-width="2"/>
+    <circle cx="180" cy="18" r="3.5" fill="#C9A96E"/>
+  </svg>
+  <div class="container">
+    <div class="cta-banner-inner">
+      <span class="eyebrow">Get Started</span>
+      <div class="cta-banner-heading">Plan the day.<br><em>Own every detail.</em></div>
+      <p class="cta-banner-sub">Pick a template. Download instantly. Use it from first vendor call to final toast.</p>
+      <div class="cta-banner-btns">
+        <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="btn btn-etsy btn-lg">🛍 Shop on Etsy</a>
+        <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="btn btn-gold btn-lg">Shop on Gumroad</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-hearts" aria-hidden="true">♡ &nbsp; ♡ &nbsp; ♡ &nbsp; ♡ &nbsp; ♡</div>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-logo">
+          <span class="footer-logo-mark">LP</span>
+          <span class="footer-logo-text">LogicPlanners</span>
+        </div>
+        <p class="footer-brand-desc">Premium spreadsheet templates for weddings, events, budgeting, and daily planning.</p>
+        <div class="footer-social">
+          <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="footer-social-link">🛍</a>
+          <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="footer-social-link">G</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Templates</div>
+        <div class="footer-col-links">
+          <a href="wedding-planners.html">Wedding Planners</a>
+          <a href="event-planners.html">Event Planners</a>
+          <a href="budgeting.html">Budgeting</a>
+          <a href="day-planners.html">Day Planners</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Shop</div>
+        <div class="footer-col-links">
+          <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener">Etsy Store</a>
+          <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener">Gumroad Store</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Support</div>
+        <div class="footer-col-links">
+          <a href="index.html#how-it-works">How It Works</a>
+          <a href="mailto:support@logicplanners.com">Contact Us</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 LogicPlanners.com. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:support@logicplanners.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     COLOR PICKER PANEL
+     ══════════════════════════════════════════ -->
+<div class="cp-wrapper" id="cpWrapper">
+  <button class="cp-tab" id="cpTab" aria-expanded="false" aria-controls="cpPanel" title="Choose your wedding colors">
+    <span class="cp-tab-icon" aria-hidden="true">🎨</span>
+    <span class="cp-tab-label">Colors</span>
+  </button>
+  <div class="cp-panel" id="cpPanel" aria-hidden="true">
+    <div class="cp-panel-title">💑 Your Colors</div>
+    <p class="cp-panel-sub">Mix &amp; match your wedding palette</p>
+
+    <!-- Split preview strip: main | accent -->
+    <div class="cp-preview-strip">
+      <div class="cp-preview-half" id="cpPreviewMain"></div>
+      <div class="cp-preview-half" id="cpPreviewAccent"></div>
+    </div>
+
+    <div class="cp-section">
+      <span class="cp-section-dot" id="cpDotMain"></span>
+      <span class="cp-section-label">Main Color</span>
+      <span class="cp-section-hint">Buttons · headings · borders</span>
+    </div>
+    <div class="cp-swatches" id="cpSwatchesMain"></div>
+
+    <div class="cp-divider"></div>
+
+    <div class="cp-section">
+      <span class="cp-section-dot" id="cpDotAccent"></span>
+      <span class="cp-section-label">Accent Color</span>
+      <span class="cp-section-hint">Labels · dividers · dots</span>
+    </div>
+    <div class="cp-swatches" id="cpSwatchesAccent"></div>
+
+    <div class="cp-divider"></div>
+
+    <div class="cp-custom-grid">
+      <div class="cp-custom-col">
+        <span class="cp-custom-col-label">Custom Main</span>
+        <div class="cp-custom-row">
+          <input type="color" id="cpCustomMain" class="cp-custom-input" value="#8B6AB0">
+          <button class="cp-custom-apply" id="cpApplyMain">Apply</button>
+        </div>
+      </div>
+      <div class="cp-custom-col">
+        <span class="cp-custom-col-label">Custom Accent</span>
+        <div class="cp-custom-row">
+          <input type="color" id="cpCustomAccent" class="cp-custom-input" value="#C9A96E">
+          <button class="cp-custom-apply accent-apply" id="cpApplyAccent">Apply</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="cp-reset" id="cpReset">Reset to defaults</button>
+  </div>
+</div>
+
+<script>
+  /* ── Mobile menu ── */
+  document.getElementById('hamburger').addEventListener('click', () =>
+    document.getElementById('mobileMenu').classList.toggle('open'));
+
+  /* ── Floating petals ── */
+  (function () {
+    const c = document.getElementById('heroPetals');
+    if (!c) return;
+    const s = ['🌸','🌸','🌸','🌸','🌺','✿','❀','✦','💜','🌷'];
+    for (let i = 0; i < 28; i++) {
+      const el = document.createElement('span');
+      el.className = 'petal';
+      el.textContent = s[Math.floor(Math.random() * s.length)];
+      el.style.left              = (Math.random() * 100) + '%';
+      el.style.fontSize          = (9 + Math.random() * 12) + 'px';
+      el.style.animationDuration = (8 + Math.random() * 14) + 's';
+      el.style.animationDelay    = (Math.random() * 16) + 's';
+      c.appendChild(el);
+    }
+  })();
+
+  /* ══════════════════════════════════════════
+     COLOR PICKER
+     ══════════════════════════════════════════ */
+  (function () {
+    const DEFAULT_MAIN   = '#8B6AB0';
+    const DEFAULT_ACCENT = '#C9A96E';
+
+    const MAIN_PALETTES = [
+      { name: 'Lavender',       hex: '#8B6AB0' },
+      { name: 'Dusty Rose',     hex: '#B76A5E' },
+      { name: 'Sage',           hex: '#5E8F6F' },
+      { name: 'Something Blue', hex: '#4A7FCB' },
+      { name: 'Burgundy',       hex: '#8B3A52' },
+      { name: 'Blush Pink',     hex: '#D4789A' },
+      { name: 'Deep Teal',      hex: '#3D8A7A' },
+      { name: 'Terracotta',     hex: '#C4714A' },
+      { name: 'Mauve',          hex: '#A0708A' },
+      { name: 'Navy',           hex: '#2E4A7A' },
+    ];
+
+    const ACCENT_PALETTES = [
+      { name: 'Gold',           hex: '#C9A96E' },
+      { name: 'Champagne',      hex: '#E0C878' },
+      { name: 'Rose Gold',      hex: '#D4908A' },
+      { name: 'Copper',         hex: '#C4794A' },
+      { name: 'Silver',         hex: '#9AA8B8' },
+      { name: 'Ivory',          hex: '#C8B890' },
+      { name: 'Sage',           hex: '#7A9E87' },
+      { name: 'Dusty Blue',     hex: '#7A98B8' },
+      { name: 'Peach',          hex: '#E8A878' },
+      { name: 'Blush',          hex: '#E0A0B8' },
+    ];
+
+    function hexToRgb(hex) {
+      const h = hex.replace('#','');
+      return { r: parseInt(h.slice(0,2),16), g: parseInt(h.slice(2,4),16), b: parseInt(h.slice(4,6),16) };
+    }
+    function darken(hex, amt) {
+      const { r, g, b } = hexToRgb(hex);
+      const c = v => Math.min(255, Math.max(0, v)).toString(16).padStart(2,'0');
+      return '#' + c(r-amt) + c(g-amt) + c(b-amt);
+    }
+
+    function applyMain(hex) {
+      const { r, g, b } = hexToRgb(hex);
+      const root = document.documentElement;
+      root.style.setProperty('--cat',        hex);
+      root.style.setProperty('--cat-hover',  darken(hex, 18));
+      root.style.setProperty('--cat-light',  `rgba(${r},${g},${b},0.13)`);
+      root.style.setProperty('--cat-border', `rgba(${r},${g},${b},0.30)`);
+      root.style.setProperty('--cat-shadow', `rgba(${r},${g},${b},0.35)`);
+      root.style.setProperty('--cat-bg',     `rgba(${r},${g},${b},0.22)`);
+      document.getElementById('cpPreviewMain').style.background = hex;
+      document.getElementById('cpDotMain').style.background     = hex;
+      document.querySelectorAll('#cpSwatchesMain .cp-swatch').forEach(s =>
+        s.classList.toggle('active-main', s.dataset.hex === hex));
+      document.getElementById('cpCustomMain').value = hex;
+      try { localStorage.setItem('lp_wedding_main', hex); } catch(e) {}
+    }
+
+    function applyAccent(hex) {
+      const { r, g, b } = hexToRgb(hex);
+      const root = document.documentElement;
+      root.style.setProperty('--accent',        hex);
+      root.style.setProperty('--accent-hover',  darken(hex, 18));
+      root.style.setProperty('--accent-light',  `rgba(${r},${g},${b},0.14)`);
+      root.style.setProperty('--accent-border', `rgba(${r},${g},${b},0.32)`);
+      root.style.setProperty('--accent-shadow', `rgba(${r},${g},${b},0.35)`);
+      root.style.setProperty('--accent-bg',     `rgba(${r},${g},${b},0.20)`);
+      document.getElementById('cpPreviewAccent').style.background = hex;
+      document.getElementById('cpDotAccent').style.background     = hex;
+      document.querySelectorAll('#cpSwatchesAccent .cp-swatch').forEach(s =>
+        s.classList.toggle('active-accent', s.dataset.hex === hex));
+      document.getElementById('cpCustomAccent').value = hex;
+      try { localStorage.setItem('lp_wedding_accent', hex); } catch(e) {}
+    }
+
+    function buildSwatches(containerId, palettes, clickFn) {
+      const container = document.getElementById(containerId);
+      palettes.forEach(p => {
+        const btn = document.createElement('button');
+        btn.className = 'cp-swatch';
+        btn.dataset.hex = p.hex;
+        btn.title = p.name;
+        btn.innerHTML = `
+          <span class="cp-swatch-circle" style="background:${p.hex}"></span>
+          <span class="cp-swatch-name">${p.name}</span>`;
+        btn.addEventListener('click', () => clickFn(p.hex));
+        container.appendChild(btn);
+      });
+    }
+
+    buildSwatches('cpSwatchesMain',   MAIN_PALETTES,   applyMain);
+    buildSwatches('cpSwatchesAccent', ACCENT_PALETTES, applyAccent);
+
+    /* Panel toggle */
+    const wrapper = document.getElementById('cpWrapper');
+    const tab     = document.getElementById('cpTab');
+    const panel   = document.getElementById('cpPanel');
+    tab.addEventListener('click', () => {
+      const open = wrapper.classList.toggle('open');
+      tab.setAttribute('aria-expanded', open);
+      panel.setAttribute('aria-hidden', !open);
+    });
+    document.addEventListener('click', e => {
+      if (wrapper.classList.contains('open') && !wrapper.contains(e.target)) {
+        wrapper.classList.remove('open');
+        tab.setAttribute('aria-expanded', 'false');
+        panel.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    document.getElementById('cpApplyMain').addEventListener('click',   () => applyMain(document.getElementById('cpCustomMain').value));
+    document.getElementById('cpApplyAccent').addEventListener('click', () => applyAccent(document.getElementById('cpCustomAccent').value));
+    document.getElementById('cpReset').addEventListener('click', () => { applyMain(DEFAULT_MAIN); applyAccent(DEFAULT_ACCENT); });
+
+    /* Load saved or defaults */
+    let savedMain = DEFAULT_MAIN, savedAccent = DEFAULT_ACCENT;
+    try {
+      savedMain   = localStorage.getItem('lp_wedding_main')   || DEFAULT_MAIN;
+      savedAccent = localStorage.getItem('lp_wedding_accent') || DEFAULT_ACCENT;
+    } catch(e) {}
+    applyMain(savedMain);
+    applyAccent(savedAccent);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Premium spreadsheet templates for weddings, events, budgeting, and daily planning. Built for real numbers, not mood boards. Available on Etsy and Gumroad.">
+  <title>LogicPlanners — Templates for Every Plan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+
+  <style>
+    /* ══════════════════════════════════════════
+       Homepage — Warm & Cohesive
+       ══════════════════════════════════════════ */
+    :root {
+      /* Homepage accent — warm soft blue */
+      --home-blue:        #6D89C2;
+      --home-blue-dark:   #5A75AC;
+      --home-blue-light:  rgba(109,137,194,0.10);
+      --home-blue-border: rgba(109,137,194,0.26);
+
+      --home-ink:         #2C1A10;
+      --home-ink-2:       #4A3728;
+      --home-ink-3:       #7A6558;
+      --home-ink-4:       #A89888;
+
+      --home-cream:       #FAF7F4;
+      --home-surface:     #F4EDE5;
+      --home-border:      #E8DDD4;
+      --home-dark:        #1A1410;
+
+      /* Per-category accent colors */
+      --wedding-color:    #8B6AB0;
+      --events-color:     #C4943A;
+      --budget-color:     #3F7A5E;
+      --planner-color:    #4A8B7F;
+    }
+
+    body { background: var(--home-cream); color: var(--home-ink); }
+
+    /* ── Top accent bar ── */
+    .home-top-bar {
+      height: 3px;
+      background: linear-gradient(90deg,
+        var(--wedding-color),
+        var(--events-color),
+        var(--budget-color),
+        var(--planner-color)
+      );
+    }
+
+    /* ── NAV ── */
+    .nav {
+      background: rgba(250,247,244,0.97);
+      border-bottom: 1px solid var(--home-border);
+    }
+    .nav-logo-text  { color: var(--home-ink); }
+    .nav-link       { color: var(--home-ink-3); }
+    .nav-link:hover { color: var(--home-ink); background: var(--home-surface); }
+    .nav-link.active { color: var(--home-ink); }
+    .nav-dropdown-toggle { color: var(--home-ink-3); }
+    .nav-dropdown-toggle:hover { color: var(--home-ink); background: var(--home-surface); }
+    .nav-dropdown-menu { border-color: var(--home-border); background: #fff; }
+    .nav-dropdown-item { color: var(--home-ink-2); }
+    .nav-dropdown-item:hover { background: var(--home-surface); }
+    .nav-btn-gumroad { background: var(--home-blue); }
+    .nav-btn-gumroad:hover { background: var(--home-blue-dark); }
+
+    /* ══════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════ */
+    .home-hero {
+      background: var(--home-cream);
+      background-image: radial-gradient(circle, rgba(109,137,194,0.07) 1px, transparent 1px);
+      background-size: 26px 26px;
+      padding: 80px 0 88px;
+    }
+    .home-hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    @media (max-width: 900px) { .home-hero-inner { grid-template-columns: 1fr; gap: 56px; } }
+
+    .home-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.14em; color: var(--home-blue); margin-bottom: 24px;
+    }
+    .home-hero-eyebrow::before {
+      content: ''; width: 22px; height: 2px; background: var(--home-blue);
+    }
+    .home-hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(40px, 5.5vw, 64px);
+      font-weight: 800; line-height: 1.07;
+      color: var(--home-ink); letter-spacing: -0.025em; margin-bottom: 22px;
+    }
+    .home-hero-headline em { color: var(--home-blue); font-style: italic; font-weight: 600; }
+    .home-hero-sub {
+      font-size: 17px; line-height: 1.78;
+      color: var(--home-ink-3); margin-bottom: 36px; max-width: 480px;
+    }
+    .home-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .home-btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--home-blue); color: #fff;
+      font-size: 15px; font-weight: 700; padding: 14px 28px;
+      border-radius: 10px; border: none; cursor: pointer;
+      text-decoration: none; transition: background 0.18s;
+      font-family: var(--font-sans);
+    }
+    .home-btn-primary:hover { background: var(--home-blue-dark); }
+    .home-btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--home-ink-2);
+      font-size: 15px; font-weight: 600; padding: 13px 28px;
+      border-radius: 10px; border: 1.5px solid var(--home-border);
+      cursor: pointer; text-decoration: none; transition: all 0.18s;
+      font-family: var(--font-sans);
+    }
+    .home-btn-outline:hover { border-color: var(--home-blue-border); color: var(--home-blue); background: var(--home-blue-light); }
+    .home-hero-meta {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      border-top: 1px solid var(--home-border); padding-top: 22px;
+    }
+    .home-hero-meta-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12.5px; color: var(--home-ink-3); font-weight: 500;
+    }
+    .home-meta-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--home-blue); flex-shrink: 0;
+    }
+
+    /* ── Hero visual — category preview cards ── */
+    .home-hero-visual {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .home-cat-preview {
+      border-radius: 16px; padding: 24px 20px;
+      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .home-cat-preview:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(44,26,16,0.12);
+    }
+    .home-cat-preview-wedding {
+      background:
+        radial-gradient(ellipse at 10% 15%, rgba(139,106,176,0.28) 0%, transparent 65%),
+        radial-gradient(ellipse at 90% 85%, rgba(201,169,110,0.18) 0%, transparent 60%),
+        #FAF7F4;
+      border: 1px solid rgba(139,106,176,0.22);
+    }
+    .home-cat-preview-events {
+      background:
+        radial-gradient(ellipse at 85% 15%, rgba(196,148,58,0.26) 0%, transparent 65%),
+        radial-gradient(ellipse at 15% 85%, rgba(139,106,176,0.10) 0%, transparent 60%),
+        #FAF7F4;
+      border: 1px solid rgba(196,148,58,0.22);
+    }
+    .home-cat-preview-budget {
+      background:
+        radial-gradient(ellipse at 15% 85%, rgba(63,122,94,0.26) 0%, transparent 65%),
+        radial-gradient(ellipse at 85% 15%, rgba(196,148,58,0.14) 0%, transparent 60%),
+        #FAF7F4;
+      border: 1px solid rgba(63,122,94,0.22);
+    }
+    .home-cat-preview-planner {
+      background:
+        radial-gradient(ellipse at 85% 85%, rgba(74,139,127,0.26) 0%, transparent 65%),
+        radial-gradient(ellipse at 20% 20%, rgba(196,148,58,0.12) 0%, transparent 60%),
+        #FAF7F4;
+      border: 1px solid rgba(74,139,127,0.22);
+    }
+    .home-cat-preview-emoji { font-size: 26px; margin-bottom: 10px; line-height: 1; display: block; }
+    .home-cat-preview-name { font-size: 14px; font-weight: 700; color: var(--home-ink); margin-bottom: 4px; letter-spacing: -0.01em; }
+    .home-cat-preview-count { font-size: 11px; color: var(--home-ink-3); font-weight: 500; }
+    .home-cat-preview-arrow {
+      position: absolute; bottom: 18px; right: 18px;
+      width: 28px; height: 28px; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(44,26,16,0.07);
+      opacity: 0; transition: opacity 0.18s;
+    }
+    .home-cat-preview:hover .home-cat-preview-arrow { opacity: 1; }
+
+    /* ══════════════════════════════════════════
+       STATS BAR
+       ══════════════════════════════════════════ */
+    .home-stats {
+      background: var(--home-surface);
+      border-top: 1px solid var(--home-border);
+      border-bottom: 1px solid var(--home-border);
+    }
+    .home-stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 640px) { .home-stats-inner { grid-template-columns: repeat(2, 1fr); } }
+    .home-stat {
+      padding: 28px 24px; text-align: center;
+      border-right: 1px solid var(--home-border);
+      transition: background 0.18s;
+    }
+    .home-stat:last-child { border-right: none; }
+    .home-stat:hover { background: rgba(109,137,194,0.06); }
+    .home-stat-num {
+      font-family: var(--font-serif); font-size: 30px; font-weight: 700;
+      color: var(--home-ink); line-height: 1; margin-bottom: 5px; display: block;
+      letter-spacing: -0.02em;
+    }
+    .home-stat-num em { color: var(--home-blue); font-style: normal; }
+    .home-stat-label { font-size: 11.5px; color: var(--home-ink-4); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; display: block; }
+
+    /* ══════════════════════════════════════════
+       CATEGORIES
+       ══════════════════════════════════════════ */
+    .home-categories { background: var(--home-cream); padding: 80px 0; }
+    .home-cat-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--home-border);
+      border: 1px solid var(--home-border); border-radius: 18px;
+      overflow: hidden; margin-top: 48px;
+    }
+    @media (max-width: 768px) { .home-cat-grid { grid-template-columns: 1fr; } }
+
+    .home-cat-tile {
+      background: #fff; padding: 38px 36px;
+      display: flex; flex-direction: column;
+      text-decoration: none; transition: background 0.18s;
+      position: relative;
+    }
+    .home-cat-tile:hover { background: var(--home-cream); }
+
+    /* Colored top border per category */
+    .home-cat-tile-wedding { border-top: 3px solid var(--wedding-color); }
+    .home-cat-tile-events  { border-top: 3px solid var(--events-color); }
+    .home-cat-tile-budget  { border-top: 3px solid var(--budget-color); }
+    .home-cat-tile-planner { border-top: 3px solid var(--planner-color); }
+
+    .home-cat-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; border-radius: 100px;
+      padding: 4px 11px; margin-bottom: 20px; width: fit-content;
+    }
+    .chip-wedding { background: rgba(139,106,176,0.10); color: var(--wedding-color); border: 1px solid rgba(139,106,176,0.22); }
+    .chip-events  { background: rgba(196,148,58,0.10);  color: var(--events-color);  border: 1px solid rgba(196,148,58,0.22); }
+    .chip-budget  { background: rgba(63,122,94,0.10);   color: var(--budget-color);  border: 1px solid rgba(63,122,94,0.22); }
+    .chip-planner { background: rgba(74,139,127,0.10);  color: var(--planner-color); border: 1px solid rgba(74,139,127,0.22); }
+
+    .home-cat-name {
+      font-family: var(--font-serif); font-size: 24px; font-weight: 700;
+      color: var(--home-ink); margin-bottom: 10px; line-height: 1.2; letter-spacing: -0.01em;
+    }
+    .home-cat-desc { font-size: 14px; color: var(--home-ink-3); line-height: 1.75; margin-bottom: 28px; flex: 1; }
+    .home-cat-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 20px; border-top: 1px solid var(--home-border);
+    }
+    .home-cat-count { font-size: 12px; color: var(--home-ink-4); font-weight: 500; }
+    .home-cat-link {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 13px; font-weight: 700; transition: gap 0.18s;
+    }
+    .home-cat-tile:hover .home-cat-link { gap: 9px; }
+
+    /* ══════════════════════════════════════════
+       HOW IT WORKS
+       ══════════════════════════════════════════ */
+    .home-how { background: var(--home-surface); padding: 80px 0; }
+    .home-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--home-border);
+      border: 1px solid var(--home-border); border-radius: 16px;
+      overflow: hidden; margin-top: 48px;
+    }
+    @media (max-width: 1000px) { .home-steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px)  { .home-steps { grid-template-columns: 1fr; } }
+    .home-step { background: var(--home-cream); padding: 34px 28px; transition: background 0.18s; }
+    .home-step:hover { background: #fff; }
+    .home-step-num {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.14em; color: var(--home-blue); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .home-step-num::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--home-blue-border), transparent);
+    }
+    .home-step-title { font-family: var(--font-serif); font-size: 16px; font-weight: 700; color: var(--home-ink); margin-bottom: 8px; line-height: 1.3; }
+    .home-step-desc { font-size: 13px; color: var(--home-ink-3); line-height: 1.75; }
+
+    /* ══════════════════════════════════════════
+       FEATURED TEMPLATES
+       ══════════════════════════════════════════ */
+    .home-featured { background: var(--home-cream); padding: 80px 0; }
+    .home-feat-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 18px; margin-top: 48px;
+    }
+    @media (max-width: 860px)  { .home-feat-grid { grid-template-columns: 1fr; } }
+
+    .home-feat-card {
+      background: #fff; border: 1px solid var(--home-border);
+      border-radius: 16px; overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s; text-decoration: none;
+      display: flex; flex-direction: column;
+    }
+    .home-feat-card:hover {
+      box-shadow: 0 10px 36px rgba(44,26,16,0.10);
+      transform: translateY(-3px);
+    }
+    .home-feat-top { padding: 28px 28px 22px; border-bottom: 1px solid var(--home-border); flex: 1; }
+    .home-feat-top-wedding { border-top: 3px solid var(--wedding-color); }
+    .home-feat-top-budget  { border-top: 3px solid var(--budget-color); }
+    .home-feat-top-planner { border-top: 3px solid var(--planner-color); }
+    .home-feat-icon { font-size: 28px; margin-bottom: 14px; display: block; line-height: 1; }
+    .home-feat-name { font-family: var(--font-serif); font-size: 18px; font-weight: 700; color: var(--home-ink); margin-bottom: 8px; letter-spacing: -0.01em; line-height: 1.3; }
+    .home-feat-desc { font-size: 13.5px; color: var(--home-ink-3); line-height: 1.7; }
+    .home-feat-bottom {
+      padding: 18px 28px; display: flex;
+      align-items: center; justify-content: space-between;
+    }
+    .home-feat-price { font-family: var(--font-serif); font-size: 22px; font-weight: 700; color: var(--home-ink); }
+    .home-feat-link {
+      font-size: 13px; font-weight: 700;
+      display: flex; align-items: center; gap: 5px; transition: gap 0.18s;
+    }
+    .home-feat-card:hover .home-feat-link { gap: 9px; }
+
+    /* ══════════════════════════════════════════
+       TESTIMONIALS
+       ══════════════════════════════════════════ */
+    .home-testimonials { background: var(--home-surface); padding: 80px 0; }
+    .home-testi-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 18px; margin-top: 44px;
+    }
+    @media (max-width: 768px) { .home-testi-grid { grid-template-columns: 1fr; } }
+
+    .home-testi-card {
+      background: #fff; border: 1px solid var(--home-border);
+      border-radius: 14px; padding: 28px 24px; transition: box-shadow 0.2s;
+    }
+    .home-testi-card:hover { box-shadow: 0 6px 24px rgba(44,26,16,0.07); }
+    .home-testi-stars { color: var(--home-blue); font-size: 13px; letter-spacing: 2px; margin-bottom: 14px; }
+    .home-testi-quote { font-size: 14px; color: var(--home-ink-2); line-height: 1.78; margin-bottom: 16px; font-style: italic; }
+    .home-testi-author { font-size: 12px; font-weight: 600; color: var(--home-ink-4); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ══════════════════════════════════════════
+       CTA
+       ══════════════════════════════════════════ */
+    .home-cta { background: var(--home-dark); padding: 88px 0; }
+    .home-cta-inner { text-align: center; max-width: 580px; margin: 0 auto; }
+    .home-cta-eyebrow {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--home-blue); margin-bottom: 24px;
+    }
+    .home-cta-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(30px, 5vw, 50px);
+      font-weight: 800; line-height: 1.1; color: #fff;
+      letter-spacing: -0.02em; margin-bottom: 18px;
+    }
+    .home-cta-heading em { color: var(--home-blue); font-style: italic; font-weight: 600; }
+    .home-cta-sub { font-size: 16px; color: rgba(255,255,255,0.42); line-height: 1.72; margin-bottom: 38px; }
+    .home-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .home-cta-btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--home-blue); color: #fff;
+      font-size: 15px; font-weight: 700; padding: 15px 30px;
+      border-radius: 10px; border: none; cursor: pointer;
+      text-decoration: none; transition: background 0.18s;
+      font-family: var(--font-sans);
+    }
+    .home-cta-btn-primary:hover { background: var(--home-blue-dark); }
+    .home-cta-btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 15px; font-weight: 600; padding: 15px 30px;
+      border-radius: 10px; cursor: pointer; text-decoration: none;
+      transition: all 0.18s; font-family: var(--font-sans);
+    }
+    .home-cta-btn-ghost:hover { background: rgba(255,255,255,0.10); color: #fff; }
+
+    /* ── FOOTER ── */
+    .home-footer {
+      background: var(--home-dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 56px 0 32px;
+    }
+    .home-footer .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+    @media (max-width: 1024px) { .home-footer .footer-top { grid-template-columns: 1fr 1fr; } .home-footer .footer-top > :first-child { grid-column: 1 / -1; } }
+    @media (max-width: 600px)  { .home-footer .footer-top { grid-template-columns: 1fr; gap: 28px; } }
+
+    .home-footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .home-footer-logo-mark {
+      width: 30px; height: 30px; border-radius: 7px;
+      background: var(--home-blue); display: flex;
+      align-items: center; justify-content: center;
+      font-family: var(--font-serif); font-size: 12px; font-weight: 800; color: #fff;
+    }
+    .home-footer-logo-text { font-family: var(--font-serif); font-size: 17px; font-weight: 700; color: #fff; }
+    .home-footer-desc { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.78; max-width: 260px; margin-bottom: 20px; }
+    .home-footer-social { display: flex; gap: 10px; }
+    .home-footer-social-link {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; transition: all 0.2s;
+    }
+    .home-footer-social-link:hover { background: rgba(196,148,58,0.25); border-color: rgba(196,148,58,0.4); }
+    .home-footer-col-title { font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 16px; }
+    .home-footer-col-links { display: flex; flex-direction: column; gap: 10px; }
+    .home-footer-col-links a { font-size: 13px; color: rgba(255,255,255,0.45); transition: color 0.2s; text-decoration: none; }
+    .home-footer-col-links a:hover { color: var(--home-blue); }
+    .home-footer-bottom {
+      padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .home-footer-copy { font-size: 12px; color: rgba(255,255,255,0.22); }
+    .home-footer-bottom-links { display: flex; gap: 20px; }
+    .home-footer-bottom-links a { font-size: 12px; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
+    .home-footer-bottom-links a:hover { color: var(--home-blue); }
+
+    /* Shared heading helper for this page */
+    .home-eyebrow {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--home-blue); margin-bottom: 14px;
+    }
+    .home-heading {
+      font-family: var(--font-serif); font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800; line-height: 1.15; letter-spacing: -0.02em;
+      color: var(--home-ink); margin-bottom: 12px;
+    }
+    .home-heading em { color: var(--home-blue); font-style: italic; font-weight: 600; }
+    .home-subheading { font-size: 16px; color: var(--home-ink-3); line-height: 1.72; max-width: 560px; }
+  </style>
+</head>
+<body>
+
+<div class="home-top-bar"></div>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-mark">LP</span>
+        <span class="nav-logo-text">LogicPlanners</span>
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle">
+            Templates
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="wedding-planners.html" class="nav-dropdown-item"><span class="nav-dropdown-icon">💍</span>Wedding Planners</a>
+            <a href="event-planners.html"   class="nav-dropdown-item"><span class="nav-dropdown-icon">🎉</span>Event Planners</a>
+            <a href="budgeting.html"        class="nav-dropdown-item"><span class="nav-dropdown-icon">💰</span>Budgeting</a>
+            <a href="day-planners.html"     class="nav-dropdown-item"><span class="nav-dropdown-icon">📋</span>Day Planners</a>
+          </div>
+        </div>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#testimonials"  class="nav-link">Reviews</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="nav-btn-etsy">🛍 Etsy</a>
+        <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="nav-btn-gumroad">Gumroad</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="wedding-planners.html" class="nav-mobile-link">💍 Wedding Planners</a>
+  <a href="event-planners.html"   class="nav-mobile-link">🎉 Event Planners</a>
+  <a href="budgeting.html"        class="nav-mobile-link">💰 Budgeting</a>
+  <a href="day-planners.html"     class="nav-mobile-link">📋 Day Planners</a>
+  <a href="#how-it-works"         class="nav-mobile-link">How It Works</a>
+  <a href="#testimonials"         class="nav-mobile-link">Reviews</a>
+  <div class="nav-mobile-btns">
+    <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="btn btn-etsy" style="justify-content:center;">🛍 Shop on Etsy</a>
+    <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content:center;background:var(--home-blue);">Shop on Gumroad</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════ -->
+<section class="home-hero">
+  <div class="container">
+    <div class="home-hero-inner">
+
+      <div>
+        <div class="home-hero-eyebrow">Spreadsheet Templates</div>
+        <h1 class="home-hero-headline">
+          Plan the moment.<br>
+          <em>Own the numbers.</em>
+        </h1>
+        <p class="home-hero-sub">Premium .xlsx templates for weddings, events, budgets, and daily planning. Real formulas, real structure — built for people who actually use what they buy.</p>
+        <div class="home-hero-actions">
+          <a href="#categories" class="home-btn-primary">
+            Browse Templates
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#how-it-works" class="home-btn-outline">How It Works</a>
+        </div>
+        <div class="home-hero-meta">
+          <span class="home-hero-meta-item"><span class="home-meta-dot"></span>Google Sheets &amp; Excel</span>
+          <span class="home-hero-meta-item"><span class="home-meta-dot"></span>Instant download</span>
+          <span class="home-hero-meta-item"><span class="home-meta-dot"></span>Etsy &amp; Gumroad</span>
+          <span class="home-hero-meta-item"><span class="home-meta-dot"></span>7-day refund</span>
+        </div>
+      </div>
+
+      <!-- Category preview grid -->
+      <div class="home-hero-visual">
+
+        <a href="wedding-planners.html" class="home-cat-preview home-cat-preview-wedding">
+          <span class="home-cat-preview-emoji">💍</span>
+          <div class="home-cat-preview-name">Wedding Planners</div>
+          <div class="home-cat-preview-count">4 templates · from $8</div>
+          <span class="home-cat-preview-arrow">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+
+        <a href="event-planners.html" class="home-cat-preview home-cat-preview-events">
+          <span class="home-cat-preview-emoji">🎉</span>
+          <div class="home-cat-preview-name">Event Planners</div>
+          <div class="home-cat-preview-count">4 templates · from $7</div>
+          <span class="home-cat-preview-arrow">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+
+        <a href="budgeting.html" class="home-cat-preview home-cat-preview-budget">
+          <span class="home-cat-preview-emoji">💰</span>
+          <div class="home-cat-preview-name">Budgeting</div>
+          <div class="home-cat-preview-count">4 templates · from $8</div>
+          <span class="home-cat-preview-arrow">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+
+        <a href="day-planners.html" class="home-cat-preview home-cat-preview-planner">
+          <span class="home-cat-preview-emoji">📋</span>
+          <div class="home-cat-preview-name">Day Planners</div>
+          <div class="home-cat-preview-count">4 templates · from $7</div>
+          <span class="home-cat-preview-arrow">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS BAR ── -->
+<div class="home-stats">
+  <div class="container" style="padding:0 24px;">
+    <div class="home-stats-inner">
+      <div class="home-stat"><span class="home-stat-num">16</span><span class="home-stat-label">Templates available</span></div>
+      <div class="home-stat"><span class="home-stat-num">4</span><span class="home-stat-label">Planning categories</span></div>
+      <div class="home-stat"><span class="home-stat-num"><em>$7</em></span><span class="home-stat-label">Starting price</span></div>
+      <div class="home-stat"><span class="home-stat-num">★ <span style="font-size:22px;font-family:var(--font-serif)">5.0</span></span><span class="home-stat-label">Etsy rating</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CATEGORIES
+     ══════════════════════════════════════════ -->
+<section class="home-categories" id="categories">
+  <div class="container">
+    <span class="home-eyebrow" style="display:block;">Template Categories</span>
+    <h2 class="home-heading">Find the template<br>for your plan.</h2>
+    <p class="home-subheading">Four categories. Multiple templates each. Pick the one that matches your exact situation.</p>
+    <div class="home-cat-grid">
+
+      <a href="wedding-planners.html" class="home-cat-tile home-cat-tile-wedding">
+        <span class="home-cat-chip chip-wedding">💍 Wedding Planners</span>
+        <div class="home-cat-name">Wedding Planners</div>
+        <p class="home-cat-desc">From vendor quotes to seating charts — every spreadsheet you need to plan a wedding without losing your mind or your budget. Customizable colors to match your theme.</p>
+        <div class="home-cat-footer">
+          <span class="home-cat-count">4 templates · from $8</span>
+          <span class="home-cat-link" style="color:var(--wedding-color);">
+            Browse
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="event-planners.html" class="home-cat-tile home-cat-tile-events">
+        <span class="home-cat-chip chip-events">🎉 Event Planners</span>
+        <div class="home-cat-name">Event Planners</div>
+        <p class="home-cat-desc">Corporate events, birthday parties, dinner parties, and conferences. Logistics, budgets, and day-of timelines — structured and ready to fill in.</p>
+        <div class="home-cat-footer">
+          <span class="home-cat-count">4 templates · from $7</span>
+          <span class="home-cat-link" style="color:var(--events-color);">
+            Browse
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="budgeting.html" class="home-cat-tile home-cat-tile-budget">
+        <span class="home-cat-chip chip-budget">💰 Budgeting</span>
+        <div class="home-cat-name">Budgeting</div>
+        <p class="home-cat-desc">Zero-based budgets, debt payoff trackers, annual dashboards, and emergency fund planners. Simple, honest tools for knowing exactly where your money goes.</p>
+        <div class="home-cat-footer">
+          <span class="home-cat-count">4 templates · from $8</span>
+          <span class="home-cat-link" style="color:var(--budget-color);">
+            Browse
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="day-planners.html" class="home-cat-tile home-cat-tile-planner">
+        <span class="home-cat-chip chip-planner">📋 Day Planners</span>
+        <div class="home-cat-name">Day Planners</div>
+        <p class="home-cat-desc">Daily schedules, weekly goal trackers, habit streaks, and time block systems. Built for any lifestyle — early bird to night owl — with fully customizable categories.</p>
+        <div class="home-cat-footer">
+          <span class="home-cat-count">4 templates · from $7</span>
+          <span class="home-cat-link" style="color:var(--planner-color);">
+            Browse
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     HOW IT WORKS
+     ══════════════════════════════════════════ -->
+<section class="home-how" id="how-it-works">
+  <div class="container">
+    <span class="home-eyebrow" style="display:block;">How It Works</span>
+    <h2 class="home-heading">Download. Open. <em>Plan.</em></h2>
+    <p class="home-subheading">Every template is fully built and tested. You're filling in your numbers — not configuring someone else's system.</p>
+    <div class="home-steps">
+      <div class="home-step">
+        <div class="home-step-num">01</div>
+        <div class="home-step-title">Choose a Template</div>
+        <p class="home-step-desc">Browse by category. Each listing shows exactly what's inside before you buy — tabs, formulas, and sample data included.</p>
+      </div>
+      <div class="home-step">
+        <div class="home-step-num">02</div>
+        <div class="home-step-title">Buy on Etsy or Gumroad</div>
+        <p class="home-step-desc">Both platforms deliver the .xlsx file instantly. Gumroad stores your download link permanently — re-download anytime at no cost.</p>
+      </div>
+      <div class="home-step">
+        <div class="home-step-num">03</div>
+        <div class="home-step-title">Open &amp; Configure</div>
+        <p class="home-step-desc">Open in Google Sheets or Excel. Fill the Setup tab with your categories, dates, and budget. Everything else updates automatically.</p>
+      </div>
+      <div class="home-step">
+        <div class="home-step-num">04</div>
+        <div class="home-step-title">Use It Every Day</div>
+        <p class="home-step-desc">Log vendors, track expenses, or check off habits. The template handles the math. You just make the decisions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FEATURED TEMPLATES
+     ══════════════════════════════════════════ -->
+<section class="home-featured">
+  <div class="container">
+    <span class="home-eyebrow" style="display:block;">Most Popular</span>
+    <h2 class="home-heading">Best sellers across both platforms.</h2>
+    <p class="home-subheading">These three templates are the most purchased across Etsy and Gumroad combined.</p>
+    <div class="home-feat-grid">
+
+      <a href="wedding-planners.html" class="home-feat-card">
+        <div class="home-feat-top home-feat-top-wedding">
+          <span class="home-feat-icon">💍</span>
+          <div class="home-feat-name">Wedding Optimizer</div>
+          <p class="home-feat-desc">Complete 6-tab workbook — vendor matrix, budget tracker, guest list, payment milestones, and day-of timeline.</p>
+        </div>
+        <div class="home-feat-bottom">
+          <span class="home-feat-price">$15</span>
+          <span class="home-feat-link" style="color:var(--wedding-color);">
+            View details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="budgeting.html" class="home-feat-card">
+        <div class="home-feat-top home-feat-top-budget">
+          <span class="home-feat-icon">📊</span>
+          <div class="home-feat-name">Zero-Based Budget Tracker</div>
+          <p class="home-feat-desc">Allocate every dollar. Track every expense. Variance flags turn amber when you're nearing a limit — before the month ends.</p>
+        </div>
+        <div class="home-feat-bottom">
+          <span class="home-feat-price">$12</span>
+          <span class="home-feat-link" style="color:var(--budget-color);">
+            View details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="day-planners.html" class="home-feat-card">
+        <div class="home-feat-top home-feat-top-planner">
+          <span class="home-feat-icon">🌅</span>
+          <div class="home-feat-name">Daily Productivity Planner</div>
+          <p class="home-feat-desc">Hourly time blocks, priority task scoring, habit check-ins, and end-of-day review — in one structured sheet for any schedule.</p>
+        </div>
+        <div class="home-feat-bottom">
+          <span class="home-feat-price">$8</span>
+          <span class="home-feat-link" style="color:var(--planner-color);">
+            View details
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS
+     ══════════════════════════════════════════ -->
+<section class="home-testimonials" id="testimonials">
+  <div class="container">
+    <span class="home-eyebrow" style="display:block;">Customer Reviews</span>
+    <h2 class="home-heading">What planners are saying.</h2>
+    <div class="home-testi-grid">
+      <div class="home-testi-card">
+        <div class="home-testi-stars">★★★★★</div>
+        <p class="home-testi-quote">"The vendor comparison matrix alone saved us from a $2,000 mistake. We almost booked the wrong caterer because we'd forgotten their deposit forfeiture clause."</p>
+        <div class="home-testi-author">— James &amp; Priya K., Wedding 2025</div>
+      </div>
+      <div class="home-testi-card">
+        <div class="home-testi-stars">★★★★★</div>
+        <p class="home-testi-quote">"I've tried every budget spreadsheet on Etsy. This is the first one that doesn't break when I add a row. The variance tracking is exactly what I needed."</p>
+        <div class="home-testi-author">— Marcus D., Financial Analyst</div>
+      </div>
+      <div class="home-testi-card">
+        <div class="home-testi-stars">★★★★★</div>
+        <p class="home-testi-quote">"The daily planner changed how I approach my mornings. Time blocks and priority scoring in one sheet — no more bouncing between three different apps."</p>
+        <div class="home-testi-author">— Nia B., Operations Manager</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA
+     ══════════════════════════════════════════ -->
+<section class="home-cta">
+  <div class="container">
+    <div class="home-cta-inner">
+      <span class="home-cta-eyebrow">Start Planning</span>
+      <div class="home-cta-heading">The right template makes<br>every plan <em>clearer.</em></div>
+      <p class="home-cta-sub">Pick a category. Download in under a minute. Open in Google Sheets or Excel — and start with a structure that actually works.</p>
+      <div class="home-cta-btns">
+        <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="btn btn-etsy btn-lg">🛍 Shop on Etsy</a>
+        <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="home-cta-btn-ghost">
+          Shop on Gumroad
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="home-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="home-footer-logo">
+          <span class="home-footer-logo-mark">LP</span>
+          <span class="home-footer-logo-text">LogicPlanners</span>
+        </div>
+        <p class="home-footer-desc">Premium spreadsheet templates for weddings, events, budgeting, and daily planning. Real formulas, no fluff.</p>
+        <div class="home-footer-social">
+          <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="home-footer-social-link">🛍</a>
+          <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="home-footer-social-link" style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.6);">G</a>
+        </div>
+      </div>
+      <div>
+        <div class="home-footer-col-title">Templates</div>
+        <div class="home-footer-col-links">
+          <a href="wedding-planners.html">Wedding Planners</a>
+          <a href="event-planners.html">Event Planners</a>
+          <a href="budgeting.html">Budgeting</a>
+          <a href="day-planners.html">Day Planners</a>
+        </div>
+      </div>
+      <div>
+        <div class="home-footer-col-title">Shop</div>
+        <div class="home-footer-col-links">
+          <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener">Etsy Store</a>
+          <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener">Gumroad Store</a>
+        </div>
+      </div>
+      <div>
+        <div class="home-footer-col-title">Support</div>
+        <div class="home-footer-col-links">
+          <a href="#how-it-works">How It Works</a>
+          <a href="mailto:support@logicplanners.com">Contact Us</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="home-footer-bottom">
+      <span class="home-footer-copy">&copy; 2026 LogicPlanners.com. All rights reserved.</span>
+      <div class="home-footer-bottom-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="mailto:support@logicplanners.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', () =>
+    document.getElementById('mobileMenu').classList.toggle('open'));
+</script>
+</body>
+</html>

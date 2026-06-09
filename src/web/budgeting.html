@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zero-based budget, debt payoff, annual dashboard, and emergency fund spreadsheet templates. Built for Google Sheets and Excel. Available on Etsy and Gumroad.">
+  <title>Budgeting Templates — LogicPlanners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+
+  <style>
+    /* ══════════════════════════════════════════
+       Budgeting — Efficient & Approachable
+       ══════════════════════════════════════════ */
+    :root {
+      --bud-green:        #3F7A5E;
+      --bud-green-dark:   #2F6048;
+      --bud-green-light:  rgba(63,122,94,0.08);
+      --bud-green-mid:    rgba(63,122,94,0.16);
+      --bud-green-border: rgba(63,122,94,0.26);
+      --bud-green-strong: rgba(63,122,94,0.55);
+
+      --bud-amber:        #C4913A;
+      --bud-amber-dark:   #A87830;
+      --bud-amber-light:  rgba(196,145,58,0.10);
+      --bud-amber-border: rgba(196,145,58,0.28);
+
+      --bud-ink:          #1A1F1C;
+      --bud-ink-2:        #374151;
+      --bud-ink-3:        #6B7280;
+      --bud-ink-4:        #9CA3AF;
+
+      --bud-cream:        #FAF8F4;
+      --bud-surface:      #F3F1EB;
+      --bud-border:       #E5E0D8;
+      --bud-dark:         #1A1E1B;
+
+      --cat:        #3F7A5E;
+      --cat-hover:  #2F6048;
+      --cat-light:  rgba(63,122,94,0.08);
+      --cat-border: rgba(63,122,94,0.26);
+      --cat-shadow: rgba(63,122,94,0.20);
+    }
+
+    body { color: var(--bud-ink); }
+
+    .eyebrow { color: var(--bud-green) !important; }
+    em { color: var(--bud-green); font-style: italic; }
+
+    .btn-primary {
+      background: var(--bud-green) !important;
+      border-color: var(--bud-green) !important;
+    }
+    .btn-primary:hover {
+      background: var(--bud-green-dark) !important;
+      border-color: var(--bud-green-dark) !important;
+    }
+
+    /* ── Top accent bar ── */
+    .bud-top-bar {
+      height: 3px;
+      background: linear-gradient(90deg, var(--bud-green), var(--bud-amber), var(--bud-green));
+    }
+
+    /* ══════════════════════════════════════════
+       HERO
+       ══════════════════════════════════════════ */
+    .bud-hero {
+      background: var(--bud-cream);
+      background-image: radial-gradient(circle, rgba(196,145,58,0.07) 1px, transparent 1px);
+      background-size: 26px 26px;
+      padding: 72px 0 80px;
+    }
+    .bud-hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: center;
+    }
+    @media (max-width: 900px) { .bud-hero-inner { grid-template-columns: 1fr; gap: 52px; } }
+
+    .bud-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.14em; color: var(--bud-green); margin-bottom: 22px;
+    }
+    .bud-hero-eyebrow::before {
+      content: ''; width: 20px; height: 2px; background: var(--bud-green);
+    }
+    .bud-hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 800; line-height: 1.08;
+      color: var(--bud-ink); letter-spacing: -0.025em; margin-bottom: 20px;
+    }
+    .bud-hero-sub {
+      font-size: 16px; line-height: 1.8;
+      color: var(--bud-ink-3); margin-bottom: 34px; max-width: 460px;
+    }
+    .bud-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .bud-hero-meta {
+      display: flex; gap: 18px; flex-wrap: wrap;
+      border-top: 1px solid var(--bud-border); padding-top: 22px;
+    }
+    .bud-hero-meta-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12.5px; color: var(--bud-ink-3); font-weight: 500;
+    }
+    .bud-meta-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--bud-green); flex-shrink: 0;
+    }
+
+    /* ── Budget Snapshot Mockup ── */
+    .bud-mockup {
+      background: #fff; border: 1px solid var(--bud-border);
+      border-radius: 20px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 20px 60px rgba(63,122,94,0.10);
+      overflow: hidden; max-width: 400px; width: 100%;
+      margin: 0 auto;
+    }
+    .bud-mock-bar {
+      height: 4px; background: linear-gradient(90deg, var(--bud-green), var(--bud-amber));
+    }
+    .bud-mock-header {
+      padding: 16px 20px 14px;
+      border-bottom: 1px solid var(--bud-border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .bud-mock-title { font-size: 13px; font-weight: 700; color: var(--bud-ink); }
+    .bud-mock-month { font-size: 11px; color: var(--bud-ink-4); }
+    .bud-mock-status {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--bud-green);
+      background: var(--bud-green-light); border: 1px solid var(--bud-green-border);
+      border-radius: 100px; padding: 3px 9px;
+    }
+    .bud-mock-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+    .bud-mock-row { display: flex; flex-direction: column; gap: 5px; }
+    .bud-mock-row-top {
+      display: flex; align-items: baseline; justify-content: space-between;
+    }
+    .bud-mock-cat { font-size: 12.5px; font-weight: 600; color: var(--bud-ink-2); }
+    .bud-mock-amounts { font-size: 11px; color: var(--bud-ink-4); }
+    .bud-mock-amounts strong { color: var(--bud-ink-2); font-weight: 600; }
+    .bud-mock-track {
+      height: 7px; background: var(--bud-surface);
+      border-radius: 100px; overflow: hidden;
+    }
+    .bud-mock-fill {
+      height: 100%; border-radius: 100px;
+      background: var(--bud-green); transition: width 0.8s ease;
+    }
+    .bud-mock-fill.warn { background: var(--bud-amber); }
+    .bud-mock-fill.over { background: #DC6B57; }
+
+    .bud-mock-footer {
+      border-top: 1px solid var(--bud-border); padding: 14px 20px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    }
+    .bud-mock-stat { text-align: center; }
+    .bud-mock-stat-num {
+      display: block; font-size: 17px; font-weight: 800;
+      color: var(--bud-ink); letter-spacing: -0.02em;
+    }
+    .bud-mock-stat-num.green { color: var(--bud-green); }
+    .bud-mock-stat-num.amber { color: var(--bud-amber); }
+    .bud-mock-stat-label {
+      font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--bud-ink-4); font-weight: 500; margin-top: 2px; display: block;
+    }
+
+    /* ══════════════════════════════════════════
+       TRUST BAR
+       ══════════════════════════════════════════ */
+    .bud-trust {
+      background: var(--bud-green);
+      padding: 0;
+    }
+    .bud-trust-inner {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 640px) { .bud-trust-inner { grid-template-columns: 1fr; } }
+    .bud-trust-item {
+      padding: 22px 28px; display: flex; align-items: center; gap: 14px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .bud-trust-item:last-child { border-right: none; }
+    .bud-trust-icon { font-size: 22px; flex-shrink: 0; }
+    .bud-trust-text { font-size: 13.5px; font-weight: 600; color: #fff; line-height: 1.4; }
+    .bud-trust-sub { font-size: 11.5px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+
+    /* ══════════════════════════════════════════
+       SOUND FAMILIAR
+       ══════════════════════════════════════════ */
+    .bud-familiar { background: var(--bud-cream); padding: 80px 0; }
+    .bud-familiar-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-top: 48px;
+    }
+    @media (max-width: 860px) { .bud-familiar-grid { grid-template-columns: 1fr; } }
+
+    .bud-fam-card {
+      background: #fff; border: 1px solid var(--bud-border);
+      border-radius: 16px; padding: 32px 28px;
+      display: flex; flex-direction: column; gap: 0;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .bud-fam-card:hover {
+      box-shadow: 0 8px 32px rgba(63,122,94,0.10);
+      transform: translateY(-2px);
+    }
+    .bud-fam-emoji { font-size: 30px; margin-bottom: 16px; line-height: 1; }
+    .bud-fam-situation {
+      font-size: 15px; font-weight: 700; color: var(--bud-ink);
+      line-height: 1.4; margin-bottom: 10px; letter-spacing: -0.01em;
+    }
+    .bud-fam-desc { font-size: 13.5px; color: var(--bud-ink-3); line-height: 1.7; margin-bottom: 20px; flex: 1; }
+    .bud-fam-solve {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 14px; border-radius: 10px;
+      background: var(--bud-green-light); border: 1px solid var(--bud-green-border);
+    }
+    .bud-fam-solve-icon { font-size: 14px; }
+    .bud-fam-solve-text { font-size: 12px; font-weight: 600; color: var(--bud-green); }
+
+    /* ══════════════════════════════════════════
+       TEMPLATES
+       ══════════════════════════════════════════ */
+    .bud-templates { background: var(--bud-surface); padding: 80px 0; }
+    .bud-cards {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 20px; margin-top: 48px;
+    }
+    @media (max-width: 768px) { .bud-cards { grid-template-columns: 1fr; } }
+
+    .bud-card {
+      background: #fff; border: 1px solid var(--bud-border);
+      border-radius: 18px; overflow: hidden;
+      transition: box-shadow 0.22s, transform 0.22s;
+    }
+    .bud-card:hover {
+      box-shadow: 0 12px 40px rgba(63,122,94,0.12);
+      transform: translateY(-3px);
+    }
+    .bud-card-top {
+      padding: 28px 28px 22px;
+      border-bottom: 1px solid var(--bud-border);
+      position: relative; overflow: hidden;
+    }
+    .bud-card-top-1 {
+      background:
+        radial-gradient(ellipse at 10% 15%, rgba(63,122,94,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 90% 90%, rgba(196,145,58,0.14) 0%, transparent 60%),
+        var(--bud-cream);
+    }
+    .bud-card-top-2 {
+      background:
+        radial-gradient(ellipse at 80% 10%, rgba(63,122,94,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 90%, rgba(196,145,58,0.12) 0%, transparent 55%),
+        var(--bud-cream);
+    }
+    .bud-card-top-3 {
+      background:
+        radial-gradient(ellipse at 15% 85%, rgba(63,122,94,0.16) 0%, transparent 60%),
+        radial-gradient(ellipse at 85% 15%, rgba(196,145,58,0.14) 0%, transparent 60%),
+        var(--bud-cream);
+    }
+    .bud-card-top-4 {
+      background:
+        radial-gradient(ellipse at 50% 10%, rgba(63,122,94,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 90%, rgba(196,145,58,0.14) 0%, transparent 55%),
+        var(--bud-cream);
+    }
+
+    .bud-badge {
+      display: inline-block; font-size: 9.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 3px 10px; border-radius: 100px;
+      background: var(--bud-amber-light); color: var(--bud-amber);
+      border: 1px solid var(--bud-amber-border); margin-bottom: 12px;
+    }
+    .bud-card-icon { font-size: 30px; margin-bottom: 12px; line-height: 1; }
+    .bud-card-name { font-size: 17px; font-weight: 700; color: var(--bud-ink); margin-bottom: 8px; letter-spacing: -0.01em; line-height: 1.3; }
+    .bud-card-tagline { font-size: 13.5px; color: var(--bud-ink-3); line-height: 1.6; }
+
+    .bud-card-body { padding: 24px 28px 28px; }
+    .bud-card-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .bud-card-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--bud-ink-3); line-height: 1.55; }
+    .bud-card-check {
+      width: 17px; height: 17px; flex-shrink: 0; margin-top: 1px;
+      border-radius: 5px; background: var(--bud-green-light);
+      border: 1px solid var(--bud-green-border);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .bud-card-footer {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      padding-top: 18px; border-top: 1px solid var(--bud-border);
+    }
+    .bud-card-price { font-size: 24px; font-weight: 800; color: var(--bud-ink); letter-spacing: -0.03em; }
+    .bud-card-buy { display: flex; gap: 8px; }
+
+    /* ══════════════════════════════════════════
+       CALCULATOR
+       ══════════════════════════════════════════ */
+    .bud-calc { background: var(--bud-cream); padding: 80px 0; }
+    .bud-calc-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: start;
+    }
+    @media (max-width: 860px) { .bud-calc-inner { grid-template-columns: 1fr; gap: 48px; } }
+
+    .bud-calc-copy h2 { color: var(--bud-ink); }
+    .bud-calc-copy p { font-size: 15px; color: var(--bud-ink-3); line-height: 1.75; margin-top: 14px; }
+
+    .bud-calc-note {
+      margin-top: 24px; padding: 16px 18px;
+      background: var(--bud-green-light); border: 1px solid var(--bud-green-border);
+      border-radius: 10px; display: flex; gap: 10px; align-items: flex-start;
+    }
+    .bud-calc-note-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .bud-calc-note-text { font-size: 12.5px; color: var(--bud-green); line-height: 1.65; font-weight: 500; }
+
+    .bud-calc-widget {
+      background: #fff; border: 1px solid var(--bud-border);
+      border-radius: 18px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(63,122,94,0.08);
+    }
+    .bud-calc-top {
+      background: linear-gradient(135deg, var(--bud-green) 0%, #2E6048 100%);
+      padding: 24px 28px 22px;
+    }
+    .bud-calc-top-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); margin-bottom: 12px; }
+    .bud-calc-input-wrap { position: relative; }
+    .bud-calc-prefix {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      font-size: 20px; font-weight: 700; color: rgba(255,255,255,0.6);
+    }
+    .bud-calc-input {
+      width: 100%; background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.25); border-radius: 10px;
+      padding: 14px 14px 14px 34px; font-size: 28px; font-weight: 800;
+      color: #fff; font-family: var(--font-sans); outline: none;
+      transition: border-color 0.15s;
+    }
+    .bud-calc-input::placeholder { color: rgba(255,255,255,0.35); }
+    .bud-calc-input:focus { border-color: rgba(255,255,255,0.5); }
+    .bud-calc-input-hint { font-size: 11.5px; color: rgba(255,255,255,0.5); margin-top: 8px; }
+
+    .bud-calc-results { padding: 22px 28px 28px; display: flex; flex-direction: column; gap: 16px; }
+    .bud-calc-empty {
+      text-align: center; padding: 24px 0;
+      font-size: 14px; color: var(--bud-ink-4); line-height: 1.6;
+    }
+    .bud-calc-empty-icon { font-size: 32px; margin-bottom: 10px; }
+
+    .bud-calc-bucket { display: flex; flex-direction: column; gap: 8px; }
+    .bud-calc-bucket-head {
+      display: flex; align-items: baseline;
+      justify-content: space-between;
+    }
+    .bud-calc-bucket-name { font-size: 13.5px; font-weight: 700; color: var(--bud-ink); }
+    .bud-calc-bucket-pct { font-size: 11px; color: var(--bud-ink-4); font-weight: 500; }
+    .bud-calc-bucket-amount { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+    .bud-calc-bucket-amount.green { color: var(--bud-green); }
+    .bud-calc-bucket-amount.amber { color: var(--bud-amber); }
+    .bud-calc-bucket-amount.slate { color: #5B7B9A; }
+    .bud-calc-bucket-bar { height: 8px; background: var(--bud-surface); border-radius: 100px; overflow: hidden; }
+    .bud-calc-bucket-fill { height: 100%; border-radius: 100px; transition: width 0.6s ease; width: 0; }
+    .bud-calc-bucket-fill.green { background: var(--bud-green); }
+    .bud-calc-bucket-fill.amber { background: var(--bud-amber); }
+    .bud-calc-bucket-fill.slate { background: #5B7B9A; }
+    .bud-calc-bucket-subs {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px;
+    }
+    .bud-calc-bucket-sub {
+      font-size: 11px; color: var(--bud-ink-4);
+      background: var(--bud-surface); border-radius: 100px;
+      padding: 2px 9px; font-weight: 500;
+    }
+    .bud-calc-divider { height: 1px; background: var(--bud-border); }
+    .bud-calc-cta-row {
+      display: flex; align-items: center; gap: 10px;
+      padding-top: 4px;
+    }
+    .bud-calc-cta-text { font-size: 12.5px; color: var(--bud-ink-3); line-height: 1.55; flex: 1; }
+    .bud-calc-cta-btn {
+      background: var(--bud-green); color: #fff; border: none;
+      border-radius: 8px; padding: 10px 16px; font-size: 12.5px;
+      font-weight: 700; cursor: pointer; white-space: nowrap;
+      font-family: var(--font-sans); text-decoration: none;
+      display: inline-block; transition: background 0.18s;
+    }
+    .bud-calc-cta-btn:hover { background: var(--bud-green-dark); }
+
+    /* ══════════════════════════════════════════
+       HOW TO USE
+       ══════════════════════════════════════════ */
+    .bud-howto { background: var(--bud-surface); padding: 80px 0; }
+    .bud-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--bud-border);
+      border: 1px solid var(--bud-border); border-radius: 16px;
+      overflow: hidden; margin-top: 48px;
+    }
+    @media (max-width: 860px) { .bud-steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .bud-steps { grid-template-columns: 1fr; } }
+
+    .bud-step { background: var(--bud-cream); padding: 32px 26px; transition: background 0.18s; }
+    .bud-step:hover { background: #fff; }
+    .bud-step-num {
+      width: 38px; height: 38px; border-radius: 10px;
+      border: 2px solid var(--bud-green); color: var(--bud-green);
+      font-size: 14px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; flex-shrink: 0;
+    }
+    .bud-step-title { font-size: 14px; font-weight: 700; color: var(--bud-ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+    .bud-step-desc { font-size: 13px; color: var(--bud-ink-3); line-height: 1.7; }
+
+    /* ══════════════════════════════════════════
+       TESTIMONIALS
+       ══════════════════════════════════════════ */
+    .bud-testimonials { background: var(--bud-cream); padding: 80px 0; }
+    .bud-testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+    @media (max-width: 768px) { .bud-testi-grid { grid-template-columns: 1fr; } }
+
+    .bud-testi-card {
+      background: #fff; border: 1px solid var(--bud-border);
+      border-top: 3px solid var(--bud-green); border-radius: 14px;
+      padding: 28px 24px; transition: box-shadow 0.2s;
+    }
+    .bud-testi-card:hover { box-shadow: 0 8px 28px rgba(63,122,94,0.09); }
+    .bud-testi-stars { color: var(--bud-amber); font-size: 13px; letter-spacing: 2px; margin-bottom: 14px; }
+    .bud-testi-quote { font-size: 14px; color: var(--bud-ink-2); line-height: 1.75; margin-bottom: 18px; font-style: italic; }
+    .bud-testi-author { font-size: 12px; font-weight: 600; color: var(--bud-ink-3); text-transform: uppercase; letter-spacing: 0.08em; }
+    .bud-testi-result {
+      display: inline-block; margin-top: 10px; font-size: 11px;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--bud-green); background: var(--bud-green-light);
+      border: 1px solid var(--bud-green-border); border-radius: 100px;
+      padding: 3px 10px;
+    }
+
+    /* ══════════════════════════════════════════
+       FAQ
+       ══════════════════════════════════════════ */
+    .bud-faq { background: var(--bud-surface); padding: 80px 0; }
+    .bud-faq-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--bud-border);
+      border: 1px solid var(--bud-border); border-radius: 14px;
+      overflow: hidden; margin-top: 44px;
+    }
+    @media (max-width: 640px) { .bud-faq-grid { grid-template-columns: 1fr; } }
+    .bud-faq-item { background: var(--bud-cream); padding: 32px 28px; transition: background 0.18s; }
+    .bud-faq-item:hover { background: #fff; }
+    .bud-faq-q { font-size: 14px; font-weight: 700; color: var(--bud-ink); margin-bottom: 10px; letter-spacing: -0.01em; line-height: 1.4; }
+    .bud-faq-a { font-size: 13.5px; color: var(--bud-ink-3); line-height: 1.75; }
+
+    /* ══════════════════════════════════════════
+       CTA
+       ══════════════════════════════════════════ */
+    .bud-cta { background: var(--bud-dark); padding: 88px 0; }
+    .bud-cta-inner { text-align: center; max-width: 560px; margin: 0 auto; }
+    .bud-cta-eyebrow {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--bud-green); margin-bottom: 24px;
+    }
+    .bud-cta-heading {
+      font-family: var(--font-serif); font-size: clamp(30px, 5vw, 46px);
+      font-weight: 800; line-height: 1.1; color: #fff;
+      letter-spacing: -0.02em; margin-bottom: 16px;
+    }
+    .bud-cta-heading em { color: var(--bud-amber); font-style: italic; }
+    .bud-cta-sub { font-size: 16px; color: rgba(255,255,255,0.42); line-height: 1.7; margin-bottom: 38px; }
+    .bud-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .bud-cta-btn-primary {
+      background: var(--bud-green); color: #fff; border: none;
+      border-radius: 10px; padding: 15px 30px; font-size: 14.5px;
+      font-weight: 700; cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: background 0.18s; font-family: var(--font-sans);
+    }
+    .bud-cta-btn-primary:hover { background: var(--bud-green-dark); }
+    .bud-cta-btn-ghost {
+      background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 10px;
+      padding: 15px 30px; font-size: 14.5px; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.18s; font-family: var(--font-sans);
+    }
+    .bud-cta-btn-ghost:hover { background: rgba(255,255,255,0.10); color: #fff; }
+  </style>
+</head>
+<body>
+
+<div class="bud-top-bar"></div>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-mark">LP</span>
+        <span class="nav-logo-text">LogicPlanners</span>
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle">
+            Templates
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="wedding-planners.html" class="nav-dropdown-item"><span class="nav-dropdown-icon">💍</span>Wedding Planners</a>
+            <a href="event-planners.html"   class="nav-dropdown-item"><span class="nav-dropdown-icon">🎉</span>Event Planners</a>
+            <a href="budgeting.html"        class="nav-dropdown-item nav-link active"><span class="nav-dropdown-icon">💰</span>Budgeting</a>
+            <a href="day-planners.html"     class="nav-dropdown-item"><span class="nav-dropdown-icon">📋</span>Day Planners</a>
+          </div>
+        </div>
+        <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="nav-btn-etsy">🛍 Etsy Shop</a>
+        <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="nav-btn-gumroad">Gumroad</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="wedding-planners.html" class="nav-mobile-link">💍 Wedding Planners</a>
+  <a href="event-planners.html"   class="nav-mobile-link">🎉 Event Planners</a>
+  <a href="budgeting.html"        class="nav-mobile-link">💰 Budgeting</a>
+  <a href="day-planners.html"     class="nav-mobile-link">📋 Day Planners</a>
+  <div class="nav-mobile-btns">
+    <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="btn btn-etsy" style="justify-content:center;">🛍 Shop on Etsy</a>
+    <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content:center;">Shop on Gumroad</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════ -->
+<section class="bud-hero">
+  <div class="container">
+    <div class="bud-hero-inner">
+
+      <div>
+        <div class="breadcrumb" style="margin-bottom:24px;">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-sep">›</span>
+          <span>Budgeting</span>
+        </div>
+        <div class="bud-hero-eyebrow">Budgeting Templates</div>
+        <h1 class="bud-hero-headline">
+          Finally know<br>where your<br><em>money goes.</em>
+        </h1>
+        <p class="bud-hero-sub">Simple, honest spreadsheet templates for budgeting, debt payoff, and building savings — no financial degree required. Just you, a number, and a plan.</p>
+        <div class="bud-hero-actions">
+          <a href="#templates" class="btn btn-primary btn-lg">
+            🌱 View Templates
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#calculator" class="btn btn-outline btn-lg">🧮 Try the Calculator</a>
+        </div>
+        <div class="bud-hero-meta">
+          <span class="bud-hero-meta-item"><span class="bud-meta-dot"></span>4 templates · $8–$15</span>
+          <span class="bud-hero-meta-item"><span class="bud-meta-dot"></span>Google Sheets &amp; Excel</span>
+          <span class="bud-hero-meta-item"><span class="bud-meta-dot"></span>Instant download</span>
+          <span class="bud-hero-meta-item"><span class="bud-meta-dot"></span>7-day refund</span>
+        </div>
+      </div>
+
+      <!-- Budget Snapshot Mockup -->
+      <div style="display:flex;justify-content:center;">
+        <div class="bud-mockup">
+          <div class="bud-mock-bar"></div>
+          <div class="bud-mock-header">
+            <div>
+              <div class="bud-mock-title">Budget at a Glance</div>
+              <div class="bud-mock-month">June 2026 · 65% of month</div>
+            </div>
+            <span class="bud-mock-status">On Track</span>
+          </div>
+          <div class="bud-mock-body">
+            <div class="bud-mock-row">
+              <div class="bud-mock-row-top">
+                <span class="bud-mock-cat">🏠 Housing</span>
+                <span class="bud-mock-amounts"><strong>$1,400</strong> / $1,500</span>
+              </div>
+              <div class="bud-mock-track"><div class="bud-mock-fill" style="width:93%"></div></div>
+            </div>
+            <div class="bud-mock-row">
+              <div class="bud-mock-row-top">
+                <span class="bud-mock-cat">🛒 Groceries</span>
+                <span class="bud-mock-amounts"><strong>$210</strong> / $350</span>
+              </div>
+              <div class="bud-mock-track"><div class="bud-mock-fill" style="width:60%"></div></div>
+            </div>
+            <div class="bud-mock-row">
+              <div class="bud-mock-row-top">
+                <span class="bud-mock-cat">🍕 Dining Out</span>
+                <span class="bud-mock-amounts"><strong>$290</strong> / $250 ⚠️</span>
+              </div>
+              <div class="bud-mock-track"><div class="bud-mock-fill warn" style="width:100%"></div></div>
+            </div>
+            <div class="bud-mock-row">
+              <div class="bud-mock-row-top">
+                <span class="bud-mock-cat">🚗 Transport</span>
+                <span class="bud-mock-amounts"><strong>$110</strong> / $200</span>
+              </div>
+              <div class="bud-mock-track"><div class="bud-mock-fill" style="width:55%"></div></div>
+            </div>
+            <div class="bud-mock-row">
+              <div class="bud-mock-row-top">
+                <span class="bud-mock-cat">💰 Savings</span>
+                <span class="bud-mock-amounts"><strong>$500</strong> / $500 ✓</span>
+              </div>
+              <div class="bud-mock-track"><div class="bud-mock-fill" style="width:100%"></div></div>
+            </div>
+          </div>
+          <div class="bud-mock-footer">
+            <div class="bud-mock-stat">
+              <span class="bud-mock-stat-num green">$346</span>
+              <span class="bud-mock-stat-label">Left to spend</span>
+            </div>
+            <div class="bud-mock-stat">
+              <span class="bud-mock-stat-num">$3,510</span>
+              <span class="bud-mock-stat-label">Spent so far</span>
+            </div>
+            <div class="bud-mock-stat">
+              <span class="bud-mock-stat-num amber">72%</span>
+              <span class="bud-mock-stat-label">Categories OK</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div class="bud-trust">
+  <div class="container" style="padding:0">
+    <div class="bud-trust-inner">
+      <div class="bud-trust-item">
+        <span class="bud-trust-icon">⏱️</span>
+        <div>
+          <div class="bud-trust-text">Set up in 15 minutes</div>
+          <div class="bud-trust-sub">Enter your income, name your categories, done</div>
+        </div>
+      </div>
+      <div class="bud-trust-item">
+        <span class="bud-trust-icon">🧮</span>
+        <div>
+          <div class="bud-trust-text">No formula knowledge needed</div>
+          <div class="bud-trust-sub">All math is built in — just enter numbers</div>
+        </div>
+      </div>
+      <div class="bud-trust-item">
+        <span class="bud-trust-icon">📥</span>
+        <div>
+          <div class="bud-trust-text">Works with any income</div>
+          <div class="bud-trust-sub">Salary, freelance, variable — all supported</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SOUND FAMILIAR
+     ══════════════════════════════════════════ -->
+<section class="bud-familiar" id="templates-intro">
+  <div class="container">
+    <span class="eyebrow" style="display:block;margin-bottom:14px;">Why it matters</span>
+    <h2 class="heading" style="color:var(--bud-ink);">Sound familiar?</h2>
+    <p class="subheading" style="color:var(--bud-ink-3);">Each template solves one specific financial problem — clearly, without overwhelm.</p>
+    <div class="bud-familiar-grid">
+
+      <div class="bud-fam-card">
+        <div class="bud-fam-emoji">🤷</div>
+        <div class="bud-fam-situation">"I make decent money but I'm never sure where it all goes."</div>
+        <p class="bud-fam-desc">You check your balance at the end of the month and feel surprised. There's nothing left but you can't trace why. The answer is almost always in a few categories you haven't been tracking.</p>
+        <div class="bud-fam-solve">
+          <span class="bud-fam-solve-icon">📊</span>
+          <span class="bud-fam-solve-text">Zero-Based Monthly Budget → shows every dollar</span>
+        </div>
+      </div>
+
+      <div class="bud-fam-card">
+        <div class="bud-fam-emoji">😰</div>
+        <div class="bud-fam-situation">"I have debt and I want to pay it off, but I don't know where to start."</div>
+        <p class="bud-fam-desc">Multiple balances, different interest rates, minimum payments — it feels like running in sand. You need a single strategy and a payoff date to work toward.</p>
+        <div class="bud-fam-solve">
+          <span class="bud-fam-solve-icon">❄️</span>
+          <span class="bud-fam-solve-text">Debt Snowball Tracker → calculates your payoff date</span>
+        </div>
+      </div>
+
+      <div class="bud-fam-card">
+        <div class="bud-fam-emoji">😬</div>
+        <div class="bud-fam-situation">"I've been meaning to build an emergency fund for a while now."</div>
+        <p class="bud-fam-desc">It keeps getting pushed to next month. Without a specific target and a contribution schedule, it stays abstract. A concrete plan with a projected completion date changes that.</p>
+        <div class="bud-fam-solve">
+          <span class="bud-fam-solve-icon">🛡️</span>
+          <span class="bud-fam-solve-text">Emergency Fund Builder → gives you a finish line</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TEMPLATES
+     ══════════════════════════════════════════ -->
+<section class="bud-templates" id="templates">
+  <div class="container">
+    <span class="eyebrow" style="display:block;margin-bottom:14px;">Templates</span>
+    <h2 class="heading" style="color:var(--bud-ink);">Four templates. <em>Every situation covered.</em></h2>
+    <p class="subheading" style="color:var(--bud-ink-3);">From month-to-month budgeting to long-term financial tracking — each one has one job and does it precisely.</p>
+    <div class="bud-cards">
+
+      <div class="bud-card">
+        <div class="bud-card-top bud-card-top-1">
+          <div class="bud-badge">Best Seller</div>
+          <div class="bud-card-icon">📊</div>
+          <div class="bud-card-name">Zero-Based Monthly Budget</div>
+          <p class="bud-card-tagline">Give every dollar a job. Track spending against your plan. End each month knowing exactly where it went.</p>
+        </div>
+        <div class="bud-card-body">
+          <div class="bud-card-features">
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Income allocation engine — assign 100% of take-home pay</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Expense log with auto-category totals</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Budgeted vs. actual variance — flags overspent categories</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Month-over-month comparison dashboard</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Savings goal progress bars with target dates</div>
+          </div>
+          <div class="bud-card-footer">
+            <div class="bud-card-price">$12</div>
+            <div class="bud-card-buy">
+              <a href="https://www.etsy.com/listing/0000000010/" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+              <a href="https://logicplanners.gumroad.com/l/zero-budget" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bud-card">
+        <div class="bud-card-top bud-card-top-2">
+          <div class="bud-card-icon">🏦</div>
+          <div class="bud-card-name">Annual Financial Dashboard</div>
+          <p class="bud-card-tagline">See the whole year at once. Track income, net worth, investments, and taxes — all from one place.</p>
+        </div>
+        <div class="bud-card-body">
+          <div class="bud-card-features">
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>12-month income &amp; expense grid with annual totals</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monthly net worth tracker: assets vs. liabilities</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Investment account balance log with growth calc</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Year-over-year comparison tab</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Tax category summary — deductible expenses flagged</div>
+          </div>
+          <div class="bud-card-footer">
+            <div class="bud-card-price">$15</div>
+            <div class="bud-card-buy">
+              <a href="https://www.etsy.com/listing/0000000011/" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+              <a href="https://logicplanners.gumroad.com/l/annual-dashboard" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bud-card">
+        <div class="bud-card-top bud-card-top-3">
+          <div class="bud-card-icon">❄️</div>
+          <div class="bud-card-name">Debt Payoff Snowball Tracker</div>
+          <p class="bud-card-tagline">Enter your debts once. The template builds your payoff plan, compares strategies, and calculates your exact payoff date.</p>
+        </div>
+        <div class="bud-card-body">
+          <div class="bud-card-features">
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Avalanche (highest APR) and snowball (smallest balance) — compare both</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Exact payoff date per debt and overall</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Total interest paid under each strategy</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monthly payment log with running balance</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Payoff progress bars with motivational milestones</div>
+          </div>
+          <div class="bud-card-footer">
+            <div class="bud-card-price">$10</div>
+            <div class="bud-card-buy">
+              <a href="https://www.etsy.com/listing/0000000012/" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+              <a href="https://logicplanners.gumroad.com/l/debt-payoff" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bud-card">
+        <div class="bud-card-top bud-card-top-4">
+          <div class="bud-card-icon">🛡️</div>
+          <div class="bud-card-name">Emergency Fund Builder</div>
+          <p class="bud-card-tagline">Set your target, schedule your contributions, and watch your safety net grow with a clear completion date in view.</p>
+        </div>
+        <div class="bud-card-body">
+          <div class="bud-card-features">
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monthly expense calc — auto-sets your 3/6/12-month target</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Contribution schedule: monthly, bi-weekly, or custom</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Projected completion date based on your contribution rate</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Milestone tracker: 25%, 50%, 75%, fully funded</div>
+            <div class="bud-card-feature"><span class="bud-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#3F7A5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Scenario planner: "What if I contribute $X more per month?"</div>
+          </div>
+          <div class="bud-card-footer">
+            <div class="bud-card-price">$8</div>
+            <div class="bud-card-buy">
+              <a href="https://www.etsy.com/listing/0000000013/" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+              <a href="https://logicplanners.gumroad.com/l/emergency-fund" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CALCULATOR
+     ══════════════════════════════════════════ -->
+<section class="bud-calc" id="calculator">
+  <div class="container">
+    <div class="bud-calc-inner">
+
+      <div class="bud-calc-copy">
+        <span class="eyebrow" style="display:block;margin-bottom:14px;">Free Tool</span>
+        <h2 class="heading" style="color:var(--bud-ink);">See your budget in 10 seconds.</h2>
+        <p>Enter your monthly take-home pay and get an instant breakdown using the 50/30/20 rule — the simplest starting point for any budget.</p>
+        <p style="margin-top:12px;">The <strong style="color:var(--bud-ink-2);">50/30/20 rule</strong> is a widely-used starting point: 50% covers needs, 30% goes to wants, and 20% builds financial security. Adjust the percentages however fits your life.</p>
+        <div class="bud-calc-note">
+          <span class="bud-calc-note-icon">💡</span>
+          <span class="bud-calc-note-text">The Zero-Based Budget template lets you customize every category and percentage. This calculator shows you the framework — the template makes it automatic every month.</span>
+        </div>
+        <div style="margin-top:24px;">
+          <a href="#templates" class="btn btn-primary btn-lg">Get the Template</a>
+        </div>
+      </div>
+
+      <div class="bud-calc-widget">
+        <div class="bud-calc-top">
+          <div class="bud-calc-top-label">Monthly Take-Home Pay</div>
+          <div class="bud-calc-input-wrap">
+            <span class="bud-calc-prefix">$</span>
+            <input class="bud-calc-input" id="calcInput" type="number" placeholder="4,000" min="0" max="999999">
+          </div>
+          <div class="bud-calc-input-hint">After taxes and deductions</div>
+        </div>
+        <div class="bud-calc-results" id="calcResults">
+          <div class="bud-calc-empty">
+            <div class="bud-calc-empty-icon">💸</div>
+            Enter your take-home pay above<br>to see your budget breakdown.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW TO USE ── -->
+<section class="bud-howto" id="how-to-use">
+  <div class="container">
+    <span class="eyebrow" style="display:block;margin-bottom:14px;">Setup</span>
+    <h2 class="heading" style="color:var(--bud-ink);">Set up once. Run every month.</h2>
+    <p class="subheading" style="color:var(--bud-ink-3);">The initial setup takes about 15 minutes. After that, your only job is logging numbers.</p>
+    <div class="bud-steps">
+      <div class="bud-step">
+        <div class="bud-step-num">01</div>
+        <div class="bud-step-title">Purchase &amp; Download</div>
+        <p class="bud-step-desc">Buy on Etsy or Gumroad. Your .xlsx file downloads immediately — no account needed. Save it to Google Drive for access from any device.</p>
+      </div>
+      <div class="bud-step">
+        <div class="bud-step-num">02</div>
+        <div class="bud-step-title">Configure the Setup Tab</div>
+        <p class="bud-step-desc">Enter your monthly income, rename any budget categories, and add your account balances. The Setup tab drives every formula in the workbook.</p>
+      </div>
+      <div class="bud-step">
+        <div class="bud-step-num">03</div>
+        <div class="bud-step-title">Allocate Your Budget</div>
+        <p class="bud-step-desc">Assign your income across categories until the remaining balance reaches $0. The template flags over-allocation in real time so nothing slips.</p>
+      </div>
+      <div class="bud-step">
+        <div class="bud-step-num">04</div>
+        <div class="bud-step-title">Log Expenses Weekly</div>
+        <p class="bud-step-desc">Add expenses as they happen or batch-enter once a week. The dashboard automatically shows budgeted vs. actual and highlights anything overspent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="bud-testimonials">
+  <div class="container">
+    <span class="eyebrow" style="display:block;margin-bottom:14px;">Reviews</span>
+    <h2 class="heading" style="color:var(--bud-ink);">Real results, real people.</h2>
+    <div class="bud-testi-grid">
+      <div class="bud-testi-card">
+        <div class="bud-testi-stars">★★★★★</div>
+        <p class="bud-testi-quote">"I've tried three other budget templates. This is the only one I've actually stuck with for more than a week. The variance column showing me I was $90 over on dining out changed my habits immediately."</p>
+        <div class="bud-testi-author">— Sarah M., Teacher</div>
+        <span class="bud-testi-result">Saved $200+ in first month</span>
+      </div>
+      <div class="bud-testi-card">
+        <div class="bud-testi-stars">★★★★★</div>
+        <p class="bud-testi-quote">"The debt tracker told me I'd be debt-free in March 2028 if I stuck to the plan. That date made it real. I've been hitting every payment since."</p>
+        <div class="bud-testi-author">— James T., Freelance Developer</div>
+        <span class="bud-testi-result">On track to pay off $18k</span>
+      </div>
+      <div class="bud-testi-card">
+        <div class="bud-testi-stars">★★★★★</div>
+        <p class="bud-testi-quote">"I have irregular income as a contractor and I was worried this wouldn't work for me. The setup for variable earners is simple and exactly right. I budget from my floor and it's been a game-changer."</p>
+        <div class="bud-testi-author">— Priya K., Consultant</div>
+        <span class="bud-testi-result">6-month emergency fund built</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="bud-faq" id="faq">
+  <div class="container">
+    <span class="eyebrow" style="display:block;margin-bottom:14px;">FAQ</span>
+    <h2 class="heading" style="color:var(--bud-ink);">Common questions.</h2>
+    <div class="bud-faq-grid">
+      <div class="bud-faq-item">
+        <div class="bud-faq-q">Do the formulas work if I have irregular income?</div>
+        <p class="bud-faq-a">Yes. The Setup tab has a field for irregular income where you enter your lowest expected monthly take-home. Budgeting from your floor — not your ceiling — is best practice for variable earners. When a higher month comes in, you log the extra as a category called "surplus" or roll it into savings.</p>
+      </div>
+      <div class="bud-faq-item">
+        <div class="bud-faq-q">Can I use the debt tracker for more than 10 debts?</div>
+        <p class="bud-faq-a">The default supports 15 debts. To add more, insert rows in the debt table — the payoff calculator and payment schedule are structured to auto-detect new rows. No formulas to update manually.</p>
+      </div>
+      <div class="bud-faq-item">
+        <div class="bud-faq-q">Does the annual dashboard connect to the monthly budget?</div>
+        <p class="bud-faq-a">They're separate files by design — keeping them independent means neither breaks when you update the other. The annual dashboard has a manual input column for monthly totals you copy over from the budget tracker. Takes about two minutes per month.</p>
+      </div>
+      <div class="bud-faq-item">
+        <div class="bud-faq-q">What if my budget categories don't match the defaults?</div>
+        <p class="bud-faq-a">All budget categories are defined in the Setup tab as a simple list. Change them there and every dropdown in the expense log updates automatically. The defaults (housing, food, transport, etc.) are just starting points — entirely replaceable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="bud-cta">
+  <div class="container">
+    <div class="bud-cta-inner">
+      <div class="bud-cta-eyebrow">Get Started</div>
+      <div class="bud-cta-heading">Know exactly where your<br>money goes. <em>Starting now.</em></div>
+      <p class="bud-cta-sub">Pick a template. Download it today. Log your first month this weekend — and finally stop guessing.</p>
+      <div class="bud-cta-btns">
+        <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="bud-cta-btn-primary">🛍 Shop on Etsy</a>
+        <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="bud-cta-btn-ghost">
+          Shop on Gumroad
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-logo"><span class="footer-logo-mark">LP</span><span class="footer-logo-text">LogicPlanners</span></div>
+        <p class="footer-brand-desc">Premium spreadsheet templates for weddings, events, budgeting, and daily planning.</p>
+        <div class="footer-social">
+          <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="footer-social-link">🛍</a>
+          <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="footer-social-link">G</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Templates</div>
+        <div class="footer-col-links">
+          <a href="wedding-planners.html">Wedding Planners</a>
+          <a href="event-planners.html">Event Planners</a>
+          <a href="budgeting.html">Budgeting</a>
+          <a href="day-planners.html">Day Planners</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Shop</div>
+        <div class="footer-col-links">
+          <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener">Etsy Store</a>
+          <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener">Gumroad Store</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Support</div>
+        <div class="footer-col-links">
+          <a href="index.html#how-it-works">How It Works</a>
+          <a href="mailto:support@logicplanners.com">Contact Us</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 LogicPlanners.com. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:support@logicplanners.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('hamburger').addEventListener('click', () =>
+  document.getElementById('mobileMenu').classList.toggle('open'));
+
+/* ══════════════════════════════════════════
+   50/30/20 CALCULATOR
+   ══════════════════════════════════════════ */
+const calcInput   = document.getElementById('calcInput');
+const calcResults = document.getElementById('calcResults');
+
+const BUCKETS = [
+  {
+    key: 'needs', color: 'green', pct: 0.50,
+    name: 'Needs', label: '50%',
+    subs: ['Rent / Mortgage', 'Groceries', 'Utilities', 'Transport', 'Insurance'],
+    desc: 'Essential expenses — the ones you can\'t avoid each month.'
+  },
+  {
+    key: 'wants', color: 'amber', pct: 0.30,
+    name: 'Wants', label: '30%',
+    subs: ['Dining Out', 'Entertainment', 'Shopping', 'Subscriptions', 'Travel'],
+    desc: 'The things you enjoy — worth spending on, worth watching.'
+  },
+  {
+    key: 'savings', color: 'slate', pct: 0.20,
+    name: 'Savings & Debt', label: '20%',
+    subs: ['Emergency Fund', 'Retirement', 'Investments', 'Debt Payoff'],
+    desc: 'Your financial future — this is what builds security over time.'
+  }
+];
+
+function fmt(n) {
+  return '$' + Math.round(n).toLocaleString();
+}
+
+function renderCalc(income) {
+  if (!income || income <= 0) {
+    calcResults.innerHTML = `<div class="bud-calc-empty"><div class="bud-calc-empty-icon">💸</div>Enter your take-home pay above<br>to see your budget breakdown.</div>`;
+    return;
+  }
+
+  const bucketHTML = BUCKETS.map(b => {
+    const amount = income * b.pct;
+    return `
+      <div class="bud-calc-bucket">
+        <div class="bud-calc-bucket-head">
+          <span class="bud-calc-bucket-name">${b.name}</span>
+          <span class="bud-calc-bucket-pct">${b.label} of income</span>
+        </div>
+        <span class="bud-calc-bucket-amount ${b.color}">${fmt(amount)}/mo</span>
+        <div class="bud-calc-bucket-bar">
+          <div class="bud-calc-bucket-fill ${b.color}" style="width:${b.pct * 100}%"></div>
+        </div>
+        <div class="bud-calc-bucket-subs">
+          ${b.subs.map(s => `<span class="bud-calc-bucket-sub">${s}</span>`).join('')}
+        </div>
+      </div>`;
+  }).join('<div class="bud-calc-divider"></div>');
+
+  calcResults.innerHTML = bucketHTML + `
+    <div class="bud-calc-divider"></div>
+    <div class="bud-calc-cta-row">
+      <div class="bud-calc-cta-text">The Zero-Based Budget template tracks your actual spending in every category — automatically.</div>
+      <a href="#templates" class="bud-calc-cta-btn">Get the Template</a>
+    </div>`;
+
+  // Animate bars
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.bud-calc-bucket-fill').forEach((el, i) => {
+      const w = el.style.width;
+      el.style.width = '0';
+      setTimeout(() => { el.style.width = w; }, 80 + i * 120);
+    });
+  });
+}
+
+calcInput.addEventListener('input', () => {
+  const val = parseFloat(calcInput.value);
+  renderCalc(val);
+});
+</script>
+</body>
+</html>

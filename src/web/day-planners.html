@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Daily planner, weekly goal tracker, habit streaks, and time block spreadsheet templates — built for any schedule. Google Sheets & Excel. Available on Etsy and Gumroad.">
+  <title>Day Planner Templates — LogicPlanners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+
+  <style>
+    /* ══════════════════════════════════════════
+       Day Planners — Professional / Minimalist
+       ══════════════════════════════════════════ */
+    :root {
+      --dp-teal:        #4A8B7F;
+      --dp-teal-dark:   #3A7A6E;
+      --dp-teal-light:  rgba(74,139,127,0.08);
+      --dp-teal-mid:    rgba(74,139,127,0.18);
+      --dp-teal-border: rgba(74,139,127,0.25);
+
+      --dp-ink:         #111827;
+      --dp-ink-2:       #374151;
+      --dp-ink-3:       #6B7280;
+      --dp-ink-4:       #9CA3AF;
+
+      --dp-surface:     #F8F9FA;
+      --dp-border:      #E5E7EB;
+      --dp-dark-bg:     #0D1117;
+      --dp-dark-2:      #161B22;
+      --dp-dark-3:      #1C2330;
+
+      --cat:        #4A8B7F;
+      --cat-hover:  #3A7A6E;
+      --cat-light:  rgba(74,139,127,0.08);
+      --cat-border: rgba(74,139,127,0.25);
+      --cat-shadow: rgba(74,139,127,0.20);
+    }
+
+    body { color: var(--dp-ink); }
+
+    .eyebrow {
+      color: var(--dp-teal) !important;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+    }
+
+    /* ── Top accent bar ── */
+    .dp-top-bar {
+      height: 3px;
+      background: linear-gradient(90deg, var(--dp-teal), rgba(74,139,127,0.4), var(--dp-teal));
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: #fff;
+      background-image: radial-gradient(circle, rgba(74,139,127,0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      padding: 72px 0 80px;
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: center;
+    }
+    @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; gap: 52px; } }
+
+    .hero-copy { max-width: 520px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.14em; color: var(--dp-teal); margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 22px; height: 2px; background: var(--dp-teal); display: block;
+    }
+    .hero-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(38px, 5vw, 58px);
+      font-weight: 800; line-height: 1.06;
+      color: var(--dp-ink); margin-bottom: 10px; letter-spacing: -0.025em;
+    }
+    .hero-headline em { font-style: italic; font-weight: 600; color: var(--dp-teal); }
+    .hero-headline-sub {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: clamp(16px, 2vw, 20px); color: var(--dp-ink-3);
+      margin-bottom: 22px; font-weight: 400; line-height: 1.5;
+    }
+    .hero-sub {
+      font-size: 16px; line-height: 1.75;
+      color: var(--dp-ink-3); margin-bottom: 36px;
+    }
+    .hero-adapts {
+      display: flex; align-items: center; gap: 8px;
+      flex-wrap: wrap; margin-bottom: 32px;
+    }
+    .hero-adapts-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--dp-ink-4);
+    }
+    .hero-adapts-chip {
+      font-size: 11.5px; font-weight: 600; padding: 4px 12px;
+      border-radius: 100px; border: 1.5px solid var(--dp-border);
+      color: var(--dp-ink-3); background: #fff;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .hero-actions .btn-primary { background: var(--dp-teal); border-color: var(--dp-teal); }
+    .hero-actions .btn-primary:hover { background: var(--dp-teal-dark); border-color: var(--dp-teal-dark); }
+    .hero-meta {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      border-top: 1px solid var(--dp-border); padding-top: 22px;
+    }
+    .hero-meta-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12px; color: var(--dp-ink-3); font-weight: 500;
+    }
+    .hero-meta-item .meta-dot {
+      width: 5px; height: 5px; border-radius: 50%; background: var(--dp-teal); flex-shrink: 0;
+    }
+
+    /* ── Hero mockup ── */
+    .hero-mockup-wrap {
+      position: relative; display: flex;
+      justify-content: center; align-items: center;
+    }
+    .hero-mockup {
+      background: #fff; border: 1px solid var(--dp-border);
+      border-radius: 16px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 16px 48px rgba(0,0,0,0.10);
+      overflow: hidden; width: 100%; max-width: 380px;
+    }
+    .mock-titlebar {
+      background: var(--dp-surface); border-bottom: 1px solid var(--dp-border);
+      padding: 10px 14px; display: flex; align-items: center; gap: 7px;
+    }
+    .mock-titlebar-dot { width: 11px; height: 11px; border-radius: 50%; background: var(--dp-border); }
+    .mock-titlebar-title { font-size: 11.5px; font-weight: 600; color: var(--dp-ink-3); margin-left: 4px; }
+
+    .mock-personas {
+      border-bottom: 1px solid var(--dp-border); padding: 8px 12px;
+      display: flex; gap: 5px; flex-wrap: wrap; background: #fff;
+    }
+    .mock-persona-chip {
+      font-size: 10.5px; font-weight: 600; padding: 4px 10px;
+      border-radius: 100px; border: 1.5px solid var(--dp-border);
+      color: var(--dp-ink-3); background: #fff; cursor: pointer;
+      transition: all 0.15s; font-family: var(--font-sans); white-space: nowrap;
+    }
+    .mock-persona-chip:hover { border-color: var(--dp-teal-border); color: var(--dp-teal); }
+    .mock-persona-chip.active { background: var(--dp-teal); border-color: var(--dp-teal); color: #fff; }
+
+    .mock-header {
+      padding: 13px 16px 11px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      border-bottom: 1px solid var(--dp-border);
+    }
+    .mock-date { font-size: 13px; font-weight: 700; color: var(--dp-ink); letter-spacing: -0.01em; }
+    .mock-subdate { font-size: 11px; color: var(--dp-ink-4); margin-top: 2px; }
+    .mock-streak-badge {
+      font-size: 10px; font-weight: 700; padding: 3px 9px;
+      background: var(--dp-teal-light); color: var(--dp-teal);
+      border: 1px solid var(--dp-teal-border); border-radius: 100px;
+    }
+    .mock-schedule { padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; min-height: 210px; }
+    .mock-row { display: flex; align-items: center; gap: 10px; }
+    .mock-time { font-size: 10px; color: var(--dp-ink-4); font-weight: 500; width: 34px; flex-shrink: 0; text-align: right; }
+    .mock-block {
+      height: 26px; border-radius: 5px; display: flex; align-items: center;
+      padding: 0 10px; font-size: 11px; font-weight: 600; transition: all 0.25s;
+      white-space: nowrap; overflow: hidden;
+    }
+    .mock-block-deep  { background: var(--dp-teal);           color: #fff; }
+    .mock-block-meet  { background: rgba(74,139,127,0.16);     color: var(--dp-teal); }
+    .mock-block-break { background: #F3F4F6;                   color: var(--dp-ink-3); }
+    .mock-block-admin { background: #EEF2FF;                   color: #6366F1; }
+    .mock-block-focus { background: rgba(74,139,127,0.10);     color: var(--dp-teal); border: 1px solid var(--dp-teal-border); }
+    .mock-block-study { background: rgba(99,102,241,0.12);     color: #6366F1; border: 1px solid rgba(99,102,241,0.22); }
+    .mock-block-class { background: rgba(245,158,11,0.12);     color: #B45309; border: 1px solid rgba(245,158,11,0.22); }
+    .mock-footer {
+      border-top: 1px solid var(--dp-border); padding: 12px 16px;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .mock-stat { text-align: center; }
+    .mock-stat-num { display: block; font-size: 16px; font-weight: 800; color: var(--dp-ink); letter-spacing: -0.02em; line-height: 1; }
+    .mock-stat-label { font-size: 9px; color: var(--dp-ink-4); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px; display: block; }
+
+    .hero-mockup-secondary {
+      position: absolute; right: -22px; bottom: -24px;
+      background: #fff; border: 1px solid var(--dp-border);
+      border-radius: 12px; box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+      padding: 14px 16px; width: 168px; z-index: 2;
+    }
+    .mock-sec-label { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dp-ink-4); margin-bottom: 10px; }
+    .mock-habit-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+    .mock-habit-name { font-size: 10.5px; color: var(--dp-ink-2); font-weight: 500; }
+    .mock-habit-dots { display: flex; gap: 3px; }
+    .mock-habit-dot { width: 8px; height: 8px; border-radius: 2px; background: var(--dp-teal); }
+    .mock-habit-dot.miss { background: var(--dp-border); }
+
+    /* ── Ticker strip ── */
+    .dp-ticker {
+      background: var(--dp-dark-bg);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 13px 0; overflow: hidden;
+    }
+    .dp-ticker-track {
+      display: flex; gap: 0; animation: dpTicker 32s linear infinite;
+      width: max-content;
+    }
+    @keyframes dpTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .dp-ticker-item {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.14em; color: rgba(255,255,255,0.35);
+      padding: 0 28px; flex-shrink: 0; white-space: nowrap;
+    }
+    .dp-ticker-item span {
+      color: var(--dp-teal); margin-left: 28px;
+    }
+
+    /* ── Stats strip ── */
+    .dp-stats { background: #fff; border-bottom: 1px solid var(--dp-border); }
+    .dp-stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .dp-stat {
+      padding: 28px 24px; text-align: center;
+      border-right: 1px solid var(--dp-border); transition: background 0.18s;
+    }
+    .dp-stat:last-child { border-right: none; }
+    .dp-stat:hover { background: var(--dp-teal-light); }
+    .dp-stat-num { font-size: 30px; font-weight: 800; color: var(--dp-ink); letter-spacing: -0.03em; line-height: 1; display: block; }
+    .dp-stat-num span { color: var(--dp-teal); }
+    .dp-stat-label { font-size: 11px; color: var(--dp-ink-4); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 5px; display: block; font-weight: 500; }
+    @media (max-width: 640px) {
+      .dp-stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .dp-stat:nth-child(2) { border-right: none; }
+    }
+
+    /* ══════════════════════════════════════════
+       LIFESTYLE SECTION (dark)
+       ══════════════════════════════════════════ */
+    .dp-lifestyles { background: var(--dp-dark-bg); padding: 80px 0; }
+    .dp-lifestyles-header { margin-bottom: 52px; }
+    .dp-lifestyles-title {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; color: #fff;
+      letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 14px;
+    }
+    .dp-lifestyles-title em { color: var(--dp-teal); font-style: italic; }
+    .dp-lifestyles-sub {
+      font-size: 15px; color: rgba(255,255,255,0.4);
+      line-height: 1.7; max-width: 540px;
+    }
+    .dp-lifestyle-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; overflow: hidden;
+    }
+    @media (max-width: 960px)  { .dp-lifestyle-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 580px)  { .dp-lifestyle-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .dp-lc {
+      background: var(--dp-dark-2); padding: 30px 22px;
+      transition: background 0.2s; display: flex; flex-direction: column; gap: 0;
+    }
+    .dp-lc:hover { background: rgba(74,139,127,0.14); }
+    .dp-lc-icon { font-size: 26px; margin-bottom: 14px; line-height: 1; }
+    .dp-lc-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .dp-lc-hours { font-size: 10px; color: var(--dp-teal); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .dp-lc-desc { font-size: 12.5px; color: rgba(255,255,255,0.38); line-height: 1.6; margin-bottom: 18px; flex: 1; }
+    .dp-lc-bars { display: flex; flex-direction: column; gap: 4px; margin-bottom: 18px; }
+    .dp-lc-bar-row { display: flex; gap: 2px; align-items: center; }
+    .dp-lc-bar-time { font-size: 8.5px; color: rgba(255,255,255,0.2); width: 22px; flex-shrink: 0; }
+    .dp-lc-bar { height: 6px; border-radius: 3px; background: rgba(74,139,127,0.25); }
+    .dp-lc-bar.on { background: var(--dp-teal); }
+    .dp-lc-bar.dim { background: rgba(255,255,255,0.07); }
+    .dp-lc-template {
+      font-size: 9.5px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--dp-teal);
+      border: 1px solid rgba(74,139,127,0.3); border-radius: 100px;
+      padding: 4px 10px; display: inline-block; align-self: flex-start;
+    }
+
+    /* ══════════════════════════════════════════
+       CUSTOMIZATION FEATURES
+       ══════════════════════════════════════════ */
+    .dp-customize { background: #fff; padding: 80px 0; }
+    .dp-cust-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--dp-border);
+      border: 1px solid var(--dp-border); border-radius: 16px;
+      overflow: hidden; margin-top: 52px;
+    }
+    @media (max-width: 768px) { .dp-cust-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .dp-cust-grid { grid-template-columns: 1fr; } }
+
+    .dp-cust-item { background: #fff; padding: 32px 28px; transition: background 0.18s; }
+    .dp-cust-item:hover { background: var(--dp-teal-light); }
+    .dp-cust-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: var(--dp-teal-light); border: 1px solid var(--dp-teal-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 19px; margin-bottom: 16px;
+    }
+    .dp-cust-title { font-size: 14px; font-weight: 700; color: var(--dp-ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+    .dp-cust-desc { font-size: 13px; color: var(--dp-ink-3); line-height: 1.7; }
+    .dp-cust-tag {
+      display: inline-block; margin-top: 12px;
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--dp-teal);
+    }
+
+    /* ── Templates ── */
+    .dp-templates { background: var(--dp-surface); }
+    .dp-section-header { margin-bottom: 52px; }
+    .dp-cards {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--dp-border);
+      border: 1px solid var(--dp-border); border-radius: 16px; overflow: hidden;
+    }
+    @media (max-width: 768px) { .dp-cards { grid-template-columns: 1fr; } }
+
+    .dp-card {
+      background: #fff; padding: 36px 32px;
+      display: flex; flex-direction: column;
+      transition: background 0.18s; position: relative;
+    }
+    .dp-card:hover { background: #FDFEFE; }
+    .dp-card.recommended {
+      outline: 3px solid var(--dp-teal); outline-offset: -3px; z-index: 1;
+    }
+    .dp-card.recommended::before {
+      content: '✓ Recommended for you';
+      position: absolute; top: 0; left: 0; right: 0;
+      background: var(--dp-teal); color: #fff;
+      font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; text-align: center; padding: 6px;
+    }
+    .dp-card.recommended .dp-card-eyebrow { margin-top: 28px; }
+
+    .dp-card-eyebrow { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--dp-teal); margin-bottom: 14px; }
+    .dp-card-icon { font-size: 28px; margin-bottom: 14px; line-height: 1; }
+    .dp-card-name { font-size: 17px; font-weight: 700; color: var(--dp-ink); margin-bottom: 10px; letter-spacing: -0.01em; line-height: 1.3; }
+    .dp-card-tagline { font-size: 14px; color: var(--dp-ink-3); line-height: 1.6; margin-bottom: 24px; }
+    .dp-card-divider { height: 1px; background: var(--dp-border); margin-bottom: 22px; }
+    .dp-card-features { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .dp-card-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--dp-ink-3); line-height: 1.5; }
+    .dp-card-check {
+      width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px;
+      border-radius: 4px; background: var(--dp-teal-light); border: 1px solid var(--dp-teal-border);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .dp-card-check svg { display: block; }
+    .dp-card-footer { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--dp-border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .dp-card-price { font-size: 22px; font-weight: 800; color: var(--dp-ink); letter-spacing: -0.03em; }
+    .dp-card-buy { display: flex; gap: 8px; }
+    .dp-badge { display: inline-block; font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 3px 9px; border-radius: 100px; background: var(--dp-teal-light); color: var(--dp-teal); border: 1px solid var(--dp-teal-border); margin-bottom: 10px; }
+
+    /* ══════════════════════════════════════════
+       RECOMMENDER
+       ══════════════════════════════════════════ */
+    .dp-recommender { background: var(--dp-surface); border-top: 1px solid var(--dp-border); border-bottom: 1px solid var(--dp-border); padding: 72px 0; }
+    .rec-inner { max-width: 680px; margin: 0 auto; }
+    .rec-heading { font-family: var(--font-serif); font-size: clamp(22px, 3vw, 30px); font-weight: 700; color: var(--dp-ink); margin-bottom: 8px; letter-spacing: -0.02em; }
+    .rec-sub { font-size: 14px; color: var(--dp-ink-3); margin-bottom: 36px; line-height: 1.65; }
+
+    .rec-step { display: none; }
+    .rec-step.active { display: block; }
+    .rec-q { font-size: 12px; font-weight: 700; color: var(--dp-ink-3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
+    .rec-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    @media (max-width: 500px) { .rec-options { grid-template-columns: 1fr; } }
+
+    .rec-option {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 16px 18px; border: 1.5px solid var(--dp-border);
+      border-radius: 10px; cursor: pointer; background: #fff;
+      transition: all 0.15s; text-align: left; width: 100%;
+      font-family: var(--font-sans);
+    }
+    .rec-option:hover { border-color: var(--dp-teal-border); background: var(--dp-teal-light); }
+    .rec-option.selected { border-color: var(--dp-teal); background: var(--dp-teal-light); }
+    .rec-option-icon { font-size: 20px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+    .rec-option-label { font-size: 13.5px; font-weight: 600; color: var(--dp-ink); line-height: 1.3; }
+    .rec-option-sub { font-size: 12px; color: var(--dp-ink-3); margin-top: 3px; line-height: 1.4; }
+
+    .rec-progress { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; }
+    .rec-progress-step { height: 3px; flex: 1; border-radius: 100px; background: var(--dp-border); transition: background 0.3s; }
+    .rec-progress-step.done { background: var(--dp-teal); }
+    .rec-progress-label { font-size: 11px; color: var(--dp-ink-4); font-weight: 500; white-space: nowrap; }
+
+    .rec-result { display: none; }
+    .rec-result.active { display: block; }
+    .rec-result-card { border: 2px solid var(--dp-teal); border-radius: 12px; overflow: hidden; }
+    .rec-result-header {
+      background: var(--dp-teal); padding: 18px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .rec-result-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.7); }
+    .rec-result-name { font-size: 17px; font-weight: 700; color: #fff; margin-top: 4px; }
+    .rec-result-price { font-size: 24px; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .rec-result-body { background: #fff; padding: 24px; }
+    .rec-result-reason { font-size: 14px; color: var(--dp-ink-2); line-height: 1.7; margin-bottom: 20px; }
+    .rec-result-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .rec-restart { display: block; text-align: center; margin-top: 16px; font-size: 12px; color: var(--dp-ink-4); cursor: pointer; background: none; border: none; font-family: var(--font-sans); text-decoration: underline; text-underline-offset: 2px; }
+    .rec-restart:hover { color: var(--dp-teal); }
+
+    /* ── How-to ── */
+    .dp-howto { background: #fff; }
+    .dp-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; border: 1px solid var(--dp-border); border-radius: 12px;
+      overflow: hidden; margin-top: 48px; background: var(--dp-border);
+    }
+    @media (max-width: 860px) { .dp-steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .dp-steps { grid-template-columns: 1fr; } }
+    .dp-step { background: #fff; padding: 32px 28px; display: flex; flex-direction: column; gap: 14px; }
+    .dp-step:hover { background: var(--dp-teal-light); }
+    .dp-step-num { width: 36px; height: 36px; border-radius: 8px; border: 2px solid var(--dp-teal); color: var(--dp-teal); font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .dp-step-title { font-size: 14px; font-weight: 700; color: var(--dp-ink); line-height: 1.3; }
+    .dp-step-desc { font-size: 13px; color: var(--dp-ink-3); line-height: 1.65; }
+
+    /* ── Testimonials ── */
+    .dp-testimonials { background: var(--dp-surface); }
+    .dp-testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+    @media (max-width: 768px) { .dp-testi-grid { grid-template-columns: 1fr; } }
+    .dp-testi-card { background: #fff; border: 1px solid var(--dp-border); border-top: 3px solid var(--dp-teal); border-radius: 12px; padding: 28px 24px; }
+    .dp-testi-stars { color: var(--dp-teal); font-size: 13px; letter-spacing: 2px; margin-bottom: 14px; }
+    .dp-testi-quote { font-size: 14px; color: var(--dp-ink-2); line-height: 1.7; margin-bottom: 18px; font-style: italic; }
+    .dp-testi-author { font-size: 12px; font-weight: 600; color: var(--dp-ink-3); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── FAQ ── */
+    .dp-faq { background: #fff; }
+    .dp-faq-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+      border: 1px solid var(--dp-border); border-radius: 12px; overflow: hidden;
+      background: var(--dp-border); margin-top: 44px;
+    }
+    @media (max-width: 640px) { .dp-faq-grid { grid-template-columns: 1fr; } }
+    .dp-faq-item { background: #fff; padding: 32px 28px; }
+    .dp-faq-item:hover { background: var(--dp-teal-light); }
+    .dp-faq-q { font-size: 14px; font-weight: 700; color: var(--dp-ink); margin-bottom: 10px; letter-spacing: -0.01em; line-height: 1.4; }
+    .dp-faq-a { font-size: 13.5px; color: var(--dp-ink-3); line-height: 1.7; }
+
+    /* ── CTA ── */
+    .dp-cta { background: var(--dp-dark-bg); padding: 88px 0; }
+    .dp-cta-inner { text-align: center; max-width: 560px; margin: 0 auto; }
+    .dp-cta-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--dp-teal); margin-bottom: 28px; }
+    .dp-cta-heading { font-family: var(--font-serif); font-size: clamp(32px, 5vw, 48px); font-weight: 800; line-height: 1.1; color: #fff; letter-spacing: -0.02em; margin-bottom: 18px; }
+    .dp-cta-heading em { font-style: italic; font-weight: 600; color: var(--dp-teal); }
+    .dp-cta-sub { font-size: 16px; color: rgba(255,255,255,0.4); line-height: 1.65; margin-bottom: 38px; }
+    .dp-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .dp-cta-btn-primary { background: var(--dp-teal); color: #fff; border: none; border-radius: 8px; padding: 14px 28px; font-size: 14px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.18s; }
+    .dp-cta-btn-primary:hover { background: var(--dp-teal-dark); }
+    .dp-cta-btn-ghost { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; padding: 14px 28px; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.18s; }
+    .dp-cta-btn-ghost:hover { background: rgba(255,255,255,0.10); color: #fff; }
+
+    .footer { border-top: none; }
+    .dp-rule { height: 1px; background: var(--dp-border); border: none; margin: 0; }
+  </style>
+</head>
+<body>
+
+<!-- Top accent bar -->
+<div class="dp-top-bar"></div>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-mark">LP</span>
+        <span class="nav-logo-text">LogicPlanners</span>
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle">
+            Templates
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="wedding-planners.html" class="nav-dropdown-item"><span class="nav-dropdown-icon">💍</span>Wedding Planners</a>
+            <a href="event-planners.html"   class="nav-dropdown-item"><span class="nav-dropdown-icon">🎉</span>Event Planners</a>
+            <a href="budgeting.html"        class="nav-dropdown-item"><span class="nav-dropdown-icon">💰</span>Budgeting</a>
+            <a href="day-planners.html"     class="nav-dropdown-item nav-link active"><span class="nav-dropdown-icon">📋</span>Day Planners</a>
+          </div>
+        </div>
+        <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="nav-btn-etsy">🛍 Etsy Shop</a>
+        <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="nav-btn-gumroad">Gumroad</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="wedding-planners.html" class="nav-mobile-link">💍 Wedding Planners</a>
+  <a href="event-planners.html"   class="nav-mobile-link">🎉 Event Planners</a>
+  <a href="budgeting.html"        class="nav-mobile-link">💰 Budgeting</a>
+  <a href="day-planners.html"     class="nav-mobile-link">📋 Day Planners</a>
+  <div class="nav-mobile-btns">
+    <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="btn btn-etsy" style="justify-content:center;">🛍 Shop on Etsy</a>
+    <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content:center;">Shop on Gumroad</a>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+
+      <div class="hero-copy">
+        <div class="breadcrumb" style="margin-bottom:24px;">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-sep">›</span>
+          <span>Day Planners</span>
+        </div>
+        <div class="hero-eyebrow">Productivity Templates</div>
+        <h1 class="hero-headline">
+          One planner.<br><em>Any schedule.</em>
+        </h1>
+        <p class="hero-headline-sub">No fixed hours. No forced structure. Just the right tools for how you actually work.</p>
+        <p class="hero-sub">Spreadsheet templates for daily planning, habit tracking, weekly goals, and time blocking — fully customizable to fit your routine, whatever it looks like.</p>
+        <div class="hero-adapts">
+          <span class="hero-adapts-label">Works for:</span>
+          <span class="hero-adapts-chip">☀️ Early Birds</span>
+          <span class="hero-adapts-chip">🏢 9-to-5</span>
+          <span class="hero-adapts-chip">💻 Freelancers</span>
+          <span class="hero-adapts-chip">📚 Students</span>
+          <span class="hero-adapts-chip">🌙 Night Owls</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#templates" class="btn btn-primary btn-lg">
+            ✨ View Templates
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#recommender" class="btn btn-outline btn-lg">🔍 Find My Template</a>
+        </div>
+        <div class="hero-meta">
+          <span class="hero-meta-item"><span class="meta-dot"></span>4 templates · $7–$10</span>
+          <span class="hero-meta-item"><span class="meta-dot"></span>Google Sheets &amp; Excel</span>
+          <span class="hero-meta-item"><span class="meta-dot"></span>Instant download</span>
+          <span class="hero-meta-item"><span class="meta-dot"></span>7-day refund</span>
+        </div>
+      </div>
+
+      <!-- Interactive Mockup -->
+      <div class="hero-mockup-wrap">
+        <div class="hero-mockup">
+          <div class="mock-titlebar">
+            <div class="mock-titlebar-dot"></div>
+            <div class="mock-titlebar-dot"></div>
+            <div class="mock-titlebar-dot"></div>
+            <span class="mock-titlebar-title">Daily Productivity Planner.xlsx</span>
+          </div>
+          <div class="mock-personas" id="mockPersonas">
+            <button class="mock-persona-chip active" data-persona="standard">9-to-5</button>
+            <button class="mock-persona-chip" data-persona="earlybird">Early Bird</button>
+            <button class="mock-persona-chip" data-persona="freelancer">Freelancer</button>
+            <button class="mock-persona-chip" data-persona="student">Student</button>
+            <button class="mock-persona-chip" data-persona="nightowl">Night Owl</button>
+          </div>
+          <div class="mock-header">
+            <div>
+              <div class="mock-date" id="mockDate">Monday, June 9</div>
+              <div class="mock-subdate" id="mockSubdate">Week 23 · Day 160</div>
+            </div>
+            <span class="mock-streak-badge" id="mockStreak">🔥 Day 14</span>
+          </div>
+          <div class="mock-schedule" id="mockSchedule"></div>
+          <div class="mock-footer" id="mockFooter"></div>
+        </div>
+        <div class="hero-mockup-secondary">
+          <div class="mock-sec-label">Habit Tracker · Jun</div>
+          <div class="mock-habit-row">
+            <span class="mock-habit-name">Exercise</span>
+            <div class="mock-habit-dots">
+              <div class="mock-habit-dot"></div><div class="mock-habit-dot"></div>
+              <div class="mock-habit-dot"></div><div class="mock-habit-dot"></div>
+              <div class="mock-habit-dot miss"></div>
+            </div>
+          </div>
+          <div class="mock-habit-row">
+            <span class="mock-habit-name">Reading</span>
+            <div class="mock-habit-dots">
+              <div class="mock-habit-dot"></div><div class="mock-habit-dot"></div>
+              <div class="mock-habit-dot miss"></div><div class="mock-habit-dot"></div>
+              <div class="mock-habit-dot"></div>
+            </div>
+          </div>
+          <div class="mock-habit-row">
+            <span class="mock-habit-name">Journaling</span>
+            <div class="mock-habit-dots">
+              <div class="mock-habit-dot"></div><div class="mock-habit-dot"></div>
+              <div class="mock-habit-dot"></div><div class="mock-habit-dot"></div>
+              <div class="mock-habit-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TICKER ── -->
+<div class="dp-ticker" aria-hidden="true">
+  <div class="dp-ticker-track" id="dpTicker"></div>
+</div>
+
+<!-- ── STATS ── -->
+<div class="dp-stats">
+  <div class="container" style="padding:0;">
+    <div class="dp-stats-inner">
+      <div class="dp-stat"><span class="dp-stat-num">4</span><span class="dp-stat-label">Templates</span></div>
+      <div class="dp-stat"><span class="dp-stat-num">$<span style="color:inherit">7</span></span><span class="dp-stat-label">Starting from</span></div>
+      <div class="dp-stat"><span class="dp-stat-num">2k<span>+</span></span><span class="dp-stat-label">Active users</span></div>
+      <div class="dp-stat"><span class="dp-stat-num">★ <span style="font-size:22px">5.0</span></span><span class="dp-stat-label">Etsy Rating</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     LIFESTYLE SECTION
+     ══════════════════════════════════════════ -->
+<section class="dp-lifestyles">
+  <div class="container">
+    <div class="dp-lifestyles-header">
+      <span class="eyebrow" style="color:var(--dp-teal)!important;display:block;margin-bottom:16px;">Built for every lifestyle</span>
+      <div class="dp-lifestyles-title">Works for <em>how you actually work.</em></div>
+      <p class="dp-lifestyles-sub">Every template is fully configurable — your working hours, habit categories, task labels, and time block names are all yours to define. There's no default schedule that assumes a 9-to-5.</p>
+    </div>
+    <div class="dp-lifestyle-grid">
+
+      <div class="dp-lc">
+        <div class="dp-lc-icon">☀️</div>
+        <div class="dp-lc-title">Early Bird</div>
+        <div class="dp-lc-hours">5 AM – 1 PM</div>
+        <div class="dp-lc-bars">
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">5 AM</span><div class="dp-lc-bar on" style="width:35%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">6 AM</span><div class="dp-lc-bar on" style="width:90%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">7 AM</span><div class="dp-lc-bar on" style="width:90%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">8 AM</span><div class="dp-lc-bar on" style="width:60%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">12 PM</span><div class="dp-lc-bar dim" style="width:40%"></div></div>
+        </div>
+        <p class="dp-lc-desc">Peak focus before most people log on. Set your schedule start to 5 AM and capture every deep-work hour.</p>
+        <span class="dp-lc-template">Time Block Scheduler</span>
+      </div>
+
+      <div class="dp-lc">
+        <div class="dp-lc-icon">🏢</div>
+        <div class="dp-lc-title">9-to-5</div>
+        <div class="dp-lc-hours">9 AM – 5 PM</div>
+        <div class="dp-lc-bars">
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">9 AM</span><div class="dp-lc-bar on" style="width:85%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">10 AM</span><div class="dp-lc-bar on" style="width:60%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">12 PM</span><div class="dp-lc-bar dim" style="width:35%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">1 PM</span><div class="dp-lc-bar on" style="width:75%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">3 PM</span><div class="dp-lc-bar on" style="width:55%"></div></div>
+        </div>
+        <p class="dp-lc-desc">Meetings, deadlines, end-of-day reviews. The Daily Planner is purpose-built for a structured work day.</p>
+        <span class="dp-lc-template">Daily Productivity Planner</span>
+      </div>
+
+      <div class="dp-lc">
+        <div class="dp-lc-icon">💻</div>
+        <div class="dp-lc-title">Freelancer</div>
+        <div class="dp-lc-hours">Flexible hours</div>
+        <div class="dp-lc-bars">
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">9 AM</span><div class="dp-lc-bar on" style="width:80%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">11 AM</span><div class="dp-lc-bar on" style="width:65%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">12 PM</span><div class="dp-lc-bar dim" style="width:30%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">1 PM</span><div class="dp-lc-bar on" style="width:55%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">3 PM</span><div class="dp-lc-bar on" style="width:80%"></div></div>
+        </div>
+        <p class="dp-lc-desc">Multiple clients, variable revenue, no fixed routine. Track time per project with custom categories for each client.</p>
+        <span class="dp-lc-template">Time Block Scheduler</span>
+      </div>
+
+      <div class="dp-lc">
+        <div class="dp-lc-icon">📚</div>
+        <div class="dp-lc-title">Student</div>
+        <div class="dp-lc-hours">Varies by day</div>
+        <div class="dp-lc-bars">
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">8 AM</span><div class="dp-lc-bar on" style="width:72%" style="background:#B45309"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">10 AM</span><div class="dp-lc-bar on" style="width:85%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">12 PM</span><div class="dp-lc-bar dim" style="width:35%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">1 PM</span><div class="dp-lc-bar on" style="width:50%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">2 PM</span><div class="dp-lc-bar on" style="width:65%"></div></div>
+        </div>
+        <p class="dp-lc-desc">Classes, study blocks, assignments, and deadlines all competing for time. Build a weekly plan that balances all of it.</p>
+        <span class="dp-lc-template">Weekly Goal Tracker</span>
+      </div>
+
+      <div class="dp-lc">
+        <div class="dp-lc-icon">🌙</div>
+        <div class="dp-lc-title">Night Owl</div>
+        <div class="dp-lc-hours">8 PM – 2 AM</div>
+        <div class="dp-lc-bars">
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">11 AM</span><div class="dp-lc-bar dim" style="width:40%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">1 PM</span><div class="dp-lc-bar on" style="width:55%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">8 PM</span><div class="dp-lc-bar on" style="width:85%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">9 PM</span><div class="dp-lc-bar on" style="width:85%"></div></div>
+          <div class="dp-lc-bar-row"><span class="dp-lc-bar-time">11 PM</span><div class="dp-lc-bar on" style="width:70%"></div></div>
+        </div>
+        <p class="dp-lc-desc">Your best thinking happens after dark. Set your working window to 8 PM–2 AM and plan around when you actually focus.</p>
+        <span class="dp-lc-template">Daily Productivity Planner</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CUSTOMIZATION FEATURES
+     ══════════════════════════════════════════ -->
+<section class="dp-customize">
+  <div class="container">
+    <span class="eyebrow" style="display:block;margin-bottom:14px;">Full Customization</span>
+    <h2 class="heading" style="color:var(--dp-ink);">Every setting is yours to change.</h2>
+    <p class="subheading" style="color:var(--dp-ink-3);">These aren't locked templates. Every label, category, hour, and metric is editable from the Setup tab — no formula knowledge needed.</p>
+    <div class="dp-cust-grid">
+
+      <div class="dp-cust-item">
+        <div class="dp-cust-icon">🕐</div>
+        <div class="dp-cust-title">Working Hours Window</div>
+        <p class="dp-cust-desc">Define your exact start and end time in the Setup tab. The hourly schedule grid expands or contracts to fit any window — 5 AM to 1 PM, 2 PM to 10 PM, or anything between.</p>
+        <span class="dp-cust-tag">All templates</span>
+      </div>
+
+      <div class="dp-cust-item">
+        <div class="dp-cust-icon">🏷️</div>
+        <div class="dp-cust-title">Task &amp; Block Categories</div>
+        <p class="dp-cust-desc">Rename "Deep Work," "Meetings," and "Admin" to whatever fits your workflow — client names, project codes, course names, or anything else. No formulas to update; all dropdowns pull from Setup.</p>
+        <span class="dp-cust-tag">Daily · Time Block</span>
+      </div>
+
+      <div class="dp-cust-item">
+        <div class="dp-cust-icon">🔥</div>
+        <div class="dp-cust-title">Habit Library</div>
+        <p class="dp-cust-desc">Replace the default habits with your own list — up to 30. Add a frequency target per habit (daily, weekdays only, 3× per week) and the streak logic adjusts automatically.</p>
+        <span class="dp-cust-tag">Habit Tracker</span>
+      </div>
+
+      <div class="dp-cust-item">
+        <div class="dp-cust-icon">⚡</div>
+        <div class="dp-cust-title">Priority Scoring System</div>
+        <p class="dp-cust-desc">The priority matrix uses urgency and importance scores you set. Adjust the weights to match how you actually think — heavy on deadlines, or heavy on impact, or both equally.</p>
+        <span class="dp-cust-tag">Daily Planner</span>
+      </div>
+
+      <div class="dp-cust-item">
+        <div class="dp-cust-icon">🎨</div>
+        <div class="dp-cust-title">Color-Coded Categories</div>
+        <p class="dp-cust-desc">Assign any color to any time block category. The visual schedule fills with your colors — making it immediately clear at a glance how your day or week is structured.</p>
+        <span class="dp-cust-tag">Time Block</span>
+      </div>
+
+      <div class="dp-cust-item">
+        <div class="dp-cust-icon">📊</div>
+        <div class="dp-cust-title">Review Cadence</div>
+        <p class="dp-cust-desc">Set whether your review cycle is daily, weekly, or both. The Weekly Tracker's Friday review and the Daily Planner's end-of-day prompts can be enabled or silenced from Setup.</p>
+        <span class="dp-cust-tag">Daily · Weekly</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TEMPLATES ── -->
+<hr class="dp-rule">
+<section class="dp-templates section" id="templates">
+  <div class="container">
+    <div class="dp-section-header">
+      <span class="eyebrow">Templates</span>
+      <h2 class="heading" style="color:var(--dp-ink);">Four templates. <em>One for every system.</em></h2>
+      <p class="subheading" style="color:var(--dp-ink-3);">Each solves a specific planning problem. Use one, or combine all four.</p>
+    </div>
+    <div class="dp-cards" id="dpCards">
+
+      <div class="dp-card" data-template="daily">
+        <div class="dp-badge">Best Seller</div>
+        <div class="dp-card-eyebrow">Daily Planning</div>
+        <div class="dp-card-icon">🌅</div>
+        <div class="dp-card-name">Daily Productivity Planner</div>
+        <p class="dp-card-tagline">Hourly time blocks, priority task scoring, habit check-ins, and end-of-day review — in one structured sheet.</p>
+        <div class="dp-card-divider"></div>
+        <div class="dp-card-features">
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Hourly grid (configurable 5 AM–11 PM or any window)</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Priority matrix: urgency × importance scoring</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Daily habit tracker with streak counter</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Morning intention &amp; evening review prompts</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Weekly summary tab auto-calculates completion rate</div>
+        </div>
+        <div class="dp-card-footer">
+          <div class="dp-card-price">$8</div>
+          <div class="dp-card-buy">
+            <a href="https://www.etsy.com/listing/0000000001/" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+            <a href="https://logicplanners.gumroad.com/l/daily-planner" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dp-card" data-template="weekly">
+        <div class="dp-card-eyebrow">Weekly Planning</div>
+        <div class="dp-card-icon">🎯</div>
+        <div class="dp-card-name">Weekly Goal &amp; Review Tracker</div>
+        <p class="dp-card-tagline">Set a weekly theme, break it into daily goals, and run a structured Friday review every single week.</p>
+        <div class="dp-card-divider"></div>
+        <div class="dp-card-features">
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Weekly theme + top 3 goals with priority ranking</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Daily task columns tied to weekly goals</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Energy tracking: rate each day 1–5 with notes</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Friday review: wins, blockers, carry-overs</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monthly rollup with goal completion stats</div>
+        </div>
+        <div class="dp-card-footer">
+          <div class="dp-card-price">$10</div>
+          <div class="dp-card-buy">
+            <a href="https://www.etsy.com/listing/0000000002/" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+            <a href="https://logicplanners.gumroad.com/l/weekly-goals" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dp-card" data-template="habit">
+        <div class="dp-card-eyebrow">Habit Building</div>
+        <div class="dp-card-icon">🔥</div>
+        <div class="dp-card-name">Habit &amp; Streak Tracker</div>
+        <p class="dp-card-tagline">Track up to 30 custom habits per month with automated streak counts, color-coded consistency, and monthly reports.</p>
+        <div class="dp-card-divider"></div>
+        <div class="dp-card-features">
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monthly grid: 30 custom habits × 31 days</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Auto-calculated current streak and longest streak</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Conditional formatting: green streaks, red misses</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Custom habit categories (health, work, personal)</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monthly completion % by habit and overall</div>
+        </div>
+        <div class="dp-card-footer">
+          <div class="dp-card-price">$7</div>
+          <div class="dp-card-buy">
+            <a href="https://www.etsy.com/listing/0000000003/" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+            <a href="https://logicplanners.gumroad.com/l/habit-tracker" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dp-card" data-template="timeblock">
+        <div class="dp-card-eyebrow">Time Management</div>
+        <div class="dp-card-icon">⏱</div>
+        <div class="dp-card-name">Time Block Master Scheduler</div>
+        <p class="dp-card-tagline">Map your ideal week in custom time blocks, track actual vs. planned hours, and find where your time really goes.</p>
+        <div class="dp-card-divider"></div>
+        <div class="dp-card-features">
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ideal week grid with fully customizable categories</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Actual vs. planned hours comparison per category</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Energy mapping: schedule deep work at your peak hours</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Weekly time audit with variance flags</div>
+          <div class="dp-card-feature"><span class="dp-card-check"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#4A8B7F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>30/60/90 day planning views</div>
+        </div>
+        <div class="dp-card-footer">
+          <div class="dp-card-price">$9</div>
+          <div class="dp-card-buy">
+            <a href="https://www.etsy.com/listing/0000000004/" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+            <a href="https://logicplanners.gumroad.com/l/time-block" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     RECOMMENDER
+     ══════════════════════════════════════════ -->
+<section class="dp-recommender" id="recommender">
+  <div class="container">
+    <div class="rec-inner">
+      <span class="eyebrow" style="display:block;margin-bottom:12px;">Find Your Template</span>
+      <div class="rec-heading">Not sure which one fits your life?</div>
+      <p class="rec-sub">Two questions. We'll point you to the right template — and highlight it in the grid above.</p>
+      <div class="rec-progress" id="recProgress">
+        <div class="rec-progress-step done" id="recProg1"></div>
+        <div class="rec-progress-step" id="recProg2"></div>
+        <span class="rec-progress-label" id="recProgLabel">Question 1 of 2</span>
+      </div>
+      <div class="rec-step active" id="recStep1">
+        <div class="rec-q">What's your biggest planning challenge?</div>
+        <div class="rec-options">
+          <button class="rec-option" data-q1="daily"><span class="rec-option-icon">😵‍💫</span><div><div class="rec-option-label">Staying on task each day</div><div class="rec-option-sub">My days slip away without clear structure</div></div></button>
+          <button class="rec-option" data-q1="weekly"><span class="rec-option-icon">🎯</span><div><div class="rec-option-label">Working toward bigger goals</div><div class="rec-option-sub">I lose sight of what I'm actually building toward</div></div></button>
+          <button class="rec-option" data-q1="habit"><span class="rec-option-icon">📉</span><div><div class="rec-option-label">Building consistent habits</div><div class="rec-option-sub">I start routines but can't make them stick</div></div></button>
+          <button class="rec-option" data-q1="timeblock"><span class="rec-option-icon">⏳</span><div><div class="rec-option-label">Understanding where time goes</div><div class="rec-option-sub">I'm always busy but never feel productive enough</div></div></button>
+        </div>
+      </div>
+      <div class="rec-step" id="recStep2">
+        <div class="rec-q">When do you do your best work?</div>
+        <div class="rec-options">
+          <button class="rec-option" data-q2="standard"><span class="rec-option-icon">🏢</span><div><div class="rec-option-label">Standard hours (9–5)</div><div class="rec-option-sub">Meetings, structure, fixed schedule</div></div></button>
+          <button class="rec-option" data-q2="early"><span class="rec-option-icon">☀️</span><div><div class="rec-option-label">Early mornings</div><div class="rec-option-sub">Peak focus before 10 AM</div></div></button>
+          <button class="rec-option" data-q2="flexible"><span class="rec-option-icon">🔀</span><div><div class="rec-option-label">Flexible / shifts / freelance</div><div class="rec-option-sub">Schedule changes week to week</div></div></button>
+          <button class="rec-option" data-q2="night"><span class="rec-option-icon">🌙</span><div><div class="rec-option-label">Evenings or late nights</div><div class="rec-option-sub">Deep work after 8 PM</div></div></button>
+        </div>
+      </div>
+      <div class="rec-result" id="recResult">
+        <div class="rec-result-card">
+          <div class="rec-result-header">
+            <div><div class="rec-result-label">Recommended for you</div><div class="rec-result-name" id="recResultName"></div></div>
+            <div class="rec-result-price" id="recResultPrice"></div>
+          </div>
+          <div class="rec-result-body">
+            <p class="rec-result-reason" id="recResultReason"></p>
+            <div class="rec-result-btns">
+              <a id="recResultEtsy" href="#" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Buy on Etsy</a>
+              <a id="recResultGumroad" href="#" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Buy on Gumroad</a>
+              <a href="#templates" class="btn btn-outline btn-sm">See all templates</a>
+            </div>
+            <button class="rec-restart" id="recRestart">Start over</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW TO USE ── -->
+<hr class="dp-rule">
+<section class="dp-howto section" id="how-to-use">
+  <div class="container">
+    <span class="eyebrow">Setup</span>
+    <h2 class="heading" style="color:var(--dp-ink);">From download to daily routine in ten minutes.</h2>
+    <p class="subheading" style="color:var(--dp-ink-3);">Every template works immediately out of the box. Customization takes 3–5 minutes from the Setup tab.</p>
+    <div class="dp-steps">
+      <div class="dp-step">
+        <div class="dp-step-num">01</div>
+        <div class="dp-step-title">Purchase &amp; Download</div>
+        <p class="dp-step-desc">Buy on Etsy or Gumroad. Your .xlsx downloads immediately. Save it to Google Drive so you can open it from any device.</p>
+      </div>
+      <div class="dp-step">
+        <div class="dp-step-num">02</div>
+        <div class="dp-step-title">Open &amp; Import</div>
+        <p class="dp-step-desc">In Google Sheets: File → Import → Upload. In Excel: double-click. All conditional formatting and formulas load automatically.</p>
+      </div>
+      <div class="dp-step">
+        <div class="dp-step-num">03</div>
+        <div class="dp-step-title">Customize in Setup</div>
+        <p class="dp-step-desc">Set your working hours, rename categories, enter your habit list, and choose your review cadence. Everything else updates automatically.</p>
+      </div>
+      <div class="dp-step">
+        <div class="dp-step-num">04</div>
+        <div class="dp-step-title">Open It Every Day</div>
+        <p class="dp-step-desc">Morning: plan your schedule. Evening: log habits and review. Streaks and stats update as you fill it in — no extra work required.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<hr class="dp-rule">
+<section class="dp-testimonials section">
+  <div class="container">
+    <span class="eyebrow">Reviews</span>
+    <h2 class="heading" style="color:var(--dp-ink);">Every schedule. Every lifestyle. Same result.</h2>
+    <div class="dp-testi-grid">
+      <div class="dp-testi-card">
+        <div class="dp-testi-stars">★★★★★</div>
+        <p class="dp-testi-quote">"I work nights and have a completely non-standard schedule. Finally a planner with no assumptions about when your day starts. Changed my productivity completely."</p>
+        <div class="dp-testi-author">— Alex K., Freelance Designer · Night Owl</div>
+      </div>
+      <div class="dp-testi-card">
+        <div class="dp-testi-stars">★★★★★</div>
+        <p class="dp-testi-quote">"The time block scheduler showed me I was spending 6 hours a week in 'miscellaneous.' That one insight was worth 10× the price."</p>
+        <div class="dp-testi-author">— Danielle R., Product Manager · 9-to-5</div>
+      </div>
+      <div class="dp-testi-card">
+        <div class="dp-testi-stars">★★★★★</div>
+        <p class="dp-testi-quote">"As a student juggling 4 classes and a part-time job, the weekly tracker is the only thing keeping me from missing deadlines. The custom categories are everything."</p>
+        <div class="dp-testi-author">— Marcus T., Engineering Student</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<hr class="dp-rule">
+<section class="dp-faq section" id="faq">
+  <div class="container">
+    <span class="eyebrow">FAQ</span>
+    <h2 class="heading" style="color:var(--dp-ink);">Common questions.</h2>
+    <div class="dp-faq-grid">
+      <div class="dp-faq-item">
+        <div class="dp-faq-q">Do these work if I don't have a standard 9-to-5 schedule?</div>
+        <p class="dp-faq-a">Yes — the daily planner has no fixed start time. Define your working window in the Setup tab (e.g., 2 PM–10 PM or 5 AM–1 PM). The time block template is especially useful for non-standard schedules since it organizes by category, not clock time.</p>
+      </div>
+      <div class="dp-faq-item">
+        <div class="dp-faq-q">How much can I actually customize?</div>
+        <p class="dp-faq-a">Quite a lot. Working hours, all task and block category names, habit list (up to 30), habit frequency targets, priority scoring weights, and review cadence are all configurable from the Setup tab. Everything else in the template references those values — change them once, and the whole file updates.</p>
+      </div>
+      <div class="dp-faq-item">
+        <div class="dp-faq-q">Can I use the daily planner for multiple people?</div>
+        <p class="dp-faq-a">Each file is designed for one person. To use it for a team, duplicate the sheet tabs and rename them. All formulas are independent per-tab — no cross-tab dependencies to break.</p>
+      </div>
+      <div class="dp-faq-item">
+        <div class="dp-faq-q">What if I want more than 30 habits in the tracker?</div>
+        <p class="dp-faq-a">Duplicate the last row — the formulas extend automatically. There's no built-in cap beyond what your screen can show. No manual formula editing required.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="dp-cta">
+  <div class="container">
+    <div class="dp-cta-inner">
+      <div class="dp-cta-eyebrow">Get Started</div>
+      <div class="dp-cta-heading">Your schedule.<br><em>Your template.</em></div>
+      <p class="dp-cta-sub">Pick a template, set your hours, and have it running before tomorrow morning.</p>
+      <div class="dp-cta-btns">
+        <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="dp-cta-btn-primary">🛍 Shop on Etsy</a>
+        <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="dp-cta-btn-ghost">
+          Shop on Gumroad
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-logo"><span class="footer-logo-mark">LP</span><span class="footer-logo-text">LogicPlanners</span></div>
+        <p class="footer-brand-desc">Premium spreadsheet templates for weddings, events, budgeting, and daily planning.</p>
+        <div class="footer-social">
+          <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="footer-social-link">🛍</a>
+          <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="footer-social-link">G</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Templates</div>
+        <div class="footer-col-links">
+          <a href="wedding-planners.html">Wedding Planners</a>
+          <a href="event-planners.html">Event Planners</a>
+          <a href="budgeting.html">Budgeting</a>
+          <a href="day-planners.html">Day Planners</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Shop</div>
+        <div class="footer-col-links">
+          <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener">Etsy Store</a>
+          <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener">Gumroad Store</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Support</div>
+        <div class="footer-col-links">
+          <a href="index.html#how-it-works">How It Works</a>
+          <a href="mailto:support@logicplanners.com">Contact Us</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 LogicPlanners.com. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:support@logicplanners.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('hamburger').addEventListener('click', () =>
+  document.getElementById('mobileMenu').classList.toggle('open'));
+
+/* ── Ticker ── */
+(function() {
+  const items = ['Early Bird','9-to-5','Night Owl','Freelancer','Student','Shift Worker','Remote Worker','Entrepreneur','Parent','Creator'];
+  const track = document.getElementById('dpTicker');
+  const html  = items.map(i => `<span class="dp-ticker-item">${i}<span>·</span></span>`).join('');
+  track.innerHTML = html + html; // duplicate for seamless loop
+})();
+
+/* ══════════════════════════════════════════
+   PERSONA SWITCHER
+   ══════════════════════════════════════════ */
+const PERSONAS = {
+  standard: {
+    date: 'Monday, June 9', subdate: 'Week 23 · Standard day', streak: '🔥 Day 14',
+    rows: [
+      { time: '8 AM',  label: 'Deep Work',   type: 'deep',  w: 82 },
+      { time: '9 AM',  label: 'Deep Work',   type: 'deep',  w: 82 },
+      { time: '10 AM', label: 'Meetings',    type: 'meet',  w: 58 },
+      { time: '11 AM', label: 'Review',      type: 'meet',  w: 44 },
+      { time: '12 PM', label: 'Lunch',       type: 'break', w: 36 },
+      { time: '1 PM',  label: 'Focus Block', type: 'focus', w: 72 },
+      { time: '2 PM',  label: 'Admin',       type: 'admin', w: 50 },
+    ],
+    stats: [{ n: '8', l: 'Tasks' }, { n: '75%', l: 'Done' }, { n: '4.5h', l: 'Deep' }]
+  },
+  earlybird: {
+    date: 'Tuesday, June 10', subdate: '5 AM start · Early Bird', streak: '☀️ Day 22',
+    rows: [
+      { time: '5 AM',  label: 'Journaling',  type: 'break', w: 40 },
+      { time: '6 AM',  label: 'Deep Work',   type: 'deep',  w: 88 },
+      { time: '7 AM',  label: 'Deep Work',   type: 'deep',  w: 88 },
+      { time: '8 AM',  label: 'Exercise',    type: 'break', w: 46 },
+      { time: '9 AM',  label: 'Meetings',    type: 'meet',  w: 55 },
+      { time: '10 AM', label: 'Focus Block', type: 'focus', w: 70 },
+      { time: '11 AM', label: 'Admin',       type: 'admin', w: 48 },
+    ],
+    stats: [{ n: '10', l: 'Tasks' }, { n: '80%', l: 'Done' }, { n: '5h', l: 'Deep' }]
+  },
+  freelancer: {
+    date: 'Wednesday, June 11', subdate: 'Flexible · 3 clients', streak: '💻 Day 9',
+    rows: [
+      { time: '9 AM',  label: 'Client A',    type: 'deep',  w: 80 },
+      { time: '10 AM', label: 'Client A',    type: 'deep',  w: 80 },
+      { time: '11 AM', label: 'Client B',    type: 'focus', w: 68 },
+      { time: '12 PM', label: 'Break',       type: 'break', w: 35 },
+      { time: '1 PM',  label: 'Admin / Biz', type: 'admin', w: 52 },
+      { time: '2 PM',  label: 'Client C',    type: 'meet',  w: 60 },
+      { time: '3 PM',  label: 'Deep Work',   type: 'deep',  w: 78 },
+    ],
+    stats: [{ n: '6', l: 'Tasks' }, { n: '67%', l: 'Done' }, { n: '5h', l: 'Deep' }]
+  },
+  student: {
+    date: 'Thursday, June 12', subdate: 'Week 23 · Finals prep', streak: '📚 Day 7',
+    rows: [
+      { time: '8 AM',  label: 'Lecture',      type: 'class', w: 72 },
+      { time: '9 AM',  label: 'Lecture',      type: 'class', w: 72 },
+      { time: '10 AM', label: 'Study Block',  type: 'study', w: 82 },
+      { time: '11 AM', label: 'Study Block',  type: 'study', w: 82 },
+      { time: '12 PM', label: 'Lunch',        type: 'break', w: 36 },
+      { time: '1 PM',  label: 'Office Hours', type: 'meet',  w: 48 },
+      { time: '2 PM',  label: 'Assignment',   type: 'admin', w: 62 },
+    ],
+    stats: [{ n: '7', l: 'Tasks' }, { n: '71%', l: 'Done' }, { n: '4h', l: 'Study' }]
+  },
+  nightowl: {
+    date: 'Friday, June 13', subdate: 'Late schedule · Async', streak: '🌙 Day 18',
+    rows: [
+      { time: '11 AM', label: 'Morning wrap', type: 'break', w: 40 },
+      { time: '12 PM', label: 'Meetings',     type: 'meet',  w: 58 },
+      { time: '1 PM',  label: 'Admin',        type: 'admin', w: 50 },
+      { time: '2 PM',  label: 'Deep Work',    type: 'deep',  w: 82 },
+      { time: '3 PM',  label: 'Deep Work',    type: 'deep',  w: 82 },
+      { time: '8 PM',  label: 'Focus Block',  type: 'focus', w: 78 },
+      { time: '9 PM',  label: 'Deep Work',    type: 'deep',  w: 82 },
+    ],
+    stats: [{ n: '9', l: 'Tasks' }, { n: '78%', l: 'Done' }, { n: '5.5h', l: 'Deep' }]
+  }
+};
+
+function renderPersona(key) {
+  const p = PERSONAS[key];
+  document.getElementById('mockDate').textContent    = p.date;
+  document.getElementById('mockSubdate').textContent = p.subdate;
+  document.getElementById('mockStreak').textContent  = p.streak;
+  document.getElementById('mockSchedule').innerHTML  = p.rows.map(r =>
+    `<div class="mock-row"><span class="mock-time">${r.time}</span><div class="mock-block mock-block-${r.type}" style="width:${r.w}%">${r.label}</div></div>`
+  ).join('');
+  document.getElementById('mockFooter').innerHTML = p.stats.map(s =>
+    `<div class="mock-stat"><span class="mock-stat-num">${s.n}</span><span class="mock-stat-label">${s.l}</span></div>`
+  ).join('');
+}
+
+document.getElementById('mockPersonas').addEventListener('click', e => {
+  const chip = e.target.closest('.mock-persona-chip');
+  if (!chip) return;
+  document.querySelectorAll('.mock-persona-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  renderPersona(chip.dataset.persona);
+});
+renderPersona('standard');
+
+/* ══════════════════════════════════════════
+   RECOMMENDER
+   ══════════════════════════════════════════ */
+const RESULTS = {
+  daily:        { name: 'Daily Productivity Planner',     price: '$8',  template: 'daily',     etsy: 'https://www.etsy.com/listing/0000000001/', gumroad: 'https://logicplanners.gumroad.com/l/daily-planner',  reason: 'You need structure at the day level — a clear grid to schedule hours, score tasks, and close out each evening with a review. The Daily Planner gives you exactly that, with a working-hours window you set yourself.' },
+  daily_flex:   { name: 'Daily Productivity Planner',     price: '$8',  template: 'daily',     etsy: 'https://www.etsy.com/listing/0000000001/', gumroad: 'https://logicplanners.gumroad.com/l/daily-planner',  reason: 'The Daily Planner has no fixed start time — define your window in Setup (e.g., 8 PM–2 AM for night owls, 5 AM–1 PM for early birds). It\'s built specifically for schedules that don\'t fit the 9-to-5 mold.' },
+  weekly:       { name: 'Weekly Goal & Review Tracker',   price: '$10', template: 'weekly',    etsy: 'https://www.etsy.com/listing/0000000002/', gumroad: 'https://logicplanners.gumroad.com/l/weekly-goals',   reason: 'When the problem is losing sight of the bigger picture, you need a weekly lens. Set a theme and top goals every Monday, then tie each daily task back to them so nothing feels disconnected or pointless.' },
+  habit:        { name: 'Habit & Streak Tracker',         price: '$7',  template: 'habit',     etsy: 'https://www.etsy.com/listing/0000000003/', gumroad: 'https://logicplanners.gumroad.com/l/habit-tracker',  reason: 'Visual streaks are one of the most effective tools for habit formation. The Habit Tracker gives you up to 30 custom habits on a monthly grid with automatic streak counts — the chain becomes too satisfying to break.' },
+  timeblock:    { name: 'Time Block Master Scheduler',    price: '$9',  template: 'timeblock', etsy: 'https://www.etsy.com/listing/0000000004/', gumroad: 'https://logicplanners.gumroad.com/l/time-block',     reason: 'If you\'re busy but not sure where the time goes, you have a time-audit problem. The Time Block Scheduler tracks actual vs. planned hours per custom category. Most users find 4–6 unaccounted hours per week on their first audit.' },
+  timeblock_flex:{ name: 'Time Block Master Scheduler',  price: '$9',  template: 'timeblock', etsy: 'https://www.etsy.com/listing/0000000004/', gumroad: 'https://logicplanners.gumroad.com/l/time-block',     reason: 'For flexible and non-standard schedules, the Time Block template works best — it\'s organized around categories you name yourself (client work, deep work, admin, rest) rather than fixed clock hours. Perfect for shift workers, freelancers, and anyone async.' },
+};
+const MATRIX = {
+  daily:     { standard: 'daily',      early: 'daily',     flexible: 'daily_flex',     night: 'daily_flex' },
+  weekly:    { standard: 'weekly',     early: 'weekly',    flexible: 'weekly',         night: 'weekly' },
+  habit:     { standard: 'habit',      early: 'habit',     flexible: 'habit',          night: 'habit' },
+  timeblock: { standard: 'timeblock',  early: 'timeblock', flexible: 'timeblock_flex', night: 'timeblock_flex' }
+};
+
+let q1Answer = null;
+
+document.querySelectorAll('[data-q1]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    q1Answer = btn.dataset.q1;
+    document.querySelectorAll('[data-q1]').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    setTimeout(() => {
+      document.getElementById('recStep1').classList.remove('active');
+      document.getElementById('recStep2').classList.add('active');
+      document.getElementById('recProg2').classList.add('done');
+      document.getElementById('recProgLabel').textContent = 'Question 2 of 2';
+    }, 200);
+  });
+});
+
+document.querySelectorAll('[data-q2]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-q2]').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    setTimeout(() => showResult(q1Answer, btn.dataset.q2), 200);
+  });
+});
+
+function showResult(q1, q2) {
+  const r = RESULTS[MATRIX[q1][q2]];
+  document.getElementById('recResultName').textContent   = r.name;
+  document.getElementById('recResultPrice').textContent  = r.price;
+  document.getElementById('recResultReason').textContent = r.reason;
+  document.getElementById('recResultEtsy').href          = r.etsy;
+  document.getElementById('recResultGumroad').href       = r.gumroad;
+  document.getElementById('recStep2').classList.remove('active');
+  document.getElementById('recResult').classList.add('active');
+  document.getElementById('recProgLabel').textContent = 'Done ✓';
+  document.querySelectorAll('.dp-card').forEach(c => c.classList.remove('recommended'));
+  const target = document.querySelector(`.dp-card[data-template="${r.template}"]`);
+  if (target) {
+    target.classList.add('recommended');
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+  }
+}
+
+document.getElementById('recRestart').addEventListener('click', () => {
+  q1Answer = null;
+  document.querySelectorAll('[data-q1],[data-q2]').forEach(b => b.classList.remove('selected'));
+  document.getElementById('recResult').classList.remove('active');
+  document.getElementById('recStep2').classList.remove('active');
+  document.getElementById('recStep1').classList.add('active');
+  document.getElementById('recProg2').classList.remove('done');
+  document.getElementById('recProgLabel').textContent = 'Question 1 of 2';
+  document.querySelectorAll('.dp-card').forEach(c => c.classList.remove('recommended'));
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Production-grade spreadsheet templates for budgeting, homelab management, and event planning. Built with computer science rigor, designed for everyday utility.">
+  <meta name="theme-color" content="#0F172A">
+  <title>LogicPlanners — Precision-Engineered Templates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap" rel="stylesheet">
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+
+  <style>
+    /* ==========================================================
+       CSS CUSTOM PROPERTIES — SLATE DARK PALETTE
+    ========================================================== */
+    :root {
+      /* Surfaces */
+      --bg-base:          #0F172A; /* Slate 900 */
+      --bg-surface:       #1E293B; /* Slate 800 */
+      --bg-elevated:      #334155; /* Slate 700 */
+
+      /* Text */
+      --text-primary:     #F1F5F9; /* Slate 100 */
+      --text-secondary:   #CBD5E1; /* Slate 300 */
+      --text-muted:       #64748B; /* Slate 500 — matches design_system.md */
+
+      /* Accent */
+      --accent:           #2563EB; /* Blue — primary action, design_system.md */
+      --accent-hover:     #1D4ED8;
+      --accent-glow:      rgba(37, 99, 235, 0.15);
+      --accent-border:    rgba(37, 99, 235, 0.35);
+
+      /* Status */
+      --success:          #10B981; /* Green — design_system.md */
+      --error:            #EF4444; /* Red  — design_system.md */
+
+      /* Borders */
+      --border-subtle:    rgba(255, 255, 255, 0.06);
+      --border-card:      rgba(255, 255, 255, 0.08);
+
+      /* Misc */
+      --radius-sm:        6px;
+      --radius-md:        12px;
+      --shadow-card:      0 8px 32px rgba(0, 0, 0, 0.45);
+      --transition:       all 0.2s ease;
+    }
+
+    /* ==========================================================
+       RESET & BASE
+    ========================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ==========================================================
+       LAYOUT
+    ========================================================== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    /* ==========================================================
+       TYPE SCALE
+    ========================================================== */
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .section-heading {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .section-subheading {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ==========================================================
+       NAV
+    ========================================================== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: 64px;
+      background-color: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo-mark {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-cta {
+      background: var(--accent) !important;
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 600 !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-hover) !important;
+    }
+
+    /* ==========================================================
+       HERO
+    ========================================================== */
+    .hero {
+      padding: 108px 0 88px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Radial accent glow behind hero text */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 900px 600px at 50% -100px, rgba(37, 99, 235, 0.13) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Subtle grid lines */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-glow);
+      border: 1px solid var(--accent-border);
+      border-radius: 100px;
+      padding: 5px 14px 5px 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #93C5FD;
+      margin-bottom: 36px;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .hero-headline {
+      font-size: clamp(38px, 6.5vw, 68px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      max-width: 820px;
+      margin-bottom: 24px;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-subheadline {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.75;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 72px;
+    }
+
+    /* Primary CTA */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 13px 26px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    /* Ghost CTA */
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 13px 26px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--bg-elevated);
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--text-muted);
+      color: var(--text-primary);
+    }
+
+    /* Arrow icon */
+    .icon-arrow {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Trust bar */
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .trust-stat {
+      padding: 0 36px 0 0;
+      margin-right: 36px;
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    .trust-stat:last-child {
+      border-right: none;
+      margin-right: 0;
+    }
+
+    .trust-stat-number {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: block;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .trust-stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    /* ==========================================================
+       PRODUCT SHOWCASE
+    ========================================================== */
+    .products {
+      background: var(--bg-surface);
+    }
+
+    .products-header {
+      margin-bottom: 56px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .product-card {
+      background: var(--bg-base);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .product-card:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .product-card.featured {
+      border-color: var(--accent-border);
+      background: linear-gradient(160deg, var(--bg-base) 0%, rgba(37, 99, 235, 0.06) 100%);
+    }
+
+    /* "Most Popular" ribbon */
+    .card-ribbon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--accent);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-bottom-left-radius: var(--radius-sm);
+    }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      background: var(--accent-glow);
+      border: 1px solid var(--accent-border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .card-name {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .card-features {
+      flex: 1;
+      margin-bottom: 28px;
+    }
+
+    .card-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      line-height: 1.5;
+    }
+
+    .card-features li:first-child {
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .check {
+      color: var(--success);
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-weight: 700;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-price-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .price-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Buy Now button */
+    .btn-buy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 20px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .btn-buy:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    }
+
+    /* ==========================================================
+       FAQ
+    ========================================================== */
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .faq-sidebar {
+      position: sticky;
+      top: 84px;
+    }
+
+    .faq-contact-box {
+      margin-top: 28px;
+      padding: 18px 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+    }
+
+    .faq-contact-box p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .faq-contact-box a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .faq-contact-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* Accordion using <details>/<summary> — zero JS */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    details.faq-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+
+    details.faq-item[open] {
+      border-color: var(--accent-border);
+    }
+
+    details.faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 22px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+      gap: 16px;
+      user-select: none;
+      list-style: none;
+    }
+
+    /* Remove browser default disclosure triangle */
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::marker { display: none; }
+
+    /* +/− indicator */
+    details.faq-item summary::after {
+      content: '+';
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: transform 0.2s ease, color 0.2s ease;
+      line-height: 1;
+    }
+
+    details.faq-item[open] summary::after {
+      content: '−';
+      color: var(--accent);
+    }
+
+    .faq-answer {
+      padding: 0 22px 22px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .faq-answer a {
+      color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .faq-answer a:hover {
+      text-decoration: underline;
+    }
+
+    .faq-answer code {
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      font-size: 12px;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    /* ==========================================================
+       FOOTER
+    ========================================================== */
+    .footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      padding: 52px 0 40px;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 28px;
+    }
+
+    .footer-brand-col {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .footer-logo-mark {
+      width: 26px;
+      height: 26px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 280px;
+      line-height: 1.5;
+    }
+
+    .footer-links-col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-links-heading {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .footer-links-col a {
+      font-size: 14px;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .footer-links-col a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-legal a {
+      font-size: 13px;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .footer-legal a:hover {
+      color: var(--text-primary);
+    }
+
+    /* ==========================================================
+       RESPONSIVE
+    ========================================================== */
+
+    /* Tablet / small desktop */
+    @media (max-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .products-grid .product-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 540px;
+        justify-self: center;
+        width: 100%;
+      }
+
+      .faq-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .faq-sidebar {
+        position: static;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .section {
+        padding: 72px 0;
+      }
+
+      .hero {
+        padding: 80px 0 64px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products-grid .product-card:last-child {
+        grid-column: auto;
+        max-width: none;
+        justify-self: auto;
+      }
+
+      .card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .btn-buy {
+        width: 100%;
+        justify-content: center;
+        padding: 13px 20px;
+      }
+
+      .hero-trust {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+      }
+
+      .trust-stat {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* Small mobile */
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .hero-actions .btn-primary,
+      .hero-actions .btn-ghost {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-headline {
+        font-size: clamp(32px, 10vw, 48px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <header>
+    <nav class="nav">
+      <div class="container">
+        <div class="nav-inner">
+
+          <a href="/" class="nav-logo">
+            <span class="nav-logo-mark">LP</span>
+            LogicPlanners
+          </a>
+
+          <ul class="nav-links">
+            <li><a href="#products">Templates</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li>
+              <a href="#products" class="nav-cta">Browse Templates</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="hero-content">
+
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Built with computer science rigor
+        </div>
+
+        <h1 class="hero-headline">
+          Templates that work<br>
+          <em>without breaking.</em>
+        </h1>
+
+        <p class="hero-subheadline">
+          Production-grade spreadsheet systems for budgeting, homelab management, and event planning. Every formula is tested. Every input is validated. Open the file and it works.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#products" class="btn-primary">
+            Browse Templates
+            <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#faq" class="btn-ghost">How it works</a>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-stat">
+            <span class="trust-stat-number">3</span>
+            <span class="trust-stat-label">Production-ready templates</span>
+          </div>
+          <div class="trust-stat">
+            <span class="trust-stat-number">100%</span>
+            <span class="trust-stat-label">Instant download on purchase</span>
+          </div>
+          <div class="trust-stat">
+            <span class="trust-stat-number">$0</span>
+            <span class="trust-stat-label">Subscriptions or add-ons required</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PRODUCT SHOWCASE
+  ============================================================ -->
+  <section id="products" class="products section">
+    <div class="container">
+
+      <div class="products-header">
+        <span class="section-eyebrow">Templates</span>
+        <h2 class="section-heading">Pick the system that fits your problem.</h2>
+        <p class="section-subheading">Each template is a complete, self-contained system. Open it, configure the Setup tab, and it works — no assembly required.</p>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- ———————————————————————————————
+             Card 1: Homelab & Media Server Architect
+        ——————————————————————————————— -->
+        <div class="product-card">
+          <div class="card-icon" aria-hidden="true">🖥️</div>
+          <h3 class="card-name">The Homelab &amp; Media Server Architect</h3>
+          <p class="card-desc">A full infrastructure-planning workbook for the technical builder who needs every service, power draw, and storage allocation documented in one place.</p>
+          <ul class="card-features">
+            <li><span class="check" aria-hidden="true">✓</span> Network topology planner with VLAN mapping</li>
+            <li><span class="check" aria-hidden="true">✓</span> Docker/container service inventory &amp; status tracker</li>
+            <li><span class="check" aria-hidden="true">✓</span> Storage allocation matrix with per-drive breakdown</li>
+            <li><span class="check" aria-hidden="true">✓</span> Power consumption &amp; UPS load calculator</li>
+            <li><span class="check" aria-hidden="true">✓</span> Hardware procurement list with total cost tracking</li>
+            <li><span class="check" aria-hidden="true">✓</span> Maintenance log with automated scheduling flags</li>
+          </ul>
+          <div class="card-footer">
+            <div class="card-price-block">
+              <span class="price">$19</span>
+              <span class="price-note">One-time · Instant download</span>
+            </div>
+            <a class="btn-buy gumroad-button"
+               href="https://logicplanners.gumroad.com/l/homelab-architect"
+               data-gumroad-overlay-checkout="true"
+               aria-label="Buy The Homelab &amp; Media Server Architect for $19">
+              Buy Now
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- ———————————————————————————————
+             Card 2: Zero-Based Budget Master (Featured)
+        ——————————————————————————————— -->
+        <div class="product-card featured">
+          <span class="card-ribbon">Most Popular</span>
+          <div class="card-icon" aria-hidden="true">💰</div>
+          <h3 class="card-name">The Zero-Based Budget Master</h3>
+          <p class="card-desc">A rigorous zero-based allocation system that forces every dollar into a defined category before the month begins. Built to surface financial leaks, not hide them.</p>
+          <ul class="card-features">
+            <li><span class="check" aria-hidden="true">✓</span> Zero-based engine — income is allocated to exactly $0</li>
+            <li><span class="check" aria-hidden="true">✓</span> Category variance tracker (budgeted vs. actual)</li>
+            <li><span class="check" aria-hidden="true">✓</span> Monthly rollover logic for variable spending categories</li>
+            <li><span class="check" aria-hidden="true">✓</span> Debt payoff scheduler (avalanche &amp; snowball methods)</li>
+            <li><span class="check" aria-hidden="true">✓</span> Net worth dashboard with month-over-month trend</li>
+            <li><span class="check" aria-hidden="true">✓</span> 12-month annual summary with visual rollup chart</li>
+          </ul>
+          <div class="card-footer">
+            <div class="card-price-block">
+              <span class="price">$12</span>
+              <span class="price-note">One-time · Instant download</span>
+            </div>
+            <a class="btn-buy gumroad-button"
+               href="https://logicplanners.gumroad.com/l/zero-based-budget"
+               data-gumroad-overlay-checkout="true"
+               aria-label="Buy The Zero-Based Budget Master for $12">
+              Buy Now
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- ———————————————————————————————
+             Card 3: Event Cost & Wedding Optimizer
+        ——————————————————————————————— -->
+        <div class="product-card">
+          <div class="card-icon" aria-hidden="true">💍</div>
+          <h3 class="card-name">The Event Cost &amp; Wedding Optimizer</h3>
+          <p class="card-desc">A structured event-planning system built for real numbers, not mood boards. Tracks every vendor, payment, and guest from initial budget to final invoice.</p>
+          <ul class="card-features">
+            <li><span class="check" aria-hidden="true">✓</span> Budget vs. actual tracker with per-category variance flags</li>
+            <li><span class="check" aria-hidden="true">✓</span> Vendor comparison matrix (up to 3 quotes per vendor)</li>
+            <li><span class="check" aria-hidden="true">✓</span> Guest list manager with RSVP status &amp; meal selection</li>
+            <li><span class="check" aria-hidden="true">✓</span> Day-of timeline builder with buffer calculations</li>
+            <li><span class="check" aria-hidden="true">✓</span> Payment milestone tracker with due-date alerts</li>
+            <li><span class="check" aria-hidden="true">✓</span> Per-head cost calculator with scenario modeling</li>
+          </ul>
+          <div class="card-footer">
+            <div class="card-price-block">
+              <span class="price">$15</span>
+              <span class="price-note">One-time · Instant download</span>
+            </div>
+            <a class="btn-buy gumroad-button"
+               href="https://logicplanners.gumroad.com/l/event-wedding-optimizer"
+               data-gumroad-overlay-checkout="true"
+               aria-label="Buy The Event Cost &amp; Wedding Optimizer for $15">
+              Buy Now
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FAQ
+  ============================================================ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="faq-layout">
+
+        <!-- Sidebar -->
+        <div class="faq-sidebar">
+          <span class="section-eyebrow">FAQ</span>
+          <h2 class="section-heading">Questions answered.</h2>
+          <p class="section-subheading" style="font-size: 15px;">Everything you need before buying.</p>
+          <div class="faq-contact-box">
+            <p>Didn't find your answer? Reach out directly:</p>
+            <a href="mailto:support@logicplanners.com">support@logicplanners.com</a>
+          </div>
+        </div>
+
+        <!-- Accordion -->
+        <div class="faq-list" role="list">
+
+          <details class="faq-item" open>
+            <summary>How do I get the files after purchase?</summary>
+            <div class="faq-answer">
+              Immediately after payment, Gumroad sends a download link to the email address you used at checkout. Click the link, download the <code>.xlsx</code> file, and open it in Google Sheets or Excel. No account creation on our end is required — it is a direct file download with no expiry.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Do I need a paid Google or Microsoft account?</summary>
+            <div class="faq-answer">
+              No. All templates are standard <code>.xlsx</code> files. A free Google account (Google Sheets) is sufficient. Microsoft Excel 2016 or any version of Microsoft 365 also works. No paid tiers, no add-ons, and no third-party service access is required.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What format are the templates delivered in?</summary>
+            <div class="faq-answer">
+              All templates are delivered as <code>.xlsx</code> files. This format is compatible with Google Sheets, Microsoft Excel for Windows, Microsoft Excel for Mac (2016+), and LibreOffice Calc 7.x. Every formula uses standard functions — no proprietary add-ins or macros are required.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Will the formulas work correctly on Excel for Mac?</summary>
+            <div class="faq-answer">
+              Yes. All templates are tested against Microsoft 365 (Mac and Windows) and Google Sheets. Array formulas use standard syntax for cross-platform compatibility. If you encounter any formula error after opening the file, email <a href="mailto:support@logicplanners.com">support@logicplanners.com</a> with a screenshot and it will be diagnosed and corrected.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I customize the categories and variables?</summary>
+            <div class="faq-answer">
+              Yes — that is the intended workflow. Every template includes a dedicated <strong>Setup tab</strong> where you configure all global variables: category names, income sources, tax rates, thresholds, and more. Input cells are clearly marked with a distinct background color. Formula cells are locked to prevent accidental changes. You configure the system through the Setup tab; you do not touch any formula cells directly.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What is your refund policy?</summary>
+            <div class="faq-answer">
+              7-day full refund, no questions asked. If the template does not do what the product description states it does, email <a href="mailto:support@logicplanners.com">support@logicplanners.com</a> within 7 days of purchase and a full refund will be issued through Gumroad. Refunds typically appear within 3–5 business days depending on your bank.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I share the template with a partner or co-planner?</summary>
+            <div class="faq-answer">
+              One license covers one user. Sharing with a spouse, partner, or co-planner working on the same project you purchased the template for is permitted. Redistribution, resale, or sharing with unrelated individuals or organizations is not permitted under the standard license.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Will templates be updated after I buy?</summary>
+            <div class="faq-answer">
+              Yes. Gumroad sends updated file versions to your original download link automatically. When a template receives a significant update, existing customers get access to the new version at no additional cost. Bug fixes are always free.
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <div class="footer-logo">
+            <span class="footer-logo-mark">LP</span>
+            LogicPlanners
+          </div>
+          <p class="footer-tagline">Systems built with computer science rigor, designed for everyday utility.</p>
+        </div>
+
+        <div class="footer-links-col">
+          <p class="footer-links-heading">Templates</p>
+          <a href="https://logicplanners.gumroad.com/l/homelab-architect" data-gumroad-overlay-checkout="true">Homelab &amp; Media Server Architect</a>
+          <a href="https://logicplanners.gumroad.com/l/zero-based-budget" data-gumroad-overlay-checkout="true">Zero-Based Budget Master</a>
+          <a href="https://logicplanners.gumroad.com/l/event-wedding-optimizer" data-gumroad-overlay-checkout="true">Event Cost &amp; Wedding Optimizer</a>
+        </div>
+
+        <div class="footer-links-col">
+          <p class="footer-links-heading">Support</p>
+          <a href="#faq">FAQ</a>
+          <a href="mailto:support@logicplanners.com">support@logicplanners.com</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 LogicPlanners.com. All rights reserved.</p>
+        <nav class="footer-legal" aria-label="Legal">
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </nav>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
