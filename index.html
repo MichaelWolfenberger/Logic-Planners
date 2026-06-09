@@ -37,6 +37,7 @@
       --events-color:     #C4943A;
       --budget-color:     #3F7A5E;
       --planner-color:    #4A8B7F;
+      --fitness-color:    #D64C1A;
     }
 
     body { background: var(--home-cream); color: var(--home-ink); }
@@ -48,7 +49,8 @@
         var(--wedding-color),
         var(--events-color),
         var(--budget-color),
-        var(--planner-color)
+        var(--planner-color),
+        var(--fitness-color)
       );
     }
 
@@ -239,6 +241,7 @@
     .home-cat-tile-events  { border-top: 3px solid var(--events-color); }
     .home-cat-tile-budget  { border-top: 3px solid var(--budget-color); }
     .home-cat-tile-planner { border-top: 3px solid var(--planner-color); }
+    .home-cat-tile-fitness { border-top: 3px solid var(--fitness-color); }
 
     .home-cat-chip {
       display: inline-flex; align-items: center; gap: 6px;
@@ -250,6 +253,7 @@
     .chip-events  { background: rgba(196,148,58,0.10);  color: var(--events-color);  border: 1px solid rgba(196,148,58,0.22); }
     .chip-budget  { background: rgba(63,122,94,0.10);   color: var(--budget-color);  border: 1px solid rgba(63,122,94,0.22); }
     .chip-planner { background: rgba(74,139,127,0.10);  color: var(--planner-color); border: 1px solid rgba(74,139,127,0.22); }
+    .chip-fitness { background: rgba(214,76,26,0.10);   color: var(--fitness-color); border: 1px solid rgba(214,76,26,0.22); }
 
     .home-cat-name {
       font-family: var(--font-serif); font-size: 24px; font-weight: 700;
@@ -466,6 +470,7 @@
             <a href="event-planners.html"   class="nav-dropdown-item"><span class="nav-dropdown-icon">🎉</span>Event Planners</a>
             <a href="budgeting.html"        class="nav-dropdown-item"><span class="nav-dropdown-icon">💰</span>Budgeting</a>
             <a href="day-planners.html"     class="nav-dropdown-item"><span class="nav-dropdown-icon">📋</span>Day Planners</a>
+            <a href="fitness-trackers.html" class="nav-dropdown-item"><span class="nav-dropdown-icon">🏋️</span>Fitness Trackers</a>
           </div>
         </div>
         <a href="#how-it-works" class="nav-link">How It Works</a>
@@ -486,6 +491,7 @@
   <a href="event-planners.html"   class="nav-mobile-link">🎉 Event Planners</a>
   <a href="budgeting.html"        class="nav-mobile-link">💰 Budgeting</a>
   <a href="day-planners.html"     class="nav-mobile-link">📋 Day Planners</a>
+  <a href="fitness-trackers.html" class="nav-mobile-link">🏋️ Fitness Trackers</a>
   <a href="#how-it-works"         class="nav-mobile-link">How It Works</a>
   <a href="#testimonials"         class="nav-mobile-link">Reviews</a>
   <div class="nav-mobile-btns">
@@ -562,6 +568,15 @@
           </span>
         </a>
 
+        <a href="fitness-trackers.html" class="home-cat-preview" style="background:rgba(214,76,26,0.07);border:1px solid rgba(214,76,26,0.18);color:var(--fitness-color);">
+          <span class="home-cat-preview-emoji">🏋️</span>
+          <div class="home-cat-preview-name">Fitness Trackers</div>
+          <div class="home-cat-preview-count">4 templates · from $9</div>
+          <span class="home-cat-preview-arrow">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+
       </div>
     </div>
   </div>
@@ -571,8 +586,8 @@
 <div class="home-stats">
   <div class="container" style="padding:0 24px;">
     <div class="home-stats-inner">
-      <div class="home-stat"><span class="home-stat-num">16</span><span class="home-stat-label">Templates available</span></div>
-      <div class="home-stat"><span class="home-stat-num">4</span><span class="home-stat-label">Planning categories</span></div>
+      <div class="home-stat"><span class="home-stat-num">20</span><span class="home-stat-label">Templates available</span></div>
+      <div class="home-stat"><span class="home-stat-num">5</span><span class="home-stat-label">Planning categories</span></div>
       <div class="home-stat"><span class="home-stat-num"><em>$7</em></span><span class="home-stat-label">Starting price</span></div>
       <div class="home-stat"><span class="home-stat-num">★ <span style="font-size:22px;font-family:var(--font-serif)">5.0</span></span><span class="home-stat-label">Etsy rating</span></div>
     </div>
@@ -586,7 +601,7 @@
   <div class="container">
     <span class="home-eyebrow" style="display:block;">Template Categories</span>
     <h2 class="home-heading">Find the template<br>for your plan.</h2>
-    <p class="home-subheading">Four categories. Multiple templates each. Pick the one that matches your exact situation.</p>
+    <p class="home-subheading">Five categories. Multiple templates each. Pick the one that matches your exact situation.</p>
     <div class="home-cat-grid">
 
       <a href="wedding-planners.html" class="home-cat-tile home-cat-tile-wedding">
@@ -635,6 +650,19 @@
         <div class="home-cat-footer">
           <span class="home-cat-count">4 templates · from $7</span>
           <span class="home-cat-link" style="color:var(--planner-color);">
+            Browse
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="fitness-trackers.html" class="home-cat-tile home-cat-tile-fitness" style="grid-column: 1 / -1;">
+        <span class="home-cat-chip chip-fitness">🏋️ Fitness Trackers</span>
+        <div class="home-cat-name">Fitness Trackers</div>
+        <p class="home-cat-desc">Workout logs, macro trackers, body progress sheets, and event training planners. Stop guessing and start seeing real progress — in your own numbers, your own way.</p>
+        <div class="home-cat-footer">
+          <span class="home-cat-count">4 templates · from $9</span>
+          <span class="home-cat-link" style="color:var(--fitness-color);">
             Browse
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
