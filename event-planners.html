@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Event planner spreadsheet templates — corporate events, birthday parties, dinner parties, and conference logistics. Available on Etsy and Gumroad.">
+  <title>Event Planner Templates — LogicPlanners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+  <style>
+    :root {
+      --cat:       #C9A96E;
+      --cat-hover: #B8985D;
+      --cat-light: rgba(201,169,110,0.14);
+      --cat-border:rgba(201,169,110,0.32);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-mark">LP</span>
+        <span class="nav-logo-text">LogicPlanners</span>
+      </a>
+      <div class="nav-links">
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle">
+            Templates
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="wedding-planners.html" class="nav-dropdown-item"><span class="nav-dropdown-icon">💍</span>Wedding Planners</a>
+            <a href="event-planners.html"   class="nav-dropdown-item nav-link active"><span class="nav-dropdown-icon">🎉</span>Event Planners</a>
+            <a href="budgeting.html"        class="nav-dropdown-item"><span class="nav-dropdown-icon">💰</span>Budgeting</a>
+            <a href="day-planners.html"     class="nav-dropdown-item"><span class="nav-dropdown-icon">📋</span>Day Planners</a>
+          </div>
+        </div>
+        <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="nav-btn-etsy">🛍 Etsy Shop</a>
+        <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="nav-btn-gumroad">Gumroad</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="wedding-planners.html" class="nav-mobile-link">💍 Wedding Planners</a>
+  <a href="event-planners.html"   class="nav-mobile-link">🎉 Event Planners</a>
+  <a href="budgeting.html"        class="nav-mobile-link">💰 Budgeting</a>
+  <a href="day-planners.html"     class="nav-mobile-link">📋 Day Planners</a>
+  <div class="nav-mobile-btns">
+    <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="btn btn-etsy" style="justify-content:center;">🛍 Shop on Etsy</a>
+    <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content:center;">Shop on Gumroad</a>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero" style="background:linear-gradient(160deg,#FAF7F4 0%,#F7F0E5 50%,#F0E6D3 100%);">
+  <svg class="hero-floral-r" viewBox="0 0 500 450" fill="none" aria-hidden="true">
+    <path d="M250 420C250 420 200 330 170 240C140 150 155 70 180 20" stroke="#C9A96E" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M178 50C178 50 145 42 128 30" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M175 88C175 88 142 93 126 86" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M173 128C173 128 206 116 224 104" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <path d="M171 168C171 168 138 175 122 188" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="125" cy="30"  rx="14" ry="6" transform="rotate(-45 125 30)"  fill="#C9A96E" opacity=".5"/>
+    <ellipse cx="123" cy="85"  rx="13" ry="6" transform="rotate(-15 123 85)"  fill="#C9A96E" opacity=".5"/>
+    <ellipse cx="226" cy="102" rx="13" ry="6" transform="rotate(20 226 102)"  fill="#C9A96E" opacity=".45"/>
+    <ellipse cx="120" cy="188" rx="14" ry="6" transform="rotate(-10 120 188)" fill="#C9A96E" opacity=".45"/>
+    <circle cx="180" cy="18" r="8" fill="#FAF7F4" stroke="#C9A96E" stroke-width="1.8"/>
+    <circle cx="180" cy="18" r="3" fill="#C9A96E"/>
+  </svg>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span>Event Planners</span>
+      </div>
+      <div class="hero-badge">🎉 &nbsp;4 templates · $7–$16</div>
+      <h1 class="hero-headline">
+        Every event.<br>
+        <em>Accounted for.</em>
+      </h1>
+      <p class="hero-sub">Corporate events, birthday parties, dinner parties, and multi-day conferences — structured spreadsheets that handle logistics, budgets, and day-of execution.</p>
+      <div class="hero-actions">
+        <a href="#templates" class="btn btn-primary btn-lg">
+          🎊 View All Templates
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#how-to-use" class="btn btn-outline btn-lg">📋 How to Use</a>
+      </div>
+      <div class="hero-pills">
+        <span class="hero-pill"><span class="hero-pill-dot"></span>Google Sheets &amp; Excel</span>
+        <span class="hero-pill"><span class="hero-pill-dot"></span>Instant download</span>
+        <span class="hero-pill"><span class="hero-pill-dot"></span>Etsy &amp; Gumroad</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEMPLATES ── -->
+<section class="section" id="templates" style="background:#fff;">
+  <div class="container">
+    <span class="eyebrow">Event Planner Templates</span>
+    <h2 class="heading">Four templates. <em>Every type of event handled.</em></h2>
+    <p class="subheading">From 10-person dinner parties to 500-person conferences — each template is sized and structured for the right event type.</p>
+    <div class="products-grid">
+
+      <!-- Template 1 -->
+      <div class="product-card">
+        <div class="product-card-top" style="background:linear-gradient(135deg,#FAF5EC,#F5EAD6);">
+          <span class="product-badge">Most Professional</span>
+          <span class="product-icon">🏢</span>
+          <div class="product-name">Corporate Event Planner</div>
+          <p class="product-tagline">AV, catering, registration, vendor contracts, and budget variance tracking for professional events and off-sites.</p>
+        </div>
+        <div class="product-card-body">
+          <div class="product-features">
+            <div class="product-feature"><span class="product-feature-dot"></span>Budget tracker: venue, catering, AV, travel, swag</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Vendor contract tracker with deliverables &amp; deadlines</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Attendee registration: confirmed, dietary, accessibility needs</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Run-of-show with speaker times and room assignments</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Post-event cost reconciliation tab</div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">$14</div>
+            <div class="product-buy-btns">
+              <a href="https://www.etsy.com/listing/0000000030/corporate-event-planner" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+              <a href="https://logicplanners.gumroad.com/l/corporate-event" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Template 2 -->
+      <div class="product-card">
+        <div class="product-card-top" style="background:linear-gradient(135deg,#FAF5EC,#F5EAD6);">
+          <span class="product-icon">🎂</span>
+          <div class="product-name">Birthday Party Organizer</div>
+          <p class="product-tagline">Guest list, vendor budget, RSVP tracker, and day-of checklist — for birthday parties from 10 to 200 guests.</p>
+        </div>
+        <div class="product-card-body">
+          <div class="product-features">
+            <div class="product-feature"><span class="product-feature-dot"></span>Guest list with RSVP status and plus-one tracking</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Vendor budget: venue, food, entertainment, decor, cake</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Shopping list generator based on confirmed headcount</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Day-of checklist: setup, during, cleanup tasks</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Gift log with thank-you note tracking</div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">$9</div>
+            <div class="product-buy-btns">
+              <a href="https://www.etsy.com/listing/0000000031/birthday-party-organizer" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+              <a href="https://logicplanners.gumroad.com/l/birthday-party" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Template 3 -->
+      <div class="product-card">
+        <div class="product-card-top" style="background:linear-gradient(135deg,#FAF5EC,#F5EAD6);">
+          <span class="product-icon">🍽</span>
+          <div class="product-name">Dinner Party Host Planner</div>
+          <p class="product-tagline">Menu builder, scaled shopping list, seating chart, and evening timeline — for dinner parties done right.</p>
+        </div>
+        <div class="product-card-body">
+          <div class="product-features">
+            <div class="product-feature"><span class="product-feature-dot"></span>Menu builder: courses, recipes, prep time estimates</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Shopping list auto-scaled by guest count</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Dietary restriction matrix per guest</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Seating chart with conversation pairing notes</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Evening timeline: prep, serve, clear — minute-by-minute</div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">$7</div>
+            <div class="product-buy-btns">
+              <a href="https://www.etsy.com/listing/0000000032/dinner-party-planner" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+              <a href="https://logicplanners.gumroad.com/l/dinner-party" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Template 4 -->
+      <div class="product-card">
+        <div class="product-card-top" style="background:linear-gradient(135deg,#FAF5EC,#F5EAD6);">
+          <span class="product-icon">🎙</span>
+          <div class="product-name">Conference Logistics Manager</div>
+          <p class="product-tagline">Multi-day conference planning: speaker tracking, sponsor management, registration, and per-day budget reconciliation.</p>
+        </div>
+        <div class="product-card-body">
+          <div class="product-features">
+            <div class="product-feature"><span class="product-feature-dot"></span>Speaker database: bio, travel, AV needs, confirmation status</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Sponsor tracker: tier, deliverables, payment status</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Attendee registration with session selection</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Multi-day agenda builder with room assignments</div>
+            <div class="product-feature"><span class="product-feature-dot"></span>Per-day budget with actual spend reconciliation</div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">$16</div>
+            <div class="product-buy-btns">
+              <a href="https://www.etsy.com/listing/0000000033/conference-planner" target="_blank" rel="noopener" class="btn btn-etsy btn-sm">🛍 Etsy</a>
+              <a href="https://logicplanners.gumroad.com/l/conference-planner" class="btn btn-primary btn-sm gumroad-button" data-gumroad-overlay-checkout="true">Gumroad</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW TO USE ── -->
+<section class="how-to section" id="how-to-use">
+  <div class="container">
+    <span class="eyebrow">How to Use</span>
+    <h2 class="heading">From purchase to your first planning session in 15 minutes.</h2>
+    <p class="subheading">All event planner templates are pre-structured. You're entering your event details, not building the system.</p>
+    <div class="how-to-grid">
+      <div class="how-step">
+        <div class="how-step-connector"></div>
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">Purchase &amp; Download</div>
+        <p class="how-step-desc">Buy on Etsy or Gumroad. Your .xlsx file is available immediately. Save it to Google Drive for easy sharing with co-planners or vendors.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-connector"></div>
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">Fill the Setup Tab</div>
+        <p class="how-step-desc">Enter the event name, date, expected headcount, total budget, and vendor categories. These populate across every tab automatically.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-connector"></div>
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">Build Out Each Tab</div>
+        <p class="how-step-desc">Add vendors, speakers, or guests as you confirm them. The budget tracker updates in real time. Payment deadlines are flagged automatically as they approach.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">4</div>
+        <div class="how-step-title">Execute &amp; Reconcile</div>
+        <p class="how-step-desc">Use the run-of-show on the day itself. After the event, use the reconciliation tab to compare planned vs. actual spend — useful for budgeting the next one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <span class="eyebrow">FAQ</span>
+    <h2 class="heading">Common questions.</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q">Can I use the Corporate Event Planner for recurring events?</div>
+        <p class="faq-a">Yes. Duplicate the entire workbook each time. The Setup tab lets you change event name, date, and budget without touching any formulas. Recurring events like quarterly off-sites take 5 minutes to set up from the prior copy.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How many attendees can the Birthday Organizer handle?</div>
+        <p class="faq-a">The guest list tab defaults to 200 rows. Adding more is a simple row duplication — formulas extend automatically. It's been tested to 500 rows without performance issues in Google Sheets.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is the Dinner Party Planner usable for events with complex dietary requirements?</div>
+        <p class="faq-a">Yes. The dietary matrix supports up to 12 restriction types per guest (gluten-free, vegan, kosher, halal, nut allergy, etc.) and cross-references them against each menu item to flag conflicts before you shop.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does the Conference Manager support multiple tracks or breakout sessions?</div>
+        <p class="faq-a">Yes. The agenda builder includes a room/track column and a parallel-session flag. Sessions scheduled at the same time in the same room are highlighted automatically, so scheduling conflicts are caught before you publish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-banner section">
+  <div class="container">
+    <div class="cta-banner-inner">
+      <span class="eyebrow">Get Started</span>
+      <div class="cta-banner-heading">Your next event.<br><em>Completely under control.</em></div>
+      <p class="cta-banner-sub">Pick a template. Download instantly. Start planning today.</p>
+      <div class="cta-banner-btns">
+        <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="btn btn-etsy btn-lg">🛍 Shop on Etsy</a>
+        <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="btn btn-gold btn-lg">Shop on Gumroad</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-logo">
+          <span class="footer-logo-mark">LP</span>
+          <span class="footer-logo-text">LogicPlanners</span>
+        </div>
+        <p class="footer-brand-desc">Premium spreadsheet templates for weddings, events, budgeting, and daily planning.</p>
+        <div class="footer-social">
+          <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="footer-social-link">🛍</a>
+          <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="footer-social-link">G</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Templates</div>
+        <div class="footer-col-links">
+          <a href="wedding-planners.html">Wedding Planners</a>
+          <a href="event-planners.html">Event Planners</a>
+          <a href="budgeting.html">Budgeting</a>
+          <a href="day-planners.html">Day Planners</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Shop</div>
+        <div class="footer-col-links">
+          <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener">Etsy Store</a>
+          <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener">Gumroad Store</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Support</div>
+        <div class="footer-col-links">
+          <a href="index.html#how-it-works">How It Works</a>
+          <a href="mailto:support@logicplanners.com">Contact Us</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 LogicPlanners.com. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:support@logicplanners.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+  document.getElementById('hamburger').addEventListener('click', () =>
+    document.getElementById('mobileMenu').classList.toggle('open'));
+</script>
+</body>
+</html>
