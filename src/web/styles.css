@@ -118,7 +118,7 @@ img { display: block; max-width: 100%; }
 .nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .nav-logo-mark {
   width: 34px; height: 34px;
-  background: #2563EB;
+  background: #6D89C2;
   border-radius: 9px; display: flex; align-items: center; justify-content: center;
   font-family: var(--font-serif); font-size: 14px; font-weight: 800; color: #fff;
 }
@@ -490,7 +490,7 @@ img { display: block; max-width: 100%; }
 .footer-brand-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
 .footer-logo-mark {
   width: 30px; height: 30px;
-  background: #2563EB;
+  background: #6D89C2;
   border-radius: 7px; display: flex; align-items: center; justify-content: center;
   font-family: var(--font-serif); font-size: 12px; font-weight: 800; color: #fff;
 }
