@@ -358,40 +358,15 @@
        CTA
        ══════════════════════════════════════════ */
     .fit-cta {
-      background: var(--fit-dark); padding: 80px 0; text-align: center;
+      background: var(--fit-dark); padding: 88px 0;
     }
     .fit-cta-headline {
-      font-family: var(--font-serif); font-size: clamp(30px, 4vw, 46px);
-      font-weight: 800; color: #fff; margin-bottom: 16px; letter-spacing: -0.02em;
+      font-family: var(--font-serif); font-size: clamp(30px, 5vw, 46px);
+      font-weight: 800; line-height: 1.1; color: #fff;
+      letter-spacing: -0.02em; margin-bottom: 16px;
     }
-    .fit-cta-sub { font-size: 16px; color: rgba(255,255,255,0.6); margin-bottom: 36px; }
+    .fit-cta-sub { font-size: 16px; color: rgba(255,255,255,0.42); line-height: 1.7; margin-bottom: 38px; }
     .fit-cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .fit-cta .btn-secondary {
-      background: transparent !important;
-      border-color: rgba(255,255,255,0.3) !important;
-      color: rgba(255,255,255,0.85) !important;
-    }
-    .fit-cta .btn-secondary:hover {
-      background: rgba(255,255,255,0.08) !important;
-      border-color: rgba(255,255,255,0.5) !important;
-    }
-
-    /* ══════════════════════════════════════════
-       FOOTER
-       ══════════════════════════════════════════ */
-    .fit-footer { background: var(--fit-dark); border-top: 1px solid rgba(255,255,255,0.06); padding: 48px 0 28px; }
-    .fit-footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-    .fit-footer-logo { display: flex; align-items: center; gap: 10px; }
-    .fit-footer-logo-mark {
-      width: 30px; height: 30px; background: var(--fit-orange);
-      border-radius: 7px; display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-serif); font-size: 12px; font-weight: 800; color: #fff;
-    }
-    .fit-footer-logo-text { font-family: var(--font-serif); font-size: 17px; font-weight: 700; color: #fff; }
-    .fit-footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-    .fit-footer-link { font-size: 13px; color: rgba(255,255,255,0.5); transition: color 0.15s; }
-    .fit-footer-link:hover { color: rgba(255,255,255,0.85); }
-    .fit-footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
 
     /* Section labels */
     .fit-section-label {
@@ -414,34 +389,60 @@
 
   <!-- NAV -->
   <nav class="nav">
-    <div class="container nav-inner">
-      <a href="index.html" class="nav-logo">
-        <span class="nav-logo-mark">LP</span>
-        <span class="nav-logo-text">LogicPlanners</span>
-      </a>
-      <div class="nav-links">
-        <div class="nav-dropdown">
-          <button class="nav-dropdown-toggle">Templates ▾</button>
-          <div class="nav-dropdown-menu">
-            <a href="wedding-planners.html" class="nav-dropdown-item">💍 Wedding Planners</a>
-            <a href="event-planners.html" class="nav-dropdown-item">🎊 Event Planners</a>
-            <a href="budgeting.html" class="nav-dropdown-item">🌱 Budgeting</a>
-            <a href="day-planners.html" class="nav-dropdown-item">✨ Day Planners</a>
-            <a href="fitness-trackers.html" class="nav-dropdown-item">🏋️ Fitness Trackers</a>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-mark">LP</span>
+          <span class="nav-logo-text">LogicPlanners</span>
+        </a>
+        <div class="nav-links">
+          <div class="nav-dropdown">
+            <button class="nav-dropdown-toggle">
+              Templates
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="wedding-planners.html" class="nav-dropdown-item"><span class="nav-dropdown-icon">💍</span>Wedding Planners</a>
+              <a href="event-planners.html"   class="nav-dropdown-item"><span class="nav-dropdown-icon">🎉</span>Event Planners</a>
+              <a href="budgeting.html"        class="nav-dropdown-item"><span class="nav-dropdown-icon">💰</span>Budgeting</a>
+              <a href="day-planners.html"     class="nav-dropdown-item"><span class="nav-dropdown-icon">📋</span>Day Planners</a>
+              <a href="fitness-trackers.html" class="nav-dropdown-item nav-link active"><span class="nav-dropdown-icon">🏋️</span>Fitness Trackers</a>
+            </div>
           </div>
+          <a href="index.html#how-it-works" class="nav-link">How It Works</a>
         </div>
-        <a href="#templates" class="nav-link">Templates</a>
-        <a href="#how-it-works" class="nav-link">How It Works</a>
-        <a class="nav-btn-gumroad btn btn-sm btn-primary" href="https://logicplanners.gumroad.com" target="_blank">Shop All</a>
+        <div class="nav-right">
+          <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="nav-btn-etsy">🛍 Etsy Shop</a>
+          <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="nav-btn-gumroad">Gumroad</a>
+        </div>
+        <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
+  <div class="nav-mobile" id="mobileMenu">
+    <a href="wedding-planners.html" class="nav-mobile-link">💍 Wedding Planners</a>
+    <a href="event-planners.html"   class="nav-mobile-link">🎉 Event Planners</a>
+    <a href="budgeting.html"        class="nav-mobile-link">💰 Budgeting</a>
+    <a href="day-planners.html"     class="nav-mobile-link">📋 Day Planners</a>
+    <a href="fitness-trackers.html" class="nav-mobile-link">🏋️ Fitness Trackers</a>
+    <div class="nav-mobile-btns">
+      <a href="https://www.etsy.com/shop/LogicPlanners" target="_blank" rel="noopener" class="btn btn-etsy" style="justify-content:center;">🛍 Shop on Etsy</a>
+      <a href="https://logicplanners.gumroad.com" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content:center;">Shop on Gumroad</a>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="fit-hero">
     <div class="container">
       <div class="fit-hero-inner">
         <div>
+          <div class="breadcrumb" style="margin-bottom:24px;">
+            <a href="index.html">Home</a>
+            <span class="breadcrumb-sep">›</span>
+            <span>Fitness Trackers</span>
+          </div>
           <div class="fit-hero-eyebrow">Fitness Tracker Templates</div>
           <h1 class="fit-hero-headline">
             Stop guessing.<br>
@@ -774,8 +775,5 @@
   <!-- CTA -->
   <section class="fit-cta">
     <div class="container">
-      <h2 class="fit-cta-headline">Your best shape starts with<br>a single logged workout.</h2>
-      <p class="fit-cta-sub">Stop winging it. Start tracking. See the difference in 30 days.</p>
-      <div class="fit-cta-actions">
-        <a href="https://logicplanners.gumroad.com" target="_blank" class="btn btn-primary">🏋️ Shop Fitness Templates</a>
-        <a href="index.h
+      <div style="text-align:center;max-width:560px;margin:0 auto;">
+        <div style="display:inline-block;font-size:11px;font-weight:600;t
