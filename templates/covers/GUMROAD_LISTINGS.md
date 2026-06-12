@@ -364,7 +364,7 @@ Training for a marathon, powerlifting meet, triathlon, or any goal event? This p
 
 ## 17. Debt Payoff Snowball Tracker
 **Price:** $9
-**Cover:** *(needs cover image)*
+**Cover:** debt_payoff_snowball.png
 **File:** templates/budgeting/Debt_Payoff_Snowball_Tracker.xlsx
 
 **Description:**
@@ -385,7 +385,7 @@ Smallest balance first. The snowball method works because momentum beats math �
 
 ## 18. Emergency Fund Builder
 **Price:** $9
-**Cover:** *(needs cover image)*
+**Cover:** emergency_fund_builder.png
 **File:** templates/budgeting/Emergency_Fund_Builder.xlsx
 
 **Description:**
@@ -405,7 +405,7 @@ An emergency fund turns a crisis into an inconvenience. This template calculates
 
 ## 19. Habit & Streak Tracker
 **Price:** $8
-**Cover:** *(needs cover image)*
+**Cover:** habit_streak_tracker.png
 **File:** templates/day-planners/Habit_Streak_Tracker.xlsx
 
 **Description:**
@@ -425,7 +425,7 @@ Don't break the chain. Track up to 8 habits across a full month — with current
 
 ## 20. Time Block Master Scheduler
 **Price:** $7
-**Cover:** *(needs cover image)*
+**Cover:** time_block_scheduler.png
 **File:** templates/day-planners/Time_Block_Master_Scheduler.xlsx
 
 **Description:**
@@ -445,7 +445,7 @@ You don't find time — you assign it. Plan your week in 30-minute blocks and se
 
 ## 21. Honeymoon Budget & Planner
 **Price:** $8
-**Cover:** *(needs cover image)*
+**Cover:** honeymoon_planner.png
 **File:** templates/wedding/Honeymoon_Budget_Planner.xlsx
 
 **Description:**
@@ -466,7 +466,7 @@ The first trip of the rest of your lives — planned, not stressed. Budget, itin
 
 ## 22. Event Vendor & Logistics Manager
 **Price:** $9
-**Cover:** *(needs cover image)*
+**Cover:** event_vendor_logistics.png
 **File:** templates/events/Event_Vendor_Logistics_Manager.xlsx
 
 **Description:**
